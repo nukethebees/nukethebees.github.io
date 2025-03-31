@@ -24,8 +24,7 @@ description: >-
   Programming and hardware design
 baseurl: "" 
 url: "https://exotichat.github.io/" 
-twitter_username: jekyllrb
-github_username:  jekyll
+github_username:  ExoticHat
 
 # Build settings
 theme: minima
