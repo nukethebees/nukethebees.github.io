@@ -1,29 +1,44 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Verifying interface types within a module"
 date:   2025-03-31 19:10:38 +0100
-categories: jekyll update
+categories: system_verilog
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+Modules and interfaces can both be parameterised. 
+A module and interface may share some parameters and we want to ensure the interface that the module is connecting to has the same parameters.
+Unfortunately you cannot simply do `interface.parameter` despite the value surely being instantiated when the module is instantiated.
 
-Jekyll requires blog post files to be named according to the following format:
+The solution is to use the `$bits` function. We can access the widths of data-types in the interface and verify them in generate constructs.
 
-`YEAR-MONTH-DAY-title.MARKUP`
+{% highlight verilog %}
+    interface MyIf
+    #(
+        parameter int WIDTH = 8,
+        localparam type T = logic [WIDTH-1:0]
+    )();
+        T out;
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+        modport mp(output out);
+    endinterface
 
-Jekyll also offers powerful support for code snippets:
+    module MyMod
+    #(
+        parameter int WIDTH = 8,
+        localparam type T = logic [WIDTH-1:0]
+    )(
+        MyIf.mp my_if
+    );
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+        localparam int IF_WIDTH = $bits(my_if.T);
+        generate
+            if (IF_WIDTH != WIDTH) begin
+                $error("Interface has width of %d but module param is %d.", 
+                       IF_WIDTH, WIDTH)
+            end
+        endgenerate
+    endmodule
 {% endhighlight %}
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+Sadly this solution is only appropriate for types.
+If we tried to use this trick to pass around constants then we run into issues with the language.
+Packed arrays are only guaranteed to work with a 16 bit index and 24 bits for unpacked arrays.
