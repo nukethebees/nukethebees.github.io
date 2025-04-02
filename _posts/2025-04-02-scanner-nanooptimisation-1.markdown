@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "C++ Micro-optimisation: Scanner"
+title:  "C++ Nano-optimisation: Scanner"
 date:   2025-03-31 19:10:38 +0100
 categories: assembly cpp
 ---
 
-I'll cover a micro-optimisation I did on my compiler's scanner today.
+I'll cover a nano-optimisation I did on my compiler's scanner today.
 This is with MSVC and `-O2`.
 
 {% highlight cpp %}
