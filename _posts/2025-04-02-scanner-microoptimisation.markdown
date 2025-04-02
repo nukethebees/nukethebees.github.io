@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "C++ Optimisation: Scanner"
+title:  "C++ Micro-optimisation: Scanner"
 date:   2025-03-31 19:10:38 +0100
 categories: assembly cpp
 ---
