@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "C++ Nano-optimisation 2: Scanner"
+title:  "C++ Nano-optimisation 2: Scanner string function"
 date:   2025-03-31 19:10:38 +0100
 categories: assembly cpp
 ---
