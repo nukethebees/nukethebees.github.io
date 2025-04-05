@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Optimised x64 assembly for a summing loop function"
-date:   2025-04-04 19:20:00 +0100
+date:   2025-04-05 12:00:00 +0100
 categories: cpp
 ---
 
@@ -58,53 +58,139 @@ Here's the pattern of the three registers used in the loop.
 i   -> 0, 1, 2, 3
 r8d -> 1, 4, 9, 16
 edx -> 0, 2, 6, 12
-eax -> 0, 2, 4, 6
+eax -> 2, 4, 6, 8
 
-r8d = (i+i)**2
+r8d = (i+1)**2
 edx = (i+1) * i
-eax = 2*i
+eax = (i+1) * 2
 {% endhighlight %}
 
-In the final loop this gives a result of `x = (i+1)**2 + (i+1)*i + 2*i`.
+I made this simple Python script to trace the loop progression and confirm my work.
 
-{% highlight nasm %}
-; N = 4
+{% highlight python %}
+def sum(N):
+    r8d = 0
+    edx = 0
+    eax = 0
 
-; First iteration
-; r8d += 1 = 1
-; edx += 0 = 0
-; r8d += 0 = 1
-; eax += 2 = 2
-; cmp (eax - r9d) -> (2 - 3)
-; CF == 1 -> next iteration
+    if (N > 1):
+        while True:
+            r8d += 1
+            edx += eax
+            r8d += eax
+            eax += 2
+            next_iter = (eax - (N-1)) < 0
 
-; Second iteration
-; r8d += 1 = 2
-; edx += eax = 2
-; r8d += eax = 4
-; eax += 2 = 4
-; cmp (4 - 3)
-; CF != 1 -> continue
+            print(f"i: {i}, r8d: {r8d}, edx: {edx}, eax: {eax}, loop again: {next_iter}")
+            if not next_iter:
+                break
+    if (eax - N) >= 0:
+        eax = 0
 
-; cmp (eax - ecx) -> (4 - 4)
-; CF == 0, eax = 0
-; eax += 4
-; eax += 2
-; return 6
+    print(f"Final r8d: {r8d}, edx: {edx}, eax: {eax}")
 
-; (untaken third iteration)
-; r8d += 1 = 5
-; edx += eax = 6
-; r8d += eax = 9
-; eax += 2 = 6
+    return eax + r8d + edx
 
-; (untaken fourth iteration)
-; r8d += 1 = 10
-; edx += eax = 12
-; r8d += eax = 16
-; eax += 2 = 8
+for i in range(10):
+    print(f"Iter: {i}")
+    print(f"Result: {sum(i)}\n")
+{% endhighlight %}
 
+This gives the following output.
 
+<details>
+<summary>
+<b>Python script output</b>
+</summary>
+{% highlight text %}
+Iter: 0
+Final r8d: 0, edx: 0, eax: 0
+Result: 0
+
+Iter: 1
+Final r8d: 0, edx: 0, eax: 0
+Result: 0
+
+Iter: 2
+i: 2, r8d: 1, edx: 0, eax: 2, loop again: False
+Final r8d: 1, edx: 0, eax: 0
+Result: 1
+
+Iter: 3
+i: 3, r8d: 1, edx: 0, eax: 2, loop again: False
+Final r8d: 1, edx: 0, eax: 2
+Result: 3
+
+Iter: 4
+i: 4, r8d: 1, edx: 0, eax: 2, loop again: True
+i: 4, r8d: 4, edx: 2, eax: 4, loop again: False
+Final r8d: 4, edx: 2, eax: 0
+Result: 6
+
+Iter: 5
+i: 5, r8d: 1, edx: 0, eax: 2, loop again: True
+i: 5, r8d: 4, edx: 2, eax: 4, loop again: False
+Final r8d: 4, edx: 2, eax: 4
+Result: 10
+
+Iter: 6
+i: 6, r8d: 1, edx: 0, eax: 2, loop again: True
+i: 6, r8d: 4, edx: 2, eax: 4, loop again: True
+i: 6, r8d: 9, edx: 6, eax: 6, loop again: False
+Final r8d: 9, edx: 6, eax: 0
+Result: 15
+
+Iter: 7
+i: 7, r8d: 1, edx: 0, eax: 2, loop again: True
+i: 7, r8d: 4, edx: 2, eax: 4, loop again: True
+i: 7, r8d: 9, edx: 6, eax: 6, loop again: False
+Final r8d: 9, edx: 6, eax: 6
+Result: 21
+
+Iter: 8
+i: 8, r8d: 1, edx: 0, eax: 2, loop again: True
+i: 8, r8d: 4, edx: 2, eax: 4, loop again: True
+i: 8, r8d: 9, edx: 6, eax: 6, loop again: True
+i: 8, r8d: 16, edx: 12, eax: 8, loop again: False
+Final r8d: 16, edx: 12, eax: 0
+Result: 28
+
+Iter: 9
+i: 9, r8d: 1, edx: 0, eax: 2, loop again: True
+i: 9, r8d: 4, edx: 2, eax: 4, loop again: True
+i: 9, r8d: 9, edx: 6, eax: 6, loop again: True
+i: 9, r8d: 16, edx: 12, eax: 8, loop again: False
+Final r8d: 16, edx: 12, eax: 8
+Result: 36
+{% endhighlight %}
+</details>
+<br>
+
+For even numbers of `N`:
+{% highlight text %}
+x = r8d + edx
+{% endhighlight %}
+ 
+For odd numbers:
+
+{% highlight text %}
+x = r8d + edx + eax
+{% endhighlight %}
+
+where
+
+{% highlight text %}
+n = N/2 (integer division)
+m = n+1
+r8d = m**2
+edx = m*n
+eax = m*2
+{% endhighlight %}
+ 
+As a final expression, the loop could be described as: 
+
+{% highlight text %}
+x = m**2 + m*n + (N % 2) * m*2
 {% endhighlight %}
 
 # GCC
