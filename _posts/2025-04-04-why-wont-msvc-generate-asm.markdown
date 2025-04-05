@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Why won't MSVC generate assembly listings for my library in release mode?"
+title:  "C++: Why won't MSVC generate assembly listings for my library in release mode?"
 date:   2025-04-04 18:49:00 +0100
 categories: cpp
 ---

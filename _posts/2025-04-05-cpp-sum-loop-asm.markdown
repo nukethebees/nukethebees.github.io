@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Optimised x64 assembly for a summing loop function"
+title:  "Analysing optimised x64 assembly for a summing loop function"
 date:   2025-04-05 12:00:00 +0100
 categories: cpp
 ---
