@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "SystemVerilog: Verifying interface types within a module"
+title:  "[SystemVerilog] Verifying interface types within a module"
 date:   2025-03-31 19:10:38 +0100
 categories: system_verilog
 ---

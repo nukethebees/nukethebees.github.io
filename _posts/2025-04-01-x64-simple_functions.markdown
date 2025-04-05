@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Simple C++ functions in x64 assembly"
+title:  "[C++] Simple functions in x64 assembly"
 date:   2025-04-01 19:10:38 +0100
 categories: assembly
 ---

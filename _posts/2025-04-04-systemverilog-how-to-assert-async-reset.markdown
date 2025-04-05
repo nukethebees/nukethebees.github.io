@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "SystemVerilog: How to create an assertion property for an asynchronous reset when using clocking blocks?"
+title:  "[SystemVerilog] How to create an assertion property for an asynchronous reset when using clocking blocks?"
 date:   2025-04-04 18:51:00 +0100
 categories: system_verilog
 ---
