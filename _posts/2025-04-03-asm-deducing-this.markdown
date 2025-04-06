@@ -2,7 +2,7 @@
 layout: post
 title:  "[C++] Assembly Differences with deducing this"
 date:   2025-04-03 19:10:38 +0100
-categories: assembly cpp
+categories: asm cpp
 ---
 
 I recently discovered that MSVC gives slightly different assembly when using `deducing this` instead of the implicit `this` pointer.

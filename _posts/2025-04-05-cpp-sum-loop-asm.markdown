@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Analysing optimised x64 assembly for a summing loop function"
-date:   2025-04-05 12:00:00 +0100
-categories: cpp
+title:  "[C++] Analysing optimised x64 assembly for a summing loop function"
+date:   2025-04-06 13:30:00 +0100
+categories: cpp asm
 ---
 
 Here's another simple function to analyse.

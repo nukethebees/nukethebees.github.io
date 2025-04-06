@@ -2,7 +2,7 @@
 layout: post
 title:  "[C++] Simple functions in x64 assembly"
 date:   2025-04-01 19:10:38 +0100
-categories: assembly
+categories: asm
 ---
 
 To learn x64 assembly (asm) I'll document the disassembly of some simple C++ functions.

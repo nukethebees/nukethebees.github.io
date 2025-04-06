@@ -2,7 +2,7 @@
 layout: post
 title:  "[C++] Nano-optimisation 1: Scanner peek function"
 date:   2025-04-02 19:10:38 +0100
-categories: assembly cpp
+categories: asm cpp
 ---
 
 I'll cover a nano-optimisation I did on my compiler's scanner today.
