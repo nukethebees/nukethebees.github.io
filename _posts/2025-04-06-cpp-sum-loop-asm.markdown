@@ -253,3 +253,11 @@ sum(unsigned int):
         xor     eax, eax                ;
         ret                             ;
 {% endhighlight %}
+
+The expression can be written as:
+
+{% highlight text %}
+n = N - 1
+m = N - 2
+x = (n*m)/2 + n
+{% endhighlight %}
