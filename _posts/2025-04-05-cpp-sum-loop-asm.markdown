@@ -5,8 +5,7 @@ date:   2025-04-05 12:00:00 +0100
 categories: cpp
 ---
 
-Here's another simple function to analyse. It sums all the values from `0` to `N` (exclusive) e.g. `sum(4) = 6`.
-Let's take a look at the asm produced by MSVC, GCC and Clang.
+Here's another simple function to analyse.
 
 {% highlight cpp %}
 unsigned int sum(unsigned int N) {
@@ -17,6 +16,16 @@ unsigned int sum(unsigned int N) {
     return x;
 }
 {% endhighlight %}
+
+It sums all the values from `0` to `N` (exclusive) e.g.:
+
+{% highlight cpp %}
+sum(4) = 0 + 1 + 2 + 3 = 6
+{% endhighlight %}
+
+Let's take a look at the asm produced by MSVC, GCC and Clang.
+
+
 
 # MSVC
 
@@ -195,29 +204,33 @@ x = m**2 + m*n + (N % 2) * m*2
 
 # GCC
 
+GCC's output seems easier to follow but perhaps that was due to the experience gained from working out MSVC's output.
+Like MSVC, each asm loop covers two of the C++ loops.
+Instead of checking if N is even at the end, GCC handles this before the main loop.
+
 {% highlight nasm %}
-sum(unsigned int):
-        test    edi, edi
-        je      .L4
-        xor     eax, eax
-        xor     edx, edx
-        test    dil, 1
-        je      .L3
-        mov     eax, 1
-        cmp     edi, 1
-        je      .L1
-.L3:
-        lea     edx, [rdx+1+rax*2]
-        add     eax, 2
-        cmp     edi, eax
-        jne     .L3
-.L1:
-        mov     eax, edx
-        ret
-.L4:
-        xor     edx, edx
-        mov     eax, edx
-        ret
+sum(unsigned int):                 ;
+        test    edi, edi           ; if (N == 0) goto L4
+        je      .L4                ; 
+        xor     eax, eax           ; Clear eax and edx
+        xor     edx, edx           ;
+        test    dil, 1             ; if (N is even) goto L3
+        je      .L3                ; 
+        mov     eax, 1             ; eax = 1
+        cmp     edi, 1             ; if (N == 1) goto L1
+        je      .L1                ; 
+.L3:                               ;
+        lea     edx, [rdx+1+rax*2] ; edx = (edx + 1) + (eax * 2)
+        add     eax, 2             ; eax += 2
+        cmp     edi, eax           ; If ((eax - N) != 0) loop again
+        jne     .L3                ; 
+.L1:                               ;
+        mov     eax, edx           ; return edx
+        ret                        ; 
+.L4:                               ; 
+        xor     edx, edx           ; return 0
+        mov     eax, edx           ;
+        ret                        ;
 {% endhighlight %}
 
 # Clang
