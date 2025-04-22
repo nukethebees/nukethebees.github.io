@@ -81,7 +81,7 @@ auto * new_start{static_cast<void *>(
 
 The `ArenaMemoryResource` class acts as the parent of the pools.
 It tracks the first and last pools as well as the capacity to give the first pool.
-Pointing to the last pool saves wasting time traversing the list for each allocation at the cost of a single extra pointer.
+Pointing to the last pool avoids wasting time traversing the list for each allocation at the cost of a single extra pointer.
 
 {% highlight cpp %}
 class ArenaMemoryResource {
