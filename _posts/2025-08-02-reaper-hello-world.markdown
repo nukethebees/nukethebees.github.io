@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[C++] \"Hello World\" in the Reaper DAW"
-date:   2025-08-02 16:00:00 +0100
+date:   2025-08-02 18:38:00 +0100
 categories: programming cpp reaper
 ---
 
@@ -42,7 +42,7 @@ target_compile_definitions(reaper_sdk PRIVATE
 The plugins's entry point function is defined with the SDK's `REAPER_PLUGIN_ENTRYPOINT` macro.
 Enable C linkage with `extern "C"` and use `REAPER_PLUGIN_DLL_EXPORT` from the SDK to export the function's symbol from the DLL.
 
-Our header file looks like this:
+Define the header as follows:
 
 ```cpp
 #pragma once
@@ -57,52 +57,19 @@ extern "C" {
 
 ### Implementation
 
-Define `REAPERAPI_IMPLEMENT` in a single translation unit to instantiate the SDK's functions.
+1. Define `REAPERAPI_IMPLEMENT` in a single translation unit to instantiate the SDK's functions
+2. Create a global variable to store the plugin information struct passed to the entry point function
 
 ```cpp
 #define REAPERAPI_IMPLEMENT
 #include "reaper_plugin_functions.h"
 
 #include "main.hpp"
-```
 
-Define a global variable to store the plugin information struct that's passed to our entry point function.
-
-```cpp
 reaper_plugin_info_t* g_rec = nullptr;
 ```
 
-Now, implement the entry point function.
-
-```cpp
-extern "C" {
-    REAPER_PLUGIN_DLL_EXPORT
-    int REAPER_PLUGIN_ENTRYPOINT(HINSTANCE hInstance, reaper_plugin_info_t* rec) {
-        // Impl goes here
-    }
-}
-```
-
-Check that `rec` is valid and load the API functions using `REAPERAPI_LoadAPI`.
-
-`REAPERAPI_LoadAPI` returns the number of functions which failed to load.
-If there is an error, return `0` to indicate failure.
-
-```cpp
-if (!rec || (REAPERAPI_LoadAPI(rec->GetFunc) > 0)) {
-    return 0;
-}
-```
-
-Save the pointer to our global variable, call `ShowConsoleMsg` to print "Hello World!" to the Reaper console, and then return 1 to indicate success.
-
-```cpp
-g_rec = rec;
-ShowConsoleMsg("Hello world!");
-return 1;
-```
-
-This is our function in full.
+The entry point function:
 
 ```cpp
 extern "C" {
@@ -122,11 +89,18 @@ extern "C" {
 }
 ```
 
+1. Check that `rec` is valid
+2. Load the API functions using `REAPERAPI_LoadAPI`. It returns the number of functions which failed to load.
+3. Return `0` to indicate failure
+4. Save the `rec` pointer
+5. Print the message using `ShowConsoleMsg` 
+6. Return 1 to indicate successful plugin initialisation.
+
 ## Using the DLL
 
-Place the compiled DLL in the `UserPlugins` directory.
-You can find it in Reaper by clicking `Options->Show REAPER resource path in explorer/finder...`.
-Reload Reaper after copying the DLL and you should see the following message.
+1. Place the compiled DLL in the `UserPlugins` directory (you can find it in Reaper by clicking `Options->Show REAPER resource path in explorer/finder...`)
+2. Reload Reaper
+3. Observe the following message.
 
 <figure style="text-align: center;">
   <img src="/images/hw.png" alt="Reaper Hello World Message" style="max-width: 100%; height: auto; display: inline-block;" />
