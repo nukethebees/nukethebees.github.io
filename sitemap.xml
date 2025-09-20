@@ -9,142 +9,157 @@
 
 <url>
   <loc>https://nukethebees.github.io/</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/about/</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/asm.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/misc.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/system_verilog.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nukethebees.github.io/software/c++/unreal/2025/09/20/unreal-multiple-character-cameras.html</loc>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nukethebees.github.io/software/c++/unreal/2025/09/18/unreal-log-mode.html</loc>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nukethebees.github.io/software/c++/unreal/2025/09/18/unreal-enum-to-string.html</loc>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/software/2025/09/10/firefox-accessibility.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/programming/cpp/reaper/2025/08/02/reaper-hello-world.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/programming/cpp/2025/07/20/update-vcpkg-ports.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/misc/2025/06/30/kanes_wrath_win11_fix.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/programming/opinion/2025/06/11/metalanguages.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/programming/opinion/2025/05/28/small-changes.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/asm/windows/2025/05/13/hello-world-win-asm.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp/2025/05/08/sending-gdb-commands-wsl.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp/asm/2025/04/24/class-variable-method-local-copy.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp/asm/2025/04/22/moving-small-strings.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp/2025/04/14/arena-allocators-parser.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp/asm/2025/04/07/passing-functions-as-template-arguments.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp/asm/2025/04/07/using-bitcast-to-split.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp/asm/2025/04/06/cpp-sum-loop-asm.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp/asm/2025/04/05/string-view-performance-windows.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/system_verilog/2025/04/04/systemverilog-how-to-assert-async-reset.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/cpp/asm/2025/04/04/why-wont-msvc-generate-asm.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/asm/cpp/2025/04/03/asm-deducing-this.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/asm/cpp/2025/04/02/scanner-nanooptimisation-2.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/asm/cpp/2025/04/02/scanner-nanooptimisation-1.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/asm/2025/04/01/x64-simple_functions.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://nukethebees.github.io/system_verilog/2025/03/31/verifying-interface-types.html</loc>
-  <lastmod>2025-09-10T09:49:01+00:00</lastmod>
+  <lastmod>2025-09-20T15:44:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
