@@ -32,6 +32,8 @@ plugins:
 
 include:
   - robots.txt
+  - sitemap.xml
+  - BingSiteAuth.xml
 
 # Exclude from processing.
 # The following items will not be processed, by default.
