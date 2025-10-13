@@ -1,0 +1,20 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  {%- feed_meta -%}
+  {%- if jekyll.environment == 'production' -%}
+    {%- if site.google_analytics -%}
+      {%- include google-analytics.html -%}
+    {%- endif -%}
+    <script
+    src="https://beamanalytics.b-cdn.net/beam.min.js"
+    data-token="330c49aa-92ad-472f-8721-f5402674de58"
+    async
+    >
+    </script>
+  {%- endif -%}
+  
+</head>
