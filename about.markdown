@@ -4,5 +4,8 @@ title: About
 permalink: /about/
 ---
 
-I'm an analogue design engineer with an interest in programming.
-I'd like to start posting the things I'm learning publicly so this site is as good a place as any.
+I'm a programmer and former analog IC design engineer.
+My main language of choice is C++.
+
+I use this site to post interesting things I learn or thoughts I want to express.
+I mainly post about programming.

@@ -20,10 +20,10 @@
 
 title: Matthew Love
 description: >- 
-  Programming and hardware design
+  Programming and other technical stuff.
 baseurl: "" 
 url: "https://nukethebees.github.io/" 
-github_username:  nukethebees
+github_username: nukethebees
 
 # Build settings
 theme: minima
