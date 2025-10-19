@@ -1,0 +1,15 @@
+---
+---
+
+@import
+  "minima/skins/{{ site.minima.skin | default: 'classic' }}",
+  "minima/initialize";
+
+/* Custom style for this one specific highlight block */
+.wrap-text-highlight .highlight pre, 
+.wrap-text-highlight .highlight code {
+    /* The key properties to ensure wrapping */
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word; /* Fallback for older browsers */
+}
