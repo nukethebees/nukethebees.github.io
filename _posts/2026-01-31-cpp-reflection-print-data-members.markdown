@@ -7,7 +7,7 @@ categories: software c++
 
 C++26's reflection feature allows programs to analyse themselves at compile time ([the proposal paper can be read here](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2023/p2996r0.html)).
 This post illustrates a function to print a struct's data members.
-You can [run it here on Compiler Explorer](https://godbolt.org/z/f165eoMoh) using [Bloomberg's reflection-enabled Clang fork](https://github.com/bloomberg/clang-p2996/tree/p2996).
+You can [run it here on Compiler Explorer](https://godbolt.org/z/f165eoMoh) using [Bloomberg's reflection-enabled Clang fork](https://github.com/bloomberg/clang-p2996/tree/p2996) (or [view it here on GitHub](https://github.com/nukethebees/github_io_examples/blob/main/cpp26_reflection/print_data_members.cpp)).
 
 ## Prerequisites
 * Compiler: `x86-64 clang (reflection - C++26)` on [Compiler Explorer](https://godbolt.org/)
