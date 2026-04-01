@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nukethebees.github.io/sitemap.xml
+Sitemap: https://nukethebees.com/sitemap.xml
