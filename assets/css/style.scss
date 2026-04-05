@@ -1,10 +1,6 @@
 ---
 ---
 
-@import
-  "minima/skins/{{ site.minima.skin | default: 'classic' }}",
-  "minima/initialize";
-
 /* Custom style for this one specific highlight block */
 .wrap-text-highlight .highlight pre, 
 .wrap-text-highlight .highlight code {

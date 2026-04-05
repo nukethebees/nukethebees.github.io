@@ -1,0 +1,14 @@
+---
+layout: base
+---
+<ul>
+  {%- for post in site.posts -%}
+  <l1>
+    <p>
+      <a href="{{ post.url | relative_url }}">
+        {{ post.title }}
+      </a>
+    </p>
+  </l1>
+  {%- endfor -%}
+</ul>
