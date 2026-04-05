@@ -11,7 +11,7 @@ I'll illustrate this with an example[^1].
 The following struct models a lexer's state with a `string_view` and some positional variables.
 The methods `foo` and `bar` will compare the use of local variables.
 
-{% highlight cpp %}
+```cpp
 #include <string_view>
 
 struct Lex {
@@ -22,13 +22,13 @@ struct Lex {
     void foo();
     void bar();
 };
-{% endhighlight %}
+```
 
 `foo` uses the members directly.
 It consists of a bounds check, a loop to consume every `'a'` while incrementing the position variables [^2], and then a single check for '`b'`.
 I operate on `file.data()` directly to match the behaviour in `bar()` which uses `file`'s `char*`.
 
-{% highlight cpp %}
+```cpp
 void Lex::foo() {
     if (i >= file.size()) {
         return;
@@ -45,11 +45,11 @@ void Lex::foo() {
 
     return;
 }
-{% endhighlight %}
+```
 
 `bar` has the same functionality but we use local copies of the class members.
 
-{% highlight cpp %}
+```cpp
 void Lex::bar() {
     auto fp{file.data()};
     auto sz{file.size()};
@@ -74,7 +74,7 @@ void Lex::bar() {
 
     return;
 }
-{% endhighlight %}
+```
 
 # `foo()` optimised assembly
 
@@ -82,7 +82,7 @@ We begin with the file bounds check.
 The `char*` is then in `rcx` and the first `'a'` check if performed.
 Simple enough so far.
 
-{% highlight nasm %}
+```nasm
 __xmm@00000000000000010000000000000001 DB 01H, 00H, 00H, 00H, 00H, 00H, 00H
         DB      00H, 01H, 00H, 00H, 00H, 00H, 00H, 00H, 00H
 
@@ -94,12 +94,12 @@ void Lex::foo(void) PROC                              ; Lex::foo, COMDAT
         mov     rdx, QWORD PTR [rcx]           ; rdx = file.data()
         cmp     BYTE PTR [rdx+rax], 97         ; file[i] - 'a'
         jne     SHORT $LN3@foo                 ; if (!0) goto LN3
-{% endhighlight %}
+```
 
 `i` and `i_offset` are loaded together into the 128 bit `xmm1` register and incremented in parallel.
 For every loop iteration, memory is accesses three times to update the instance members, load `i` from the class, and get the current character.
 
-{% highlight nasm %}
+```nasm
         movdqa  xmm2, XMMWORD PTR __xmm@00000000000000010000000000000001 ; xmm2 = {64'b1, 64'b1}
         movdqu  xmm1, XMMWORD PTR [rcx+16]     ; xmm1 = {i, i_offset}
 $LL2@foo:                                      ;
@@ -110,11 +110,11 @@ $LL2@foo:                                      ;
         movdqa  xmm1, xmm0                     ; xmm1 = {i, i_offset}
         cmp     BYTE PTR [rax+rdx], 97         ; file[i] - 'a'
         je      SHORT $LL2@foo                 ; if (0) goto LL2
-{% endhighlight %}
+```
 
 Finally we do the check for `'b'` and return.
 
-{% highlight nasm %}
+```nasm
 $LN3@foo:                                      ;
         cmp     BYTE PTR [rdx+rax], 98         ; file[i] - 'b'
         jne     SHORT $LN5@foo                 ; if (!0) goto LN5
@@ -122,14 +122,14 @@ $LN3@foo:                                      ;
 $LN5@foo:                                      ;
         ret     0                              ;
 void Lex::foo(void) ENDP                              ; Lex::foo
-{% endhighlight %}
+```
 
 # `bar()` optimised assembly
 
 The members are loaded into registers and the first `'a'` check is performed.
 With four memory reads, `bar` will be slightly slower to start than `foo`.
 
-{% highlight nasm %}
+```nasm
 this$ = 8
 void Lex::bar(void) PROC                              ; Lex::bar, COMDAT
         mov     r8, rcx                   ; r8 = this
@@ -141,21 +141,21 @@ void Lex::bar(void) PROC                              ; Lex::bar, COMDAT
         cmp     BYTE PTR [rax+rcx], 97    ; fp[ii] == "a"
         jne     SHORT $LN3@bar            ; if (!0) goto LN3
         npad    6                         ;
-{% endhighlight %}
+```
 
 Each loop iteration has a single memory access in contrast to `bar`'s three because `i` and `i_offset` are in registers.
 
-{% highlight nasm %}
+```nasm
 $LL2@bar:                                 ;
         inc     rax                       ; ii++
         inc     rdx                       ; ii_offset++
         cmp     BYTE PTR [rcx+rax], 97    ; if (fp[ii] == 'a')    
         je      SHORT $LL2@bar            ; goto LL2
-{% endhighlight %}
+```
 
 We update the class members before returning.
 
-{% highlight nasm %}
+```nasm
 $LN3@bar:                                 ;
         movzx   ecx, BYTE PTR [rax+rcx]   ; ecx = fp[ii]
         mov     QWORD PTR [r8+16], rax    ; this->i = ii
@@ -166,7 +166,7 @@ $LN3@bar:                                 ;
 $LN1@bar:                                 ;
         ret     0                         ;
 void Lex::bar(void) ENDP                              ; Lex::bar
-{% endhighlight %}
+```
 
 If the `'a'` checking loop lasts for more than a few cycles, `bar` will be faster than `foo` due to its single memory access vs `foo`'s three.
 

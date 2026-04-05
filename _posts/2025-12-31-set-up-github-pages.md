@@ -11,13 +11,13 @@ Links are provided at the end for each resource I have used.
 
 Install WSL[^1]:
 
-{% highlight powershell %}
+```powershell
 wsl.exe --install 
-{% endhighlight %}
+```
 
 Get a list of existing Linux distributions available via WSL:
 
-{% highlight powershell %}
+```powershell
 > wsl --list --online
 The following is a list of valid distributions that can be installed.
 Install using 'wsl.exe --install <Distro>'.
@@ -45,52 +45,52 @@ OracleLinux_8_10                Oracle Linux 8.10
 OracleLinux_9_5                 Oracle Linux 9.5
 openSUSE-Leap-15.6              openSUSE Leap 15.6
 SUSE-Linux-Enterprise-15-SP6    SUSE Linux Enterprise 15 SP6
-{% endhighlight %}
+```
 
 Install Ubuntu.
 
-{% highlight powershell %}
+```powershell
 > wsl --install Ubuntu-24.04
-{% endhighlight %}
+```
 
 Load your WSL environment and clone your GitHub pages git repo.
 
-{% highlight bash %}
+```bash
 git clone https://github.com/nukethebees/nukethebees.github.io.git
-{% endhighlight %}
+```
 
 Install Jekyll's dependencies[^2].
 
-{% highlight bash %}
+```bash
 sudo apt-get install ruby-full build-essential zlib1g-dev
-{% endhighlight %}
+```
 
 Set a local gem installation directory.
 
-{% highlight bash %}
+```bash
 echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
 echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
 echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
-{% endhighlight %}
+```
 
 Install Jekyll and Bundler.
 
-{% highlight bash %}
+```bash
 gem install jekyll bundler
-{% endhighlight %}
+```
 
 Install the required gems for your site via bundler[^3].
 
-{% highlight bash %}
+```bash
 bundle install
-{% endhighlight %}
+```
 
 Navigate to your page's local repository and run the site locally[^4]:
 
-{% highlight bash %}
+```bash
 bundle exec jekyll serve
-{% endhighlight %}
+```
 
 [^1]: <https://learn.microsoft.com/en-us/windows/wsl/install>
 [^2]: <https://jekyllrb.com/docs/installation/ubuntu/>

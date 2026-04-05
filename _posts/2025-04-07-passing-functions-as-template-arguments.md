@@ -16,7 +16,7 @@ The compiler then has full knowledge of the call and can apply the usual optimis
 
 Here is a trivial example.
 
-{% highlight cpp %}
+```cpp
 template <auto fn>
 auto call_fn(auto value) {
     return fn(value);
@@ -27,11 +27,11 @@ int main() {
 
     return 0;
 }
-{% endhighlight %}
+```
 
 The asm output shows the call is completely optimised out and the result is used directly.
 
-{% highlight nasm %}
+```nasm
 value$ = 8
 auto call_fn<`int main(void)'::`2'::<lambda_1_>{},int>(int) PROC ; call_fn<`main'::`2'::<lambda_1_>{},int>, COMDAT
         lea     eax, DWORD PTR [rcx+1]
@@ -51,4 +51,4 @@ main    PROC                                            ; COMDAT
         xor     eax, eax
         ret     0
 main    ENDP
-{% endhighlight %}
+```

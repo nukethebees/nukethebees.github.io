@@ -10,7 +10,7 @@ Unfortunately you cannot simply do `interface.parameter` despite the value surel
 
 The solution is to use the `$bits` function. We can access the widths of data-types in the interface and verify them in generate constructs.
 
-{% highlight verilog %}
+```verilog
     interface MyIf
     #(
         parameter int WIDTH = 8,
@@ -37,7 +37,7 @@ The solution is to use the `$bits` function. We can access the widths of data-ty
             end
         endgenerate
     endmodule
-{% endhighlight %}
+```
 
 Sadly this solution is only appropriate for types.
 If we tried to use this trick to pass around constants then we run into issues with the language.

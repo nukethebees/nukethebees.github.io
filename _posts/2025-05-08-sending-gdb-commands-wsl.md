@@ -11,9 +11,9 @@ Sending commands to gdb was unintuitive but I found out how to [here](https://gi
 When debugging an executable in VS2022, go to: `View -> Other Windows -> Command Window`.
 Within the command window, prefix gdb commands with `Debug.MIDebugExec`, e.g.:
 
-{% highlight text %}
+```text
 Debug.MIDebugExec print x
-{% endhighlight %}
+```
 
 [^1]: The link was nestled in this article: <https://learn.microsoft.com/en-us/cpp/build/configure-cmake-debugging-sessions?view=msvc-170>
 

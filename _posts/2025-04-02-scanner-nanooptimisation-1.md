@@ -8,19 +8,19 @@ categories: asm cpp
 I'll cover a nano-optimisation I did on my compiler's scanner today.
 This is with MSVC and `-O2`.
 
-{% highlight cpp %}
+```cpp
 auto Scanner::at_end() const noexcept -> bool {
     return (i + i_offset) >= file_size;
 }
 auto Scanner::current() const noexcept -> char {
     return at_end() ? '\0' : file[i + i_offset];
 }
-{% endhighlight %}
+```
 
 The first function signals if we've reached the end of the file.
 The second function returns the current character.
 
-{% highlight nasm %}
+```nasm
 ?at_end@Scanner@pequod@@QEBA_NXZ PROC			; pequod::Scanner::at_end, COMDAT
 ; 567  :     return (i + i_offset) >= file_size;
 	mov	rax, QWORD PTR [rcx+8]
@@ -51,11 +51,11 @@ $LN3@current:
 	movzx	eax, BYTE PTR [rcx+rdx]
 	ret	0
 ?current@Scanner@pequod@@QEBADXZ ENDP			; pequod::Scanner::current
-{% endhighlight %}
+```
 
 Here is the optimised version.
 
-{% highlight cpp %}
+```cpp
 auto Scanner::get_idx() const noexcept -> std::size_t {
     return (i + i_offset);
 }
@@ -66,11 +66,11 @@ auto Scanner::current() const noexcept -> char {
     auto idx{get_idx()};
     return (idx >= file_size) ? '\0' : file[idx];
 }
-{% endhighlight %}
+```
 
 We calculate the current index as a local variable and do the bounds check manually.
 
-{% highlight nasm %}
+```nasm
 this$ = 8
 ?get_idx@Scanner@pequod@@QEBA_KXZ PROC			; pequod::Scanner::get_idx, COMDAT
 ; 567  :     return (i + i_offset);
@@ -108,7 +108,7 @@ $LN3@current:
 	movzx	eax, BYTE PTR [rdx+rax]
 	ret	0
 ?current@Scanner@pequod@@QEBADXZ ENDP			; pequod::Scanner::current
-{% endhighlight %}
+```
 
 With this change, `at_end` has gone from 11 to 9 instructions.
 A whopping improvement.

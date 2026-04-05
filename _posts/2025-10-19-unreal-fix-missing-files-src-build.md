@@ -10,9 +10,9 @@ When building the Unreal Engine from the [Github source](https://dev.epicgames.c
 An example error:
 
 <div class="wrap-text-highlight">
-{% highlight text %}
+```text
 Cannot open include file: '../Plugins/Developer/Concert/ConcertApp/MultiUserClient/Source/MultiUserClient/Private/Widgets/ActiveSession/Replication/Client/Multi/Columns/AssignedClients/MultiStreamColumns_AssignedClients.cpp': No such file or directory
-{% endhighlight %}
+```
 </div>
 
 The issue is caused by [Visual Studio 2022 being limited to paths <=260 characters](https://learn.microsoft.com/en-us/answers/questions/1666150/ms-visual-studio-2022-not-able-to-open-source-file) by its use of the [Windows C API's `MAX_PATH` macro](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry).

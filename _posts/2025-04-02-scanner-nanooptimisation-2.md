@@ -10,7 +10,7 @@ This is with MSVC and `-O2`.
 
 I merged some conditionals into a larger switch statement.
 
-{% highlight cpp %}
+```cpp
 auto Scanner::string() -> SourceToken {
     while (!at_end() && peek() != '"') {
         if (peek() == '\\') {
@@ -35,7 +35,7 @@ auto Scanner::string() -> SourceToken {
     auto const without_quotes{str.substr(1, str.size() - 2)};
     return make_value_token(TokenType::STRING, without_quotes, without_quotes);
 }
-{% endhighlight %}
+```
 
 The loop begins when we found a `"` before calling `string()`.
 The functions loops through each character in the input buffer until it finds the second `"` or we reach the end of the file (EOF).
@@ -49,7 +49,7 @@ We then handle the EOF case or return a token containing our string.
 <b>Assembly code output</b>
 </summary>
 
-{% highlight nasm linenos %}
+```nasm
 $T1 = 32
 this$ = 80
 __$ReturnUdt$ = 88
@@ -254,7 +254,7 @@ $LN178@string:
 	int	3
 $LN192@string:
 ?string@Scanner@pequod@@QEAA?AUSourceToken@2@XZ ENDP	; pequod::Scanner::string
-{% endhighlight %}
+```
 
 </details>
 
@@ -262,7 +262,7 @@ $LN192@string:
 
 And now the optimised version.
 
-{% highlight cpp %}
+```cpp
 auto Scanner::string() -> SourceToken {
     while (true) {
         switch (peek()) {
@@ -293,7 +293,7 @@ loop_end:
     auto const without_quotes{this->file.substr(i + 1, i_offset - 1)};
     return make_value_token(TokenType::STRING, without_quotes, without_quotes);
 }
-{% endhighlight %}
+```
 
 There's no need to check for the end of file as we'll only peek one character ahead at a time so the null terminator can be handled by our new switch statement.
 We now only have two levels of conditional branching whereas before we had three.
@@ -305,7 +305,7 @@ Finally we calculate the indices for our `std::string_view` lexeme directly inst
 <summary>
 <b>Assembly code output</b>
 </summary>
-{% highlight nasm linenos %}
+```nasm
 $T1 = 32
 this$ = 80
 __$ReturnUdt$ = 88
@@ -450,7 +450,7 @@ $LN108@string:
 	int	3
 $LN105@string:
 ?string@Scanner@pequod@@QEAA?AUSourceToken@2@XZ ENDP	; pequod::Scanner::string
-{% endhighlight %}
+```
 </details>
 
 <br>

@@ -19,7 +19,7 @@ The solution was to build an arena allocator to allocate a large amount of memor
 The parsing benchmark consists of processing a 45,000 line file 300 times.
 Three consecutive runs resuled in a top average speed of 743,000 lines per second (lines/s).
 
-{% highlight txt %}
+```txt
 300 iterations
 Duration
 Mean: 0.06068419533333333 seconds
@@ -30,11 +30,11 @@ Stddev: 34344.25696097658 lines/second
 Median: 754604.3441733645 lines/second
 Min:    536969.7721816247 lines/second
 Max:    786140.1740339646 lines/second
-{% endhighlight %}
+```
 
 With the arena allocator, best average increased from 743k lines/s to 835k lines/s.
 
-{% highlight txt %}
+```txt
 300 iterations
 Duration
 Mean: 0.054041255000000024 seconds
@@ -45,7 +45,7 @@ Stddev: 49118.10943593509 lines/second
 Median: 852703.9241434588 lines/second
 Min:    597588.9278723443 lines/second
 Max:    900126.0176424698 lines/second
-{% endhighlight %}
+```
 
 The allocation system is divided into a memory resource that owns the memory and an allocator which holds a pointer to the resource and calls it when needed.
 I'll describe the core design now [(the full source can be found here.)](https://github.com/nukethebees/containers/commit/bed6d97bb7bd998ad66427cc89da1419ca8a608a)
@@ -56,18 +56,18 @@ The memory resource consists of pools connected in a singly-linked list.
 A pool consists of a byte array, a child pointer, and variables for the total and remaining capacities.
 The byte array's address can be determined from context and thus doesn't need to be stored in a separate pointer.
 
-{% highlight cpp %}
+```cpp
 class ArenaMemoryResourcePool {
     ArenaMemoryResourcePool* next_pool_{nullptr};
     std::size_t total_capacity_{0};
     std::size_t remaining_capacity_{0};
 };
-{% endhighlight %}
+```
 
 To remove the need for the array pointer, we allocate `sizeof(Pool)` extra bytes for the byte array and then embed the pool within its own array.
 The array's starting address is thus `this + sizeof(Pool)` and the first free byte for allocation is found using the pool's size as an offset.
 
-{% highlight cpp %}
+```cpp
 auto const cur_size{size()};
 
 static constexpr std::size_t this_size{
@@ -78,23 +78,23 @@ auto * new_start{static_cast<void *>(
     + this_size
     + cur_size
 )};
-{% endhighlight %}
+```
 
 The `ArenaMemoryResource` class controls the pools.
 It holds start/end pointers and the capacity for the first pool.
 The tail pointer saves traversing the list for each allocation at the cost of a single extra pointer.
 
-{% highlight cpp %}
+```cpp
 class ArenaMemoryResource {
     ArenaMemoryResourcePool* pool_{nullptr};
     ArenaMemoryResourcePool* last_pool_{nullptr};
     std::size_t initial_capacity_{1024};
 };
-{% endhighlight %}
+```
 
 When the resource is destroyed, we recursively free each byte array.
 
-{% highlight cpp %}
+```cpp
 ArenaMemoryResource::~ArenaMemoryResource() {
     if (pool_) {
         pool_->~ArenaMemoryResourcePool();
@@ -107,7 +107,7 @@ ArenaMemoryResourcePool::~ArenaMemoryResourcePool() {
         delete[] reinterpret_cast<std::byte *>(next_pool_);
     }
 }
-{% endhighlight %}
+```
 
 The allocator itself is similar to `std::pmr::polymorphic_allocator`[^2] and just holds a `ArenaMemoryResource*` and calls its allocation methods.
 The allocator's implementation will not be covered as the main logic lies within the resource.
@@ -118,7 +118,7 @@ When the allocator requests bytes from the resource, the resource checks for a v
 If none is available, a new pool of sufficient size is created.
 The resource then calls the pool's allocate function.
 
-{% highlight cpp %}
+```cpp
 auto ArenaMemoryResource::allocate(std::size_t n_bytes, std::size_t alignment) -> void * {
     if (!last_pool_) {
         auto const cap{initial_capacity_};
@@ -138,21 +138,21 @@ auto ArenaMemoryResource::allocate(std::size_t n_bytes, std::size_t alignment) -
 
     return last_pool_->allocate(n_bytes, alignment);
 }
-{% endhighlight %}
+```
 
 The pool is created by allocating `sizeof(Pool) + new_capacity` bytes and then constructing the object at the start of the array.
 
-{% highlight cpp %}
+```cpp
 auto ArenaMemoryResourcePool::create_pool(std::size_t initial_size) -> ArenaMemoryResourcePool * {
     std::size_t const bytes_needed{initial_size + sizeof(ArenaMemoryResourcePool)};
     auto * buffer{new std::byte[bytes_needed]};
     return new (buffer) ArenaMemoryResourcePool(initial_size);
 }
-{% endhighlight %}
+```
 
 The aligned allocation address is calculated using `std::align` and the capacity is updated before returning the pointer.
 
-{% highlight cpp %}
+```cpp
 auto ArenaMemoryResourcePool::allocate(std::size_t n_bytes, std::size_t alignment) -> void * {
     auto const cur_size{size()};
 
@@ -171,11 +171,11 @@ auto ArenaMemoryResourcePool::allocate(std::size_t n_bytes, std::size_t alignmen
     remaining_capacity_ -= n_bytes;
     return new_start;
 }
-{% endhighlight %}
+```
 
 The allocator can then be used with STL components by setting it as the container's type parameter.
 
-{% highlight cpp %}
+```cpp
 ml::ArenaMemoryResource resource;
 ml::ArenaAllocator<int> alloc{&resource};
 std::vector<int, ml::ArenaAllocator<int>> vec{alloc};
@@ -184,7 +184,7 @@ std::vector<int, ml::ArenaAllocator<int>> vec{alloc};
 vec.reserve(10);
 vec.emplace_back(10);
 vec.emplace_back(20);
-{% endhighlight %}
+```
 
 Finally, the arena's deallocate method is a no-op as the memory is reclaimed when the entire structure is destroyed.
 Arenas are thus unsuitable for use with objects with short or indeterminate lifetimes but offer very high speeds when its objects are all destroyed together.

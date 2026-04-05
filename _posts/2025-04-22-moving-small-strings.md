@@ -16,7 +16,7 @@ When the vector ran out of room and reallocated, many of my `std::string_view` i
 
 This example shows the behaviour[^1].
 
-{% highlight cpp %}
+```cpp
 #include <print>
 #include <string>
 
@@ -38,14 +38,14 @@ int main() {
 
     return 0;
 }
-{% endhighlight %}
+```
 
 We can see that the addresses are not equal for small strings.
 
-{% highlight text %}
+```text
 Small string addresses are equal: false
 Large string addresses are equal: true
-{% endhighlight %}
+```
 
 A simple (though inefficient) solution is to simply reserve enough characters in the string to force heap allocation.
 

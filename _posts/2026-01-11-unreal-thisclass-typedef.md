@@ -10,18 +10,18 @@ Less well known is the `ThisClass` typedef that aliases the derived class itself
 Each `UCLASS` generates its own `ThisClass`, so it will always refer to the class being defined.
 It's useful for saving time when binding delegates or copying code between multiple `UCLASS`s e.g.
 
-{% highlight cpp %}
+```cpp
 MyCollisionBox->OnComponentBeginOverlap.AddDynamic(
     this, 
     &AMyExtremelyVerboseActorTypeName::OnOverlapBegin);
 MyCollisionBox->OnComponentBeginOverlap.AddDynamic(
     this, 
     &ThisClass::OnOverlapBegin);
-{% endhighlight %}
+```
 
 I will illustrate the typedef's source with the following `UCLASS` definition.
 
-{% highlight cpp %}
+```cpp
 #pragma once
 
 #include "CoreMinimal.h"
@@ -34,18 +34,18 @@ class UExampleClass : public UObject {
   public:
     UExampleClass();
 };
-{% endhighlight %}
+```
 
 In the expanded `GENERATED_BODY` macro, we find the typedef.
 
-{% highlight cpp %}
+```cpp
 typedef UObject Super;
 typedef UExampleClass ThisClass;
-{% endhighlight %}
+```
 
 For completeness, we can verify that `ThisClass` and `UExampleClass` are the same with `static_assert` and `std::is_same_v` from `<type_traits>`.
 
-{% highlight cpp %}
+```cpp
 #include "ExampleClass.h"
 
 #include <type_traits>
@@ -53,6 +53,6 @@ For completeness, we can verify that `ThisClass` and `UExampleClass` are the sam
 UExampleClass::UExampleClass() {
     static_assert(std::is_same_v<UExampleClass, ThisClass>);
 }
-{% endhighlight %}
+```
 
 `ThisClass` is a small but useful typedef that can save you time and make your code more concise.

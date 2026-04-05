@@ -13,7 +13,7 @@ Navigate to `/ports/ml-cpp-utils/portfile.cmake`
 
 Update the `REF` field to the git commit/tag/release of the upstream repo and set the `SHA512` field to 0.
 
-{% highlight cmake %}
+```cmake
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO nukethebees/cpp_utils
@@ -21,30 +21,30 @@ vcpkg_from_github(
     SHA512 0
     HEAD_REF master
 )
-{% endhighlight %}
+```
 
 We must install our port to get the SHA512 value.
 If the package is already installed locally then first run
 
-{% highlight text %}
+```text
 vcpkg remove ml-cpp-utils
-{% endhighlight %}
+```
 
 Install the package using
 
-{% highlight text %}
+```text
 vcpkg install ml-cpp-utils --overlay-ports=./ports
-{% endhighlight %}
+```
 
 You should get an error that includes the SHA512 value.
 
-{% highlight text %}
+```text
 error: failing download because the expected SHA512 was all zeros, please change the expected SHA512 to: 97b2a6b1770595559185e75405a28af191765fbbc9827ea06ae507086b3a599aecc6f2520cc75a2f53be0bf4db829ebc55fb6ddf814405bee7b6b70d84b9529f
-{% endhighlight %}
+```
 
 Replace the 0 with the new value.
 
-{% highlight cmake %}
+```cmake
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO nukethebees/cpp_utils
@@ -52,7 +52,7 @@ vcpkg_from_github(
     SHA512 97b2a6b1770595559185e75405a28af191765fbbc9827ea06ae507086b3a599aecc6f2520cc75a2f53be0bf4db829ebc55fb6ddf814405bee7b6b70d84b9529f
     HEAD_REF master
 )
-{% endhighlight %}
+```
 
 Commit your changes to the git repo. You must commit these changes for the next step to work correctly.
 
@@ -64,7 +64,7 @@ If you are updating to a new version of the upstream package, change `version` t
 If the upstream version is unchanged then increment then `port-version` value.
 If `port-version` is missing then add it and set it to `1` (the default is `0`).
 
-{% highlight json %}
+```json
 {
   "name": "ml-cpp-utils",
   "version": "0.1.0",
@@ -83,13 +83,13 @@ If `port-version` is missing then add it and set it to `1` (the default is `0`).
     }
   ]
 }
-{% endhighlight %}
+```
 
 Update the package's version and baseline using
 
-{% highlight text %}
+```text
 vcpkg --x-builtin-ports-root=./ports --x-builtin-registry-versions-dir=./versions x-add-version --all --verbose
-{% endhighlight %}
+```
 
 If you had not previously changed `version` or `port-version` then you may need to add `--overwrite-version` to forcibly overwrite the current `port-version`. I recommend avoiding this and always incrementing the version or port version.
 

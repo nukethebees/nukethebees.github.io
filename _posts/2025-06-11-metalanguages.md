@@ -10,16 +10,16 @@ At a certain point, a programming language should consider replacing its generic
 Programming languages are fundamentally used to define data types and transformations on them.
 Generic systems let us write high-level definitions to generate functionally similar code for various types, reducing code duplication.
 
-{% highlight cpp %}
+```cpp
 template <typename T>
 void call_foo(T obj) {
     obj.foo();
 }
-{% endhighlight %}
+```
 
 In this C++ example, the compiler will create a version of the `call_foo` function for any type `T` which has a `foo` method.
 
-{% highlight cpp %}
+```cpp
 template <typename T>
 struct Complex {
     T real;
@@ -29,7 +29,7 @@ struct Complex {
         return sqrt(real*real + imag*imag);
     }
 }
-{% endhighlight %}
+```
 
 Similarly, this struct template models a complex number for any type that supports `sqrt` and multiplication.
 

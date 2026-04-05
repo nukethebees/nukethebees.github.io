@@ -11,7 +11,7 @@ The following function is the string scanning function from my compiler's scanne
 The function loops until it finds the second `"` or it reaches the end of the file.
 Escape characters are ignored.
 
-{% highlight cpp %}
+```cpp
 auto Scanner::string() -> SourceToken {
     while (true) {
         switch (peek()) {
@@ -38,22 +38,22 @@ loop_end:
     auto const without_quotes{this->file.substr(i + 1, i_offset - 1)};
     return make_value_token(TokenType::STRING, without_quotes, without_quotes);
 }
-{% endhighlight %}
+```
 
 With C++23's `deducing this` feature, we can also explicitly list the class instance as an object parameter.
 The fragment below illustrates this.
 
-{% highlight cpp %}
+```cpp
 auto Scanner::string(this Scanner& self) -> SourceToken {
     while (true) {
         switch (self.peek()) {
 }
-{% endhighlight %}
+```
 
 Here is MSVC's output with `*this`.
 I'm only showing the instructions in the main loop for brevity.
 
-{% highlight nasm %}
+```nasm
 ; 835  : auto Scanner::string() -> SourceToken {
 $LN110:
     push    rbx
@@ -98,11 +98,11 @@ $LL2@string:                        ; Start of while loop
 
 $LN8@string:
 $loop_end$111:
-{% endhighlight %}
+```
 
 The output with `self`.
 
-{% highlight nasm %}
+```nasm
 ; 835  : auto Scanner::string(this Scanner& self) -> SourceToken {
 $LN96:
     push    rbx
@@ -146,7 +146,7 @@ $LN7@string:                        ; Handle "
     mov     QWORD PTR [rax+8], rcx  ; Update self.i_offset
 
 $loop_end$97:                       ; End of the loop
-{% endhighlight %}
+```
 
 The output with `self` seems easier to follow.
 It doesn't check for `"` twice and the jumps are more logical e.g. go to the `\` handling block immediately after checking that the character is a `\`.

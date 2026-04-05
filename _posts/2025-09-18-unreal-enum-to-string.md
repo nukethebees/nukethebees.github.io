@@ -8,7 +8,7 @@ categories: software c++ unreal
 In Unreal 5 you can convert enums to their string representation using [`UEnum::GetValueAsString`](<https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/CoreUObject/UObject/UEnum/GetValueAsString/1?application_version=5.3>).
 This helps with printing readable log messages.
 
-{% highlight cpp %}
+```cpp
 UENUM(BlueprintType)
 enum class ECharacterCameraMode : uint8 {
     FirstPerson UMETA(DisplayName = "First Person"),
@@ -23,11 +23,11 @@ void SomeActor::ChangeCameraMode(ECharacterCameraMode camera_mode) {
               ("enum_value", *UEnum::GetValueAsString(camera_mode)));
     // Rest of code...
 }
-{% endhighlight %}
+```
 
 and our output is then:
 
-{% highlight text%}
+```text
 LogTemp: Verbose: Changing camera mode to ECharacterCameraMode::FirstPerson.
-{% endhighlight %}
+```
 

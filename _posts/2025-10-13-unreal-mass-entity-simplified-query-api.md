@@ -31,37 +31,37 @@ In this example we'll:
 # Required setup
 Add the `MassGameplay` plugin to your project's `.uproject` file.
 
-{% highlight json %}
+```json
 {
     "Name": "MassGameplay",
     "Enabled": true
 }
-{% endhighlight %}
+```
 
 Add `MassEntity` and `MassCommon` to your `.Build.cs` file.
 
-{% highlight c#  %}
+```c#
 PublicDependencyModuleNames.AddRange(new string[] { 
     "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", 
     "MassEntity", "MassCommon" 
 });
-{% endhighlight %}
+```
 
 # Fragment Setup
 Our entity data is stored in Mass fragments which are just normal C++ structs.
 
 Include these headers.
 
-{% highlight cpp %}
+```cpp
 #include "CoreMinimal.h"
 #include "MassEntityTypes.h"
 
 #include "MassFragments.generated.h"
-{% endhighlight %}
+```
 
 Define the transform fragment inheriting from `FMassFragment`.
 
-{% highlight cpp %}
+```cpp
 USTRUCT()
 struct FMassTransformFragment : public FMassFragment {
     GENERATED_BODY()
@@ -73,12 +73,12 @@ struct FMassTransformFragment : public FMassFragment {
     UPROPERTY()
     FTransform Transform{};
 };
-{% endhighlight %}
+```
 
 
 Define the velocity fragment inheriting from `FMassConstSharedFragment`.
 
-{% highlight cpp %}
+```cpp
 USTRUCT()
 struct FMassVelocityConstSharedFragment : public FMassConstSharedFragment {
     GENERATED_BODY()
@@ -90,7 +90,7 @@ struct FMassVelocityConstSharedFragment : public FMassConstSharedFragment {
     UPROPERTY()
     FVector Velocity{FVector::ZeroVector};
 };
-{% endhighlight %}
+```
 
 Now we need to implement our fragment processing.
 
@@ -104,7 +104,7 @@ In this example, the query and wrapper will coexist in the same file: `MassVeloc
 
 Add these includes:
 
-{% highlight cpp %}
+```cpp
 #include "CoreMinimal.h"
 #include "MassProcessor.h"
 #include "MassQueryExecutor.h"
@@ -112,11 +112,11 @@ Add these includes:
 #include "MassFragments.h"
 
 #include "MassVelocityProcessor.generated.h"
-{% endhighlight %}
+```
 
 The query class:
 
-{% highlight cpp %}
+```cpp
 struct FMassVelocityExecutor : public UE::Mass::FQueryExecutor {
     FMassVelocityExecutor() = default;
 
@@ -129,7 +129,7 @@ struct FMassVelocityExecutor : public UE::Mass::FQueryExecutor {
 
     virtual void Execute(FMassExecutionContext& Context) override;
 };
-{% endhighlight %}
+```
 
 `Query`'s template parameters specify the required data and its access modes.
 We need mutable access to `FMassTransformFragment` and access to the const shared `FMassVelocityConstSharedFragment`.
@@ -140,13 +140,13 @@ We need mutable access to `FMassTransformFragment` and access to the const share
 
 Add the following include:
 
-{% highlight cpp %}
+```cpp
 #include "MassExecutionContext.h"
-{% endhighlight %}
+```
 
 The execution function:
 
-{% highlight cpp %}
+```cpp
 void FMassVelocityExecutor::Execute(FMassExecutionContext& Context) {
     constexpr auto Executor{[](FMassExecutionContext& context, Query& query) {
         auto const N{context.GetNumEntities()};
@@ -162,7 +162,7 @@ void FMassVelocityExecutor::Execute(FMassExecutionContext& Context) {
 
     ForEachEntityChunk(Context, Accessors, std::move(Executor));
 }
-{% endhighlight %}
+```
 
 The processing is carried out in a lambda which is passed to `ForEachEntityChunk`.
 Chunks are groups of entities that are processed in bulk by a single lambda call.
@@ -186,7 +186,7 @@ The processor just wraps the Query class into the main `UMassProcessor` type use
 
 It contains a constructor and member variables for the query.
 
-{% highlight cpp %}
+```cpp
 UCLASS()
 class MASS_SIMPLIFIED_API_API UMassVelocityProcessor : public UMassProcessor {
     GENERATED_BODY()
@@ -196,7 +196,7 @@ class MASS_SIMPLIFIED_API_API UMassVelocityProcessor : public UMassProcessor {
     FMassEntityQuery EntityQuery;
     TSharedPtr<FMassVelocityExecutor> Executor;
 };
-{% endhighlight %}
+```
 
 Note: The macro `MASS_SIMPLIFIED_API_API` comes from Unreal's use of `<module>_API` and I named the project `mass_simplified_api`.
 
@@ -204,13 +204,13 @@ Note: The macro `MASS_SIMPLIFIED_API_API` comes from Unreal's use of `<module>_A
 
 Add the following include for the `ProcessorGroupNames` to be used later.
 
-{% highlight cpp %}
+```cpp
 #include "MassCommonTypes.h"
-{% endhighlight %}
+```
 
 Implement the constructor like so:
 
-{% highlight cpp %}
+```cpp
 UMassVelocityProcessor::UMassVelocityProcessor()
     : EntityQuery(*this)
     , Executor(UE::Mass::FQueryExecutor::CreateQuery<FMassVelocityExecutor>(EntityQuery, this)) {
@@ -221,7 +221,7 @@ UMassVelocityProcessor::UMassVelocityProcessor()
     ExecutionFlags = static_cast<int32>(EProcessorExecutionFlags::AllWorldModes);
     bAutoRegisterWithProcessingPhases = true;
 }
-{% endhighlight %}
+```
 
 You must initialise `EntityQuery` with `*this` or it won't be registered with the processor and thus won't run.
 
@@ -246,24 +246,24 @@ For reference, batch spawning is performed using `FMassEntityManager::BatchCreat
 
 Add these includes.
 
-{% highlight cpp %}
+```cpp
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MassArchetypeTypes.h"
 #include "MassEntityTypes.h"
 
 #include "MassEntitySpawner.generated.h"
-{% endhighlight %}
+```
 
 Create a forward declaration for the Mass Entity subsystem.
 
-{% highlight cpp %}
+```cpp
 class UMassEntitySubsystem;
-{% endhighlight %}
+```
 
 Our class consists of entity information variables and member functions to define and spawn entities.
 
-{% highlight cpp %}
+```cpp
 UCLASS()
 class AMassEntitySpawner : public AActor {
     GENERATED_BODY()
@@ -285,32 +285,32 @@ class AMassEntitySpawner : public AActor {
     FMassArchetypeHandle Archetype{};
     FMassArchetypeSharedFragmentValues SharedValues{};
 };
-{% endhighlight %}
+```
 
 ## Source File
 
 Add the following includes.
 
-{% highlight cpp %}
+```cpp
 #include "MassEntitySpawner.h"
 
 #include "MassArchetypeTypes.h"
 #include "MassEntitySubsystem.h"
 #include "MassFragments.h"
-{% endhighlight %}
+```
 
 In the constructor I set the ticking to 20 Hz to reduce the number of entities spawned per second.
 
-{% highlight cpp %}
+```cpp
 AMassEntitySpawner::AMassEntitySpawner() {
     PrimaryActorTick.bCanEverTick = true;
     PrimaryActorTick.TickInterval = 0.05f;
 }
-{% endhighlight %}
+```
 
 In `BeginPlay`, create our archetype and its shared values.
 
-{% highlight cpp %}
+```cpp
 void AMassEntitySpawner::BeginPlay() {
     Super::BeginPlay();
 
@@ -324,12 +324,12 @@ void AMassEntitySpawner::BeginPlay() {
     CreateArchetype(*MassEntitySubsystem, EntityManager);
     CreateSharedValues(EntityManager);
 }
-{% endhighlight %}
+```
 
 Archetypes are created with `EntityManager::CreateArchetype`.
 Specify the required data in `FMassArchetypeCompositionDescriptor` and some additional data such as the debug name in `FMassArchetypeCreationParams`.
 
-{% highlight cpp %}
+```cpp
 void AMassEntitySpawner::CreateArchetype(UMassEntitySubsystem& MassEntitySubsystem,
                                          FMassEntityManager& EntityManager) {
     auto Descriptor{FMassArchetypeCompositionDescriptor{}};
@@ -342,13 +342,13 @@ void AMassEntitySpawner::CreateArchetype(UMassEntitySubsystem& MassEntitySubsyst
 
     Archetype = EntityManager.CreateArchetype(Descriptor, CreationParams);
 }
-{% endhighlight %}
+```
 
 `CreateSharedValues` adds the shared fragment data to our `SharedValues` data.
 The `EntityManager` caches the shared values so subsequent calls just return a handle to the existing value.
 The shared fragments need to be sorted relative to their definition in the Archetype so be sure to call `.Sort()` after creating them.
 
-{% highlight cpp %}
+```cpp
 void AMassEntitySpawner::CreateSharedValues(FMassEntityManager& EntityManager) {
     auto const VelocityHandle{
         EntityManager.GetOrCreateConstSharedFragment<FMassVelocityConstSharedFragment>(
@@ -357,11 +357,11 @@ void AMassEntitySpawner::CreateSharedValues(FMassEntityManager& EntityManager) {
     SharedValues.Add(VelocityHandle);
     SharedValues.Sort();
 }
-{% endhighlight %}
+```
 
 Within the tick we just call `SpawnEntity`.
 
-{% highlight cpp %}
+```cpp
 void AMassEntitySpawner::Tick(float DeltaTime) {
     Super::Tick(DeltaTime);
 
@@ -374,11 +374,11 @@ void AMassEntitySpawner::Tick(float DeltaTime) {
 
     SpawnEntity(*MassEntitySubsystem, EntityManager);
 }
-{% endhighlight %}
+```
 
 `SpawnEntity` creates a new entity handle using `EntityManager.CreateEntity` and configures the initial transform.
 
-{% highlight cpp %}
+```cpp
 void AMassEntitySpawner::SpawnEntity(UMassEntitySubsystem& MassEntitySubsystem,
                                      FMassEntityManager& EntityManager) {
     FMassEntityHandle EntityHandle{EntityManager.CreateEntity(Archetype, SharedValues)};
@@ -389,7 +389,7 @@ void AMassEntitySpawner::SpawnEntity(UMassEntitySubsystem& MassEntitySubsystem,
     }
 }
 
-{% endhighlight %}
+```
 
 # Simulation
 

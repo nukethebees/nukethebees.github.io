@@ -25,7 +25,7 @@ The full code is found in the `MyCharacter` header and cpp files from [here](htt
 The following headers are needed.
 The stdlib headers provide enum manipulation functions.
 
-{% highlight cpp %}
+```cpp
 #include <utility>
 #include <type_traits>
 
@@ -36,17 +36,17 @@ The stdlib headers provide enum manipulation functions.
 #include "GameFramework/SpringArmComponent.h"
 
 #include "MyCharacter.generated.h"
-{% endhighlight %}
+```
 
 ### Creating the character class
 
-{% highlight cpp %}
+```cpp
 UCLASS()
 class SANDBOX_API AMyCharacter
     : public ACharacter {
     GENERATED_BODY()
 }
-{% endhighlight %}
+```
 
 ### The camera mode enum
 
@@ -55,18 +55,18 @@ Add an enumerator for each camera, plus a final `MAX` enumerator.
 The `MAX` enumerator represents the number of cameras.
 Access its value at compile or run time by casting to the underlying type with [`std::to_underlying`](https://en.cppreference.com/w/cpp/utility/to_underlying.html).
 
-{% highlight cpp %}
+```cpp
 UENUM(BlueprintType)
 enum class ECharacterCameraMode : uint8 {
     FirstPerson UMETA(DisplayName = "First Person"),
     ThirdPerson UMETA(DisplayName = "Third Person"),
     MAX UMETA(Hidden)
 };
-{% endhighlight %}
+```
 
 To help cycle through the active camera, write a function to cycle through the enum values.
 
-{% highlight cpp %}
+```cpp
 template <typename Enum, auto MAX_VALUE = Enum::MAX>
 Enum get_next(Enum current) {
     auto const next{std::to_underlying(current) + 1};
@@ -75,13 +75,13 @@ Enum get_next(Enum current) {
     using Underlying = std::underlying_type_t<Enum>;
     return (next >= MAX) ? static_cast<Enum>(Underlying{0}) : static_cast<Enum>(next);
 }
-{% endhighlight %}
+```
 
 ### Compile time camera configuration
 
 Define a `constexpr` struct to create a compile time camera configuration.
 
-{% highlight cpp %}
+```cpp
 struct FCameraConfig {
     constexpr FCameraConfig(ECharacterCameraMode camera_mode,
                             char const* component_name,
@@ -99,11 +99,11 @@ struct FCameraConfig {
     bool needs_spring_arm;
     bool use_pawn_control_rotation;
 };
-{% endhighlight %}
+```
 
 Create a `constexpr` array of `MAX` camera configurations.
 
-{% highlight cpp %}
+```cpp
 
 namespace ml::AMyCharacter {
 inline static constexpr int32 camera_count{static_cast<int32>(ECharacterCameraMode::MAX)};
@@ -111,11 +111,11 @@ inline static constexpr FCameraConfig camera_configs[camera_count] = {
     {ECharacterCameraMode::FirstPerson, "Camera", false, true},
     {ECharacterCameraMode::ThirdPerson, "ThirdPersonCamera", true, true}};
 }
-{% endhighlight %}
+```
 
 Write a `consteval` function to calculate the required number of spring arms.
 
-{% highlight cpp %}
+```cpp
 namespace ml::AMyCharacter {
 consteval int32 count_required_spring_arms() {
     int32 count{0};
@@ -127,7 +127,7 @@ consteval int32 count_required_spring_arms() {
     return count;
 }
 }
-{% endhighlight %}
+```
 
 ### Class members
 
@@ -136,7 +136,7 @@ Add the camera class data members along with the member functions for changing c
 Unreal component names require `FName` for their name however `FName` is not a `constexpr` type.
 Use a `char const*` and convert it to `TCHAR*` later with Unreal's `ANSI_TO_TCHAR` macro.
 
-{% highlight cpp %}
+```cpp
   public:
     static constexpr int32 camera_count{ml::AMyCharacter::camera_count};
     static constexpr int32 spring_arm_count{
@@ -155,7 +155,7 @@ Use a `char const*` and convert it to `TCHAR*` later with Unreal's `ANSI_TO_TCHA
     virtual void handle_death();
     void disable_all_cameras();
     void change_camera_to(ECharacterCameraMode mode);
-{% endhighlight %}
+```
 
 ### Class implementation
 
@@ -166,7 +166,7 @@ Initialise the camera and spring arm arrays to `nullptr`.
 Loop through each camera config and initialise the `UCameraComponent` (and the `USpringArmComponent` if needed) and attach them to the character.
 Other properties can be added by either adding data to `FCameraConfig` or creating a child Blueprint class and editing them in the class's viewport in the Unreal Editor.
 
-{% highlight cpp %}
+```cpp
 AMyCharacter::AMyCharacter() {
     PrimaryActorTick.bCanEverTick = true;
 
@@ -197,11 +197,11 @@ AMyCharacter::AMyCharacter() {
         }
     }
 }
-{% endhighlight %}
+```
 
 #### Disabling all cameras
 
-{% highlight cpp %}
+```cpp
 void AMyCharacter::disable_all_cameras() {
     for (auto* camera : cameras) {
         if (camera) {
@@ -209,7 +209,7 @@ void AMyCharacter::disable_all_cameras() {
         }
     }
 }
-{% endhighlight %}
+```
 
 #### Changing camera
 
@@ -219,7 +219,7 @@ To change the camera:
 * Get the desired camera index with `std::to_underlying(mode)`
 * Enable the desired camera with `SetActive(true)` or enable a default camera if the index is out of range
 
-{% highlight cpp %}
+```cpp
 void AMyCharacter::change_camera_to(ECharacterCameraMode mode) {
     camera_mode = mode;
 
@@ -236,17 +236,17 @@ void AMyCharacter::change_camera_to(ECharacterCameraMode mode) {
         }
     }
 }
-{% endhighlight %}
+```
 
 #### Cycling to the next camera state
 
 Cycle to the next camera with:
 
-{% highlight cpp %}
+```cpp
 void AMyCharacter::cycle_camera() {
     change_camera_to(get_next(camera_mode));
 }
-{% endhighlight %}
+```
 
 ## Conclusion
 

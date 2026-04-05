@@ -41,7 +41,7 @@ There is also a field for the emitter systems that the channel supports.
 To write data to a channel you must create a writer using `UNiagaraDataChannelLibrary::WriteToNiagaraDataChannel` from `NiagaraDataChannel.h`.
 I've included the signature below with the important parameters annotated.
 
-{% highlight cpp %}
+```cpp
 static UNiagaraDataChannelWriter * CreateDataChannelWriter ( 
     // The world to spawn the systems in
     const UObject* WorldContextObject,
@@ -56,7 +56,7 @@ static UNiagaraDataChannelWriter * CreateDataChannelWriter (
     bool bVisibleToGPU,
     const FString& DebugSource
 );
-{% endhighlight %}
+```
 
 The default constructed search parameters uses `FVector::ZeroVector` for `Location`, meaning your Niagara system will be spawned in the island there.
 Once leave this island, your particles will be culled unless you have line of sight to this island.
@@ -75,27 +75,27 @@ The following is a short example of using the writer with my `UNiagaraNdcWriterS
 
 The subsystem stores a `FNiagaraDataChannelSearchParameters` member variable called `search_parameters_`. When the world begins (`OnWorldBeginPlay()`), I set the  `search_parameters_` owning component to the player's root component.
 
-{% highlight cpp %}
+```cpp
 void UNiagaraNdcWriterSubsystem::OnWorldBeginPlay(UWorld& world) {
     Super::OnWorldBeginPlay(world);
     FCoreDelegates::OnEndFrame.AddUObject(this, &UNiagaraNdcWriterSubsystem::flush_ndc_writes);
     update_owning_component(world);
 }
-{% endhighlight %}
+```
 
 You can get the active player with `UGameplayStatics::GetPlayerCharacter` from `Kismet/GameplayStatics.h`.
 
-{% highlight cpp %}
+```cpp
 void UNiagaraNdcWriterSubsystem::update_owning_component(UWorld& world) {
     if (auto* character{UGameplayStatics::GetPlayerCharacter(&world, 0)}) {
         search_parameters_.OwningComponent = character->GetRootComponent();
     }
 }
-{% endhighlight %}
+```
 
 I wrote a small helper function to create the writer.
 
-{% highlight cpp %}
+```cpp
 auto UNiagaraNdcWriterSubsystem::create_data_channel_writer(UWorld& world, NdcAsset& asset, int32 n)
     -> NdcWriter* {
     constexpr bool visible_to_game{false};
@@ -114,13 +114,13 @@ auto UNiagaraNdcWriterSubsystem::create_data_channel_writer(UWorld& world, NdcAs
     )};
     return writer;
 }
-{% endhighlight %}
+```
 
 The code below is a summarised version of how the subsystem writes to the data channel.
 Simply open the writer and use the `WriteX` member functions to write your data to the channel
 
 
-{% highlight cpp %}
+```cpp
 static auto const position_label{FName("position")};
 static auto const rotation_label{FName("rotation")};
 
@@ -131,7 +131,7 @@ for (int32 i{0}; i < n_systems; ++i) {
     writer->WritePosition(position_label, i, locations[i]);
     writer->WriteVector(rotation_label, i, rotations[i]);
 }
-{% endhighlight %}
+```
 
 # Conclusion
 

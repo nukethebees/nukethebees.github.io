@@ -10,7 +10,7 @@ This can be tedious and potentially fail if there aren't 8 bits in a byte on you
 
 A more efficient method is to use `std::bit_cast` which reinterprets the bits of one datatype into another.
 
-{% highlight cpp %}
+```cpp
 #include <array>
 #include <bit>
 
@@ -21,11 +21,11 @@ auto join(std::array<char, 4> chars) -> int {
 auto split(int num) -> std::array<char, 4> {
     return std::bit_cast<std::array<char, 4>>(num);
 }
-{% endhighlight %}
+```
 
 With compiler optimisations enabled, it can be implemented with a single instruction.
 
-{% highlight nasm %}
+```nasm
 chars$ = 8
 int join(std::array<char,4>) PROC                    ; join, COMDAT
         mov     eax, ecx
@@ -37,4 +37,4 @@ std::array<char,4> split(int) PROC       ; split, COMDAT
         mov     eax, ecx
         ret     0
 std::array<char,4> split(int) ENDP       ; split
-{% endhighlight %}
+```

@@ -10,7 +10,7 @@ Given the recent push in C++ towards views like `std::span` and `std::string_vie
 
 With `std::string_view` this is indeed the case[^2]. Let's use a simple function which returns the final character in a string.
 
-{% highlight cpp %}
+```cpp
 #include <cstddef>
 #include <string_view>
 
@@ -20,11 +20,11 @@ char get_last(char const * str, std::size_t i) {
 char get_last_sv(std::string_view str) {
     return str.back();
 }
-{% endhighlight %}
+```
 
 Using `str::string_view` requires double the instructions as the two halves of the `string_view` must be loaded from memory before we can access the byte.
 
-{% highlight nasm %}
+```nasm
 str$ = 8
 i$ = 16
 char get_last(char const*,unsigned __int64) PROC                   ; get_last, COMDAT
@@ -39,17 +39,17 @@ char get_last_sv(std::basic_string_view<char,std::char_traits<char> >) PROC ; ge
         movzx   eax, BYTE PTR [rdx+rax-1]
         ret     0
 char get_last_sv(std::basic_string_view<char,std::char_traits<char> >) ENDP ; get_last_sv
-{% endhighlight %}
+```
 
 When the functions are used together, the difference still exists. The same double memory read cost must be paid.
 
-{% highlight cpp %}
+```cpp
 char sum(char const* str, std::size_t i, std::string_view str2) {
     return get_last(str, i) + get_last_sv(str2);
 }
-{% endhighlight %}
+```
 
-{% highlight nasm %}
+```nasm
 str$ = 8
 i$ = 16
 str2$ = 24
@@ -60,11 +60,11 @@ char sum(char const *,unsigned __int64,std::basic_string_view<char,std::char_tra
         add     al, BYTE PTR [rcx+rdx-1]
         ret     0
 char sum(char const *,unsigned __int64,std::basic_string_view<char,std::char_traits<char> >) ENDP ; sum
-{% endhighlight %}
+```
 
 However if the compiler has full knowledge of the strings and their sizes, it can transform the calls into equivalent instructions.
 
-{% highlight cpp %}
+```cpp
 int main() {
     constexpr auto str0{"000"};
     constexpr auto str1{std::string_view{"000"}};
@@ -74,9 +74,9 @@ int main() {
 
     return gl + gl2;
 }
-{% endhighlight %}
+```
 
-{% highlight nasm %}
+```nasm
 gl2$ = 8
 gl$ = 16
 main    PROC                                            ; COMDAT
@@ -87,7 +87,7 @@ main    PROC                                            ; COMDAT
         add     eax, ecx
         ret     0
 main    ENDP
-{% endhighlight %}
+```
 
 [^1]: <https://godbolt.org/z/8Yasvqbhb>
 [^2]: <https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170>
