@@ -28,6 +28,12 @@ header {
     margin-bottom: 2rem;
 }
 
+code, pre {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
 .header-links a {
   margin-left: 1rem; /* space between links */
   text-decoration: none;
