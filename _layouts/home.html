@@ -5,19 +5,23 @@ layout: base
   <ul>
   {%- for post in site.posts -%}
   <l1>
-      <p>
-      <a href="{{ post.url | relative_url }}">
-          {{ post.title }}       
-      </a>
-      <br>
-      {{ post.date | date: "%B %d, %Y"  }}
-      {%- if post.categories.size > 0 -%}
-          <br>
-          <span class="post-categories">
-          Tags:  {{ post.categories | join: ", " }}
-          </span>
-      {%- endif -%}
-      </p>
+      {% assign title_level = 2 %}
+      {% assign details_level = 3 %}
+      <h{{ title_level }}>
+        <a href="{{ post.url | relative_url }}">
+            {{ post.title }}       
+        </a>
+        <br>
+      </h{{ title_level }}>
+      <h{{ details_level }}>
+        {{ post.date | date: "%B %d, %Y"  }}
+        {%- if post.categories.size > 0 -%}
+            <br>
+            <span class="post-categories">
+            Tags:  {{ post.categories | join: ", " }}
+            </span>
+        {%- endif -%}
+      </h{{ details_level }}>
   </l1>
   {%- endfor -%}
   </ul>
