@@ -62,23 +62,16 @@ code, pre {
 }
 
 .post {
-  p, ul {
-    max-width: $p-text-width;
-    margin: 1em auto;
-  }
-  h1 {
-    max-width: $h1-text-width;
-    margin: 1em auto;
-  }
-  h2, h3, h4, h5, h6 {
-    max-width: $h2-text-width;
-    margin: 1em auto;
-  }
+  max-width: $p-text-width;
+  margin: 1em auto;
   div.highlighter-rouge {
-    max-width: $p-text-width;
     margin: 0 auto;
     border-radius: 6px;
     padding: 0;
+  }
+  figure {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%); 
   }
 }
 
