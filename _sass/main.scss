@@ -55,13 +55,20 @@ header {
     max-width: $h2-text-width;
     margin: 1em auto;
   }
+  div.highlighter-rouge {
+    max-width: $p-text-width;
+    margin: 0 auto;
+    border-radius: 6px;
+    padding: 0;
+  }
 }
 
-/* Custom style for this one specific highlight block */
-.wrap-text-highlight .highlight pre, 
-.wrap-text-highlight .highlight code {
+div.highlighter-rouge pre, 
+div.highlighter-rouge code {
     /* The key properties to ensure wrapping */
     white-space: pre-wrap;
-    word-break: break-all;
-    word-wrap: break-word; /* Fallback for older browsers */
+    overflow-wrap: normal;
+    word-break: normal;
+    padding: 0.75em;
 }
+

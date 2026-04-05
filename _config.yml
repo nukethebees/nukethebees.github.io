@@ -3,6 +3,13 @@ description: >-
   Programming and other technical stuff.
 baseurl: "" 
 url: "https://nukethebees.com/" 
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  auto_ids: true
 
 # Build settings
 plugins:
