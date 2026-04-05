@@ -1,12 +1,10 @@
 ---
 layout: base
-title: Blender
-permalink: /blender/
 ---
 
-<h1>Blender</h1>
+<h1>{{ include.title }}</h1>
 
-{% for post in site.categories.blender %}
+{% for post in site.categories[include.category] %}
   <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
   <p>{{ post.date | date: "%B %-d, %Y" }}</p>
 {% endfor %}

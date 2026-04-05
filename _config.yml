@@ -23,6 +23,23 @@ include:
   - robots.txt
   - BingSiteAuth.xml
 
+category_pages:
+  - title: C++
+    permalink: /cpp/
+    category: c++
+  - title: Assembly
+    category: assembly
+    permalink: /asm/
+  - title: Blender
+    permalink: /blender/
+    category: blender
+  - title: Unreal Engine
+    permalink: /unreal/
+    category: unreal
+  - title: misc
+    permalink: /misc/
+    category: misc
+
 header_links:
   - title: About
     url: /about/
@@ -32,5 +49,7 @@ header_links:
     url: /asm/
   - title: Blender
     url: /blender/
+  - title: Unreal Engine
+    url: /unreal/
   - title: misc
     url: /misc/
