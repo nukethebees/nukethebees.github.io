@@ -43,13 +43,3 @@ category_pages:
 header_links:
   - title: About
     url: /about/
-  - title: C++
-    url: /cpp/
-  - title: Assembly
-    url: /asm/
-  - title: Blender
-    url: /blender/
-  - title: Unreal Engine
-    url: /unreal/
-  - title: misc
-    url: /misc/
