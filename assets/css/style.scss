@@ -1,6 +1,10 @@
 ---
 ---
 
+html {
+  font-size: 100%;
+}
+
 .home {
     ul {
       max-width: 65ch;
@@ -14,7 +18,8 @@
   p {
     max-width: 65ch;
     margin: 1em auto;
-    line-height: 1.5; 
+    line-height: 1.5;
+    font-size: 1rem;
   }
 }
 
