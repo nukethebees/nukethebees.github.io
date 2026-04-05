@@ -6,8 +6,16 @@ layout: base
   <l1>
     <p>
       <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
+        {{ post.title }}       
       </a>
+      <br>
+      {{ post.date | date: "%B %d, %Y"  }}
+      {%- if post.categories.size > 0 -%}
+        <br>
+        <span class="post-categories">
+        Tags:  {{ post.categories | join: ", " }}
+        </span>
+      {%- endif -%}
     </p>
   </l1>
   {%- endfor -%}
