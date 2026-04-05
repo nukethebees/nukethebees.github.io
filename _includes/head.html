@@ -4,9 +4,9 @@
       rel="stylesheet" 
       href="{{ '/assets/css/style.css' | relative_url }}">
     <title>
+      {{ site.title }}
        {%- if page.title -%}
-       {{ page.title }} –&nbsp;
+       &nbsp–&nbsp{{ page.title }};
        {%- endif -%}
-       {{ site.title }}
   </title>
   </head>
