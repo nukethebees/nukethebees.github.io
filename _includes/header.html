@@ -1,5 +1,9 @@
 <header>
-  <div>{{ site.title }}</div>
+  <div>
+    <a href="/">
+      {{ site.title }}
+    </a>
+  </div>
   <nav class="header-links">
     {% for link in site.header_links %}
       <a href="{{ link.url }}">{{ link.title }}</a>
