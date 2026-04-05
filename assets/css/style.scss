@@ -10,6 +10,14 @@
     }
 }
 
+.post {
+  p {
+    max-width: 65ch;
+    margin: 1em auto;
+    line-height: 1.5; 
+  }
+}
+
 /* Custom style for this one specific highlight block */
 .wrap-text-highlight .highlight pre, 
 .wrap-text-highlight .highlight code {
