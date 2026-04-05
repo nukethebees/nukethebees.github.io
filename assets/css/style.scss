@@ -1,6 +1,15 @@
 ---
 ---
 
+.home {
+    ul {
+      max-width: 65ch;
+      margin: 0 auto;
+      padding-left: 0;
+      list-style: none;
+    }
+}
+
 /* Custom style for this one specific highlight block */
 .wrap-text-highlight .highlight pre, 
 .wrap-text-highlight .highlight code {

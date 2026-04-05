@@ -1,22 +1,24 @@
 ---
 layout: base
 ---
-<ul>
+<div class="home">
+  <ul>
   {%- for post in site.posts -%}
   <l1>
-    <p>
+      <p>
       <a href="{{ post.url | relative_url }}">
-        {{ post.title }}       
+          {{ post.title }}       
       </a>
       <br>
       {{ post.date | date: "%B %d, %Y"  }}
       {%- if post.categories.size > 0 -%}
-        <br>
-        <span class="post-categories">
-        Tags:  {{ post.categories | join: ", " }}
-        </span>
+          <br>
+          <span class="post-categories">
+          Tags:  {{ post.categories | join: ", " }}
+          </span>
       {%- endif -%}
-    </p>
+      </p>
   </l1>
   {%- endfor -%}
-</ul>
+  </ul>
+</div>
