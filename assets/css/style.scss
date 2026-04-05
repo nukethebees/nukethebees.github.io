@@ -5,6 +5,18 @@ html {
   font-size: 100%;
 }
 
+body {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
 .home {
     ul {
       max-width: 65ch;
@@ -18,8 +30,6 @@ html {
   p {
     max-width: 65ch;
     margin: 1em auto;
-    line-height: 1.5;
-    font-size: 1rem;
   }
 }
 
