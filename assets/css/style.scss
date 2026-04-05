@@ -17,6 +17,18 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5em;
 }
 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* title left, links right */
+    padding: 0.5rem 1rem;
+}
+
+.header-links a {
+  margin-left: 1rem; /* space between links */
+  text-decoration: none;
+}
+
 .home {
     ul {
       max-width: 65ch;
