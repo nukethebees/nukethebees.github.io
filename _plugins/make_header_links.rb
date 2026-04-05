@@ -12,7 +12,7 @@ module Jekyll
           'url'   => cat['permalink']
         } || []
       end
-      site.config['header_links'] = manual_links + category_links
+      site.data['header_links'] = manual_links + category_links
     end
   end
 end
