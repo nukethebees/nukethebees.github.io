@@ -2,7 +2,7 @@
 layout: post
 title:  "Setting up multiple character cameras in Unreal Engine 5"
 date:   2025-09-20 13:00:00 +0100
-categories: software c++ unreal
+categories: software cpp unreal
 ---
 
 This guide will show you how to add any number of cameras to a `ACharacter` derived class and switch between them.
@@ -29,7 +29,7 @@ The stdlib headers provide enum manipulation functions.
 #include <utility>
 #include <type_traits>
 
-#include "Camera/CameraComponent.h" 
+#include "Camera/CameraComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -178,10 +178,10 @@ AMyCharacter::AMyCharacter() {
     int32 spring_arm_index{0};
     for (auto const& config : ml::AMyCharacter::camera_configs) {
         auto& camera_component{cameras[config.camera_index]};
-        camera_component = 
+        camera_component =
             CreateDefaultSubobject<UCameraComponent>(
                 ANSI_TO_TCHAR(config.component_name));
-        camera_component->bUsePawnControlRotation = 
+        camera_component->bUsePawnControlRotation =
             config.use_pawn_control_rotation;
 
         if (config.needs_spring_arm) {

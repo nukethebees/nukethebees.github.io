@@ -2,7 +2,7 @@
 layout: post
 title:  "UE5 Niagara Data Channels: Preventing Particle Culling Away from Origin"
 date:   2025-10-15 19:26:00 +0100
-categories: software c++ unreal
+categories: software cpp unreal
 ---
 
 I recently had an issue where my Niagara systems seemingly wouldn't spawn occasionally in Unreal Engine 5.
@@ -42,7 +42,7 @@ To write data to a channel you must create a writer using `UNiagaraDataChannelLi
 I've included the signature below with the important parameters annotated.
 
 ```cpp
-static UNiagaraDataChannelWriter * CreateDataChannelWriter ( 
+static UNiagaraDataChannelWriter * CreateDataChannelWriter (
     // The world to spawn the systems in
     const UObject* WorldContextObject,
     // The data channel asset to write to

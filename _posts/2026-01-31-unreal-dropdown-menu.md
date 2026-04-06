@@ -2,7 +2,7 @@
 layout: post
 title:  "UE5: Creating an editor dropdown menu"
 date:   2026-01-31 14:00:00 +0100
-categories: software c++ unreal
+categories: software cpp unreal
 ---
 
 This post shows how to customise the Unreal Engine 5 editor with a custom dropdown menu.
@@ -36,8 +36,8 @@ Add a reference to the new `DropdownMenuEditor` module in the `.uproject` file.
 Within the `Source` directory, create a `DropdownMenuEditor` directory alongside `DropdownMenu`
 
 <figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/2026-01-31-unreal-dropdown-menu/source_directory.png" 
-       style="max-width: 100%; height: auto; display: inline-block; border: 1px solid #ccc;" 
+  <img src="/images/2026-01-31-unreal-dropdown-menu/source_directory.png"
+       style="max-width: 100%; height: auto; display: inline-block; border: 1px solid #ccc;"
        />
   <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
     The source directory with the new DropdownMenuEditor directory
@@ -82,7 +82,7 @@ public class DropdownMenuEditor : ModuleRules
 {
     public DropdownMenuEditor(ReadOnlyTargetRules Target) : base(Target)
     {
-        PrivateDependencyModuleNames.AddRange(new string[] { 
+        PrivateDependencyModuleNames.AddRange(new string[] {
 			"Core", "CoreUObject", "Engine", "Slate", "SlateCore", "LevelEditor"
 		});
     }
@@ -435,9 +435,9 @@ void ExampleFreeFn() {
 If you compile your code and load the editor, you should now see the buttons as follows.
 
 <figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/2026-01-31-unreal-dropdown-menu/dropdown_menu_buttons.png" 
-       alt="UE5 dropdown menu buttons" 
-       style="max-width: 100%; height: auto; display: inline-block; border: 1px solid #ccc;" 
+  <img src="/images/2026-01-31-unreal-dropdown-menu/dropdown_menu_buttons.png"
+       alt="UE5 dropdown menu buttons"
+       style="max-width: 100%; height: auto; display: inline-block; border: 1px solid #ccc;"
        />
   <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
     The dropdown menu in the editor
@@ -449,7 +449,7 @@ So to summarise the process:
 * Create an editor module with a C++ editor class
 * Register the module with the project and UnrealBuildTool
 * Create functions that you want to call in the editor
-* Bind your menu creation function to an `FExtender` 
+* Bind your menu creation function to an `FExtender`
 * Register your `FExtender` with the level editor module's menu extensibility manager
 * Use the `MenuBuilder` classes to create your buttons and bind them to functions
 

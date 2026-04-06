@@ -2,7 +2,7 @@
 layout: post
 title:  "Unreal Engine 5 Simplified Mass Entity Query API Quickstart"
 date:   2025-10-13 13:50:00 +0100
-categories: software c++ unreal
+categories: software cpp unreal
 ---
 
 # Introduction
@@ -10,7 +10,7 @@ categories: software c++ unreal
 Unreal Engine 5 (UE5) features an entity component system (ECS) for high efficiency batch processing called Mass Entity.
 Epic developed a simplified Mass Entity API but I feel [the documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/simplified-mass-processor) is sparse.
 
-This post provides a full example to show its use. 
+This post provides a full example to show its use.
 
 [The code for this example can be found here.](https://github.com/nukethebees/ue5_examples/tree/master/mass_simplified_api)
 
@@ -41,9 +41,9 @@ Add the `MassGameplay` plugin to your project's `.uproject` file.
 Add `MassEntity` and `MassCommon` to your `.Build.cs` file.
 
 ```c#
-PublicDependencyModuleNames.AddRange(new string[] { 
-    "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", 
-    "MassEntity", "MassCommon" 
+PublicDependencyModuleNames.AddRange(new string[] {
+    "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput",
+    "MassEntity", "MassCommon"
 });
 ```
 

@@ -2,7 +2,7 @@
 layout: post
 title:  "UE5: Fix file loading errors when building from source"
 date:   2025-10-19 13:51:00 +0100
-categories: software c++ unreal
+categories: software cpp unreal
 ---
 
 When building the Unreal Engine from the [Github source](https://dev.epicgames.com/documentation/en-us/unreal-engine/downloading-source-code-in-unreal-engine) in Visual Studio 2022, the compilation failed due to missing file errors.

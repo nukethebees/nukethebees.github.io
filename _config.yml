@@ -1,8 +1,8 @@
 title: NukeTheBees
-description: >- 
+description: >-
   Programming and other technical stuff.
-baseurl: "" 
-url: "https://nukethebees.com/" 
+baseurl: ""
+url: "https://nukethebees.com/"
 highlighter: rouge
 markdown: kramdown
 kramdown:
@@ -22,23 +22,6 @@ theme: null
 include:
   - robots.txt
   - BingSiteAuth.xml
-
-category_pages:
-  - title: C++
-    permalink: /cpp/
-    category: c++
-  - title: Assembly
-    category: asm
-    permalink: /asm/
-  - title: Blender
-    permalink: /blender/
-    category: blender
-  - title: Unreal Engine
-    permalink: /unreal/
-    category: unreal
-  - title: misc
-    permalink: /misc/
-    category: misc
 
 header_links:
   - title: About

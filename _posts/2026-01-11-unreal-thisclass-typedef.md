@@ -2,7 +2,7 @@
 layout: post
 title:  "UE5: Using the ThisClass typedef for more concise code"
 date:   2026-01-11 12:50:00 +0100
-categories: software c++ unreal
+categories: software cpp unreal
 ---
 
 In the Unreal Engine, the `Super` typedef for a `UCLASS`'s base class is well known.
@@ -12,10 +12,10 @@ It's useful for saving time when binding delegates or copying code between multi
 
 ```cpp
 MyCollisionBox->OnComponentBeginOverlap.AddDynamic(
-    this, 
+    this,
     &AMyExtremelyVerboseActorTypeName::OnOverlapBegin);
 MyCollisionBox->OnComponentBeginOverlap.AddDynamic(
-    this, 
+    this,
     &ThisClass::OnOverlapBegin);
 ```
 

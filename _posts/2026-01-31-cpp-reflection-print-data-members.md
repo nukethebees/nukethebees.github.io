@@ -2,7 +2,7 @@
 layout: post
 title:  "Printing class data members using C++26 reflection"
 date:   2026-01-31 17:07:00 +0100
-categories: software c++
+categories: software cpp
 ---
 
 C++26's reflection feature allows programs to analyse themselves at compile time ([the proposal paper can be read here](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2023/p2996r0.html)).
@@ -41,8 +41,8 @@ void print_data_members() {
     template for (constexpr m::info member : members) {
         if constexpr (m::is_nonstatic_data_member(member)) {
             constexpr auto type{m::type_of(member)};
-            std::print("{} : {}\n", 
-                       m::identifier_of(member), 
+            std::print("{} : {}\n",
+                       m::identifier_of(member),
                        m::display_string_of(type)
             );
         }

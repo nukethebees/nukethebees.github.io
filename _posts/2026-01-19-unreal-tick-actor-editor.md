@@ -2,7 +2,7 @@
 layout: post
 title:  "UE5: Ticking actors in the editor"
 date:   2026-01-19 21:28:00 +0100
-categories: software c++ unreal
+categories: software cpp unreal
 ---
 
 Unreal Engine actors typically don't tick in the editor; however, this can be changed.
