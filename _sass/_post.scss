@@ -1,0 +1,15 @@
+@use "vars";
+
+.post {
+  max-width: vars.$p-text-width;
+  margin: 1em auto;
+  div.highlighter-rouge {
+    margin: 0 auto;
+    border-radius: 6px;
+    padding: 0;
+  }
+  figure {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+}

@@ -1,0 +1,16 @@
+@use "vars";
+
+.post-list {
+  max-width: vars.$p-text-width;
+  margin: 0 auto;
+  padding-left: 0;
+  list-style: none;
+  a {
+    text-decoration: none;
+  }
+}
+
+.post-item {
+  margin-bottom: 1rem;
+  padding-bottom: 0rem;
+}

@@ -1,11 +1,10 @@
-$p-text-width: 65ch;
-$h1-text-width: 32.5ch;
-$h2-text-width: 44ch;
+@use "vars";
+@use "header";
+@use "post";
+@use "post_list";
+@use "category_list";
+@use "code";
 
-$background-colour-light: #FAFAFA;
-$text-colour: #1F2937;
-
-$header-background-colour-light: #F0F0F0;
 
 html {
   font-size: 100%;
@@ -15,8 +14,8 @@ body {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   line-height: 1.5;
   font-size: 1rem;
-  background-color: $background-colour-light;
-  color: $text-colour;
+  background-color: vars.$background-colour-light;
+  color: vars.$text-colour;
   margin: 0;
 }
 
@@ -25,68 +24,3 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
-
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* title left, links right */
-  padding: 1rem 1.5rem;
-  margin-bottom: 2rem;
-  border-bottom: 0.1rem solid #000;
-  background-color: $header-background-colour-light;
-}
-
-.header-links a {
-  margin-left: 1rem; /* space between links */
-  text-decoration: none;
-}
-
-code, pre {
-  font-family: "Consolas", "Courier New", monospace;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.post-list {
-  max-width: $p-text-width;
-  margin: 0 auto;
-  padding-left: 0;
-  list-style: none;
-  a {
-    text-decoration: none;
-  }
-}
-
-.post-item {
-  margin-bottom: 1rem;
-  padding-bottom: 0rem;
-}
-
-.post {
-  max-width: $p-text-width;
-  margin: 1em auto;
-  div.highlighter-rouge {
-    margin: 0 auto;
-    border-radius: 6px;
-    padding: 0;
-  }
-  figure {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-  }
-}
-
-.category-list {
-  max-width: $p-text-width;
-  margin: 0 auto;
-}
-
-div.highlighter-rouge pre,
-div.highlighter-rouge code {
-    /* The key properties to ensure wrapping */
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    word-break: normal;
-    padding: 0.75em;
-}
-
