@@ -27,13 +27,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* title left, links right */
-    padding: 1rem 1.5rem;
-    margin-bottom: 2rem;
-    border-bottom: 0.1rem solid #000;
-    background-color: $header-background-colour-light;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* title left, links right */
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 0.1rem solid #000;
+  background-color: $header-background-colour-light;
 }
 
 .header-links a {
@@ -42,9 +42,9 @@ header {
 }
 
 code, pre {
-    font-family: "Consolas", "Courier New", monospace;
-    font-size: 1rem;
-    line-height: 1.4;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 .post-list {
@@ -69,11 +69,16 @@ code, pre {
   }
   figure {
     width: 100vw;
-    margin-left: calc(-50vw + 50%); 
+    margin-left: calc(-50vw + 50%);
   }
 }
 
-div.highlighter-rouge pre, 
+.category-list {
+  max-width: $p-text-width;
+  margin: 0 auto;
+}
+
+div.highlighter-rouge pre,
 div.highlighter-rouge code {
     /* The key properties to ensure wrapping */
     white-space: pre-wrap;

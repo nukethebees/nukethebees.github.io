@@ -2,6 +2,8 @@
 layout: base
 ---
 
-<h1>{{ page.title }}</h1>
+<div class="category-list">
+  <h1 class="page-title">{{ page.title }}</h1>
 
-{% include post_list.html posts=page.posts %}
+  {% include post_list.html posts=page.posts %}
+</div>
