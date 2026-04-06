@@ -1,3 +1,5 @@
+require_relative 'debug_utils'
+
 module Jekyll
   class CategoryPageGenerator < Generator
     safe true
@@ -16,10 +18,12 @@ module Jekyll
 
   class CategoryPage < Page
     def initialize(site, base, config_entry, posts)
+      debug = DebugUtils.env_flag('DEBUG_CATEGORY_GEN')
+
       @site = site
       @base = base
       # remove leading/trailing slash
-      @dir  = config_entry['permalink'].sub(%r{^/|/$}, '')  
+      @dir  = config_entry['permalink'].sub(%r{^/|/$}, '')
       @name = "index.html"
 
       self.process(@name)
@@ -29,11 +33,13 @@ module Jekyll
       self.data["category"] = config_entry['category']
       self.data["posts"]    = posts
 
-      puts "Cat: #{self.data["category"]}"
-      puts "Posts"
-      for post in self.data["posts"]
-        puts "    #{post.data["title"]}"
-        puts "    #{post.url}"
+      if debug
+        puts "Cat: #{self.data["category"]}"
+        puts "Posts"
+        for post in self.data["posts"]
+          puts "    #{post.data["title"]}"
+          puts "    #{post.url}"
+        end
       end
     end
   end
