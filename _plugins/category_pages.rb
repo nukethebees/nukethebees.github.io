@@ -18,15 +18,23 @@ module Jekyll
     def initialize(site, base, config_entry, posts)
       @site = site
       @base = base
-      @dir  = config_entry['permalink'].sub(%r{^/|/$}, '')  # remove leading/trailing slash
+      # remove leading/trailing slash
+      @dir  = config_entry['permalink'].sub(%r{^/|/$}, '')  
       @name = "index.html"
 
       self.process(@name)
       self.read_yaml(File.join(base, "_layouts"), "category_list.html")
 
-      self.data["title"]    = config_entry['title'] || config_entry['category'].capitalize
+      self.data["title"]    = config_entry['title']
       self.data["category"] = config_entry['category']
       self.data["posts"]    = posts
+
+      puts "Cat: #{self.data["category"]}"
+      puts "Posts"
+      for post in self.data["posts"]
+        puts "    #{post.data["title"]}"
+        puts "    #{post.url}"
+      end
     end
   end
 end

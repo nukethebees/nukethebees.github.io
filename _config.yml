@@ -28,7 +28,7 @@ category_pages:
     permalink: /cpp/
     category: c++
   - title: Assembly
-    category: assembly
+    category: asm
     permalink: /asm/
   - title: Blender
     permalink: /blender/

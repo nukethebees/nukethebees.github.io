@@ -1,0 +1,27 @@
+<ul class="post-list">
+{%- assign posts = include.posts -%}
+
+{%- for post in posts -%}
+  <li class="post-item">
+    {% assign title_level = include.title_level | default: 2 %}
+    {% assign details_level = include.details_level | default: 3 %}
+
+    <h{{ title_level }}>
+      <a href="{{ post.url | relative_url }}">
+        {{ post.title }}
+      </a>
+    </h{{ title_level }}>
+
+    <h{{ details_level }}>
+      {{ post.date | date: "%B %d, %Y" }}
+
+      {%- if post.categories.size > 0 -%}
+        <br>
+        <span class="post-categories">
+          Tags: {{ post.categories | join: ", " }}
+        </span>
+      {%- endif -%}
+    </h{{ details_level }}>
+  </li>
+{%- endfor -%}
+</ul>

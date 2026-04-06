@@ -2,9 +2,6 @@
 layout: base
 ---
 
-<h1>{{ include.title }}</h1>
+<h1>{{ page.title }}</h1>
 
-{% for post in site.categories[include.category] %}
-  <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-  <p>{{ post.date | date: "%B %-d, %Y" }}</p>
-{% endfor %}
+{% include post_list.html posts=page.posts %}
