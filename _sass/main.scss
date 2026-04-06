@@ -52,6 +52,9 @@ code, pre {
   margin: 0 auto;
   padding-left: 0;
   list-style: none;
+  a {
+    text-decoration: none;
+  }
 }
 
 .post-item {
