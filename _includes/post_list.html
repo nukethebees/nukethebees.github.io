@@ -17,8 +17,12 @@
 
       {%- if post.categories.size > 0 -%}
         <br>
+        Tags:
         <span class="post-categories">
-          Tags: {{ post.categories | join: ", " }}
+          {%- for category in post.categories -%}
+            <a href="/{{ category | downcase | url_encode }}/">{{ category }}</a>
+            {%- if forloop.last == false -%},&nbsp;{%- endif -%}
+          {%- endfor -%}
         </span>
       {%- endif -%}
     </h{{ details_level }}>
