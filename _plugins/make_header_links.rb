@@ -12,6 +12,7 @@ module Jekyll
           'url'   => cat['permalink']
         } || []
       end
+      category_links.sort_by! { |link| link['title'].downcase }
       site.data['header_links'] = manual_links + category_links
     end
   end
