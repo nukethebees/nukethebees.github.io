@@ -8,22 +8,7 @@ module Jekyll
       debug = DebugUtils.env_flag('DEBUG_CATEGORY_CONFIG_GEN')
       defined_categories = {}
 
-      if site.config['category_pages']
-        site.config['category_pages'].each do |cat|
-          if debug
-            puts "Reading category: #{cat['category']}"
-          end
-
-          category_name = cat['category']
-          defined_categories[category_name] = cat
-          posts = site.categories[category_name] || []
-
-          site.pages << CategoryPage.new(site, site.source, cat, posts)
-        end
-      else
-        site.config['category_pages'] = []
-      end
-
+      site.config['category_pages'] = []
       site.categories.each do |category_name, posts|
         cat_entry = {
           'title'     => category_name.capitalize,
@@ -32,12 +17,22 @@ module Jekyll
         }
 
         if debug
-          puts "Generating config for category: #{category_name}"
-          puts "    #{cat_entry}"
+          puts "Generating config for category: #{category_name} #{cat_entry}"
         end
 
-        site.config['category_pages'] << cat_entry
-        site.pages << CategoryPage.new(site, site.source, cat_entry, posts)
+        new_page = CategoryPage.new(site, site.source, cat_entry, posts)
+        existing_page = site.pages.find { |p| p.url == new_page.url }
+        if debug
+            puts "Existing page #{new_page.url} : #{!!existing_page}"
+        end
+        if existing_page
+          puts "Reusing page"
+          idx = site.pages.index(existing_page)
+          site.pages[idx] = new_page
+        else
+          puts "Adding page"
+          site.pages << new_page
+        end
       end
     end
   end

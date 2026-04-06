@@ -1,3 +1,5 @@
+require_relative 'debug_utils'
+
 module Jekyll
   class CategoryHeaderGenerator < Generator
     safe true
