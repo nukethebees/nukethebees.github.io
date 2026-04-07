@@ -73,6 +73,8 @@ module Jekyll
 
   class CategoryPage < Page
     def initialize(site, base, entry, posts)
+      super()
+
       @site = site
       @base = base
       @dir  = entry['permalink'].sub(%r{^/|/$}, '')
