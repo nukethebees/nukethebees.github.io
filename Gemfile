@@ -23,3 +23,4 @@ gem "wdm", "~> 0.1", :platforms => [:windows]
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
+gem "rubocop", "~> 1.86.0"
