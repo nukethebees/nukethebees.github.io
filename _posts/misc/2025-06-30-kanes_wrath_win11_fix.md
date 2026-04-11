@@ -2,7 +2,7 @@
 layout: post
 title:  "Fixing Command & Conquer 3 / Kane's Wrath crash to desktop on Windows 11 Pro N"
 date:   2025-06-30 12:50:00 +0100
-categories: misc
+categories: misc gaming
 ---
 
 After Windows 11 Pro N was installed on a friend's PC, the game Command & Conquer 3 and its expansion Kane's Wrath would no longer load. The game's splash screen would appear and then it would silently crash.
