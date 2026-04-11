@@ -6,6 +6,10 @@
 @use "post_list";
 @use "vars";
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --p-text-width: 65ch;
   --code-block-width: 90ch;
