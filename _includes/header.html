@@ -11,13 +11,16 @@
         <a href="{{ link.url }}">{{ link.title }}</a>
         {% endfor %}
         <div class="dropdown" data-align="right">
-          <button class="dropdown_button">
+          <input type="checkbox" id="dropdown_toggle" class="dropdown_toggle" />
+
+          <label for="dropdown_toggle" class="dropdown_button">
             Categories
-          </button>
+          </label>
+
           <ul class="dropdown_menu">
             {% for link in site.data.category_links %}
-            <li class="dropdown_element" style="--i: {{ forloop.index0 }};"><a href="{{ link.url }}">{{ link.title
-                }}</a>
+            <li class="dropdown_element" style="--i: {{ forloop.index0 }};">
+              <a href="{{ link.url }}">{{ link.title }}</a>
             </li>
             {% endfor %}
           </ul>

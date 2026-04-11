@@ -4,12 +4,6 @@
   position: relative;
   display: block;
 
-  &:hover .dropdown_menu li,
-  &:focus-within .dropdown_menu li {
-    animation: waveIn 0.25s ease forwards;
-    animation-delay: calc(var(--i) * var(--wave-delay, 15ms));
-  }
-
   &[data-align="left"] {
     .dropdown_menu {
       left: 0;
@@ -44,14 +38,6 @@
   opacity: 0;
 
   pointer-events: none;
-
-  .dropdown:hover &,
-  .dropdown:focus-within & {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
 
   li+li {
     border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -99,9 +85,40 @@
     display: inline-block;
     transition: transform 0.2s ease;
   }
+}
 
-  .dropdown:focus-within &::after,
-  .dropdown:hover &::after {
-    transform: rotate(180deg);
-  }
+.dropdown_toggle {
+  display: none;
+}
+
+.dropdown_menu {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: 0.15s ease-out;
+}
+
+.dropdown:hover .dropdown_menu,
+.dropdown_toggle:checked~.dropdown_menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.dropdown:hover .dropdown_button::after,
+.dropdown_toggle:checked+.dropdown_button::after {
+  transform: rotate(180deg);
+}
+
+.dropdown_menu {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: 0.15s ease-out;
+}
+
+.dropdown:hover .dropdown_menu li,
+.dropdown_toggle:checked~.dropdown_menu li {
+  animation: waveIn 0.25s ease forwards;
+  animation-delay: calc(var(--i) * var(--wave-delay, 15ms));
 }
