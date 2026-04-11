@@ -25,30 +25,34 @@ header {
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown_button {
-    background: vars.$header-button-background-colour-light;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem 0.75rem;
+  background: vars.$header-button-background-colour-light;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
 }
 
 .dropdown_menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
 
-    display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: 0.15s ease;
+  pointer-events: none;
 
-    background: white;
-    padding: 0.5rem;
-    list-style: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: vars.$header-button-background-colour-light;
+  padding: 0.5rem;
+  list-style: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-    a {
+  a {
     text-decoration: none;
   }
 }
@@ -56,5 +60,8 @@ header {
 /* show menu */
 .dropdown:focus-within .dropdown_menu,
 .dropdown:hover .dropdown_menu {
-    display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
