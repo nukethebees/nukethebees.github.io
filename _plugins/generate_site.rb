@@ -72,9 +72,7 @@ module Jekyll
   end
 
   class CategoryPage < Page
-    def initialize(site, base, entry, posts)
-      super()
-
+    def initialize(site, base, entry, posts) # rubocop:disable Lint/MissingSuper
       @site = site
       @base = base
       @dir  = entry['permalink'].sub(%r{^/|/$}, '')
