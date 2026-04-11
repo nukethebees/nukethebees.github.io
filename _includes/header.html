@@ -5,13 +5,15 @@
     </a>
   </div>
   <div>
-  <nav class="dropdown header-links">
+  <nav class="dropdown" data-align="right">
     <button class="dropdown_button">
       Categories
     </button>
     <ul class="dropdown_menu">
       {% for link in site.data.header_links %}
-      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      <li
+        class="dropdown_element"
+        style="--i: {{ forloop.index0 }};"><a href="{{ link.url }}">{{ link.title }}</a></li>
       {% endfor %}
     </ul>
   </nav>
