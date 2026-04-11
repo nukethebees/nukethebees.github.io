@@ -14,9 +14,6 @@
     margin-left: 50%; // Move to parent's centre
     transform: translateX(-50%); // Move left by 50% of own width
 
-    & pre, & code {
-      //overflow-x: scroll;
-    }
     & pre {
       overflow-x: scroll;
       code {
