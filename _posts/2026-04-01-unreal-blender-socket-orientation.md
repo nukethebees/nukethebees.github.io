@@ -22,12 +22,12 @@ Blender and Unreal do not share the same notions of forward as shown below.
 Adding to the confusion, empty objects use +Z as their forward axis.
 Fig 1. shows the right arrow component pointing in its +Z direction:
 
-<figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/empties.png" 
-       alt="Empty Blender object" 
-       style="max-width: 80%; height: auto; display: inline-block; border: 1px solid #ccc;" 
+<figure class="post-figure">
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/empties.png"
+       alt="Empty Blender object"
+       style="max-width: 80%;"
        />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+  <figcaption>
     Figure 1: Empty Blender objects
   </figcaption>
 </figure>
@@ -38,12 +38,12 @@ Within my meshes, I perform the +X orientation in the editor and apply the 90° 
 
 My alignment tool's panel is shown in Fig 2.:
 
-<figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/tool.png" 
-       alt="Tool" 
-       style="max-width: 80%; height: auto; display: inline-block; border: 1px solid #ccc;" 
+<figure class="post-figure">
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/tool.png"
+       alt="Tool"
+       style="max-width: 80%;"
        />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+  <figcaption>
     Figure 2: Alignment widget
   </figcaption>
 </figure>
@@ -52,36 +52,36 @@ I delay applying the 90° rotation because only empties require it and I want to
 
 Fig 3. shows two unaligned empty components:
 
-<figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/unaligned.png" 
-       alt="Unaligned empties" 
-       style="max-width: 80%; height: auto; display: inline-block; border: 1px solid #ccc;" 
+<figure class="post-figure">
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/unaligned.png"
+       alt="Unaligned empties"
+       style="max-width: 80%;"
        />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+  <figcaption>
     Figure 3: Unaligned empties
   </figcaption>
 </figure>
 
 Fig 4. shows the left empty aligned towards the circular cursor with forward=+X and up=+Z:
 
-<figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/aligned_x.png" 
-       alt="Aligned empties X" 
-       style="max-width: 80%; height: auto; display: inline-block; border: 1px solid #ccc;" 
+<figure class="post-figure">
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/aligned_x.png"
+       alt="Aligned empties X"
+       style="max-width: 80%;"
        />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+  <figcaption>
     Figure 4: An empty aligned using forward=+X and up=+Z
   </figcaption>
 </figure>
 
 Finally, Fig 5. shows the effect of the added 90° +Y axis offset.
 
-<figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/aligned_x_plus_90.png" 
-       alt="Aligned empties (X, Y90)" 
-       style="max-width: 80%; height: auto; display: inline-block; border: 1px solid #ccc;" 
+<figure class="post-figure">
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/aligned_x_plus_90.png"
+       alt="Aligned empties (X, Y90)"
+       style="max-width: 80%;"
        />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+  <figcaption>
     Figure 5: An empty aligned using forward=+X and up=+Z and a 90° +Y axis rotation
   </figcaption>
 </figure>
@@ -93,8 +93,8 @@ My Blender functions can be found here:
 The orientation function uses `Vector.to_track_quat`:
 
 ```python
-def orientate_towards(obj:bpy.types.Object, 
-                      direction:Vector, 
+def orientate_towards(obj:bpy.types.Object,
+                      direction:Vector,
                       orientation: tuple[str, str]=("X", "Z"),
                       offset:Vector = Vector()
                       ) -> None:

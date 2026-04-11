@@ -3,13 +3,34 @@
 .post {
   max-width: vars.$p-text-width;
   margin: 1em auto;
+
   div.highlighter-rouge {
     margin: 0 auto;
     border-radius: 6px;
     padding: 0;
+
+
+    width: var(--code-block-width);
+    max-width: var(--code-block-width);
+    margin-left: 50%; // Move to parent's centre
+    transform: translateX(-50%); // Move left by 50% of own width
   }
-  figure {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+
+  .post-figure {
+    margin: 0;
+    padding: 0;
+
+    figcaption {
+      margin-top: 8px;
+      font-style: italic;
+      text-align: left;
+    }
+
+    img {
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
   }
 }

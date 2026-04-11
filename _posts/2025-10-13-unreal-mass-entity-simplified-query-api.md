@@ -397,63 +397,63 @@ Now we'll use our entity spawner and view the fragment data in the Mass debugger
 
 Load the Unreal editor and create an instance of `AMassEntitySpawner`.
 
-<figure style="text-align: center;">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/actors.PNG" alt="Actors list" style="max-width: 100%; height: auto; display: inline-block;" />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+<figure class="post-figure">
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/actors.PNG" alt="Actors list"  />
+  <figcaption>
     The actors list in the world outliner. The MassEntitySpawner is visible.
   </figcaption>
 </figure>
 
 Run the game and load the Mass debugger.
 
-<figure style="text-align: center;">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/menu.png"  style="max-width: 100%; height: auto; display: inline-block;" />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+<figure class="post-figure">
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/menu.png"   />
+  <figcaption>
     The button to load the Mass Entity debugger
   </figcaption>
 </figure>
 
 In the top right of the debugger window, set the environment to our active level.
 
-<figure style="text-align: center;">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/env.png"  style="max-width: 100%; height: auto; display: inline-block;" />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+<figure class="post-figure">
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/env.png"   />
+  <figcaption>
     The dropdown menu to choose the environment to debug
   </figcaption>
 </figure>
 
 You should be able to see the processor in the processor list.
 
-<figure style="text-align: center;">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/proc.PNG"  style="max-width: 100%; height: auto; display: inline-block;" />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+<figure class="post-figure">
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/proc.PNG"   />
+  <figcaption>
     Our Mass processor in the debug menu
   </figcaption>
 </figure>
 
 You should also see the archetype and the number of entities.
 
-<figure style="text-align: center;">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/archetype.PNG"  style="max-width: 100%; height: auto; display: inline-block;" />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+<figure class="post-figure">
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/archetype.PNG"   />
+  <figcaption>
     Our archetype in the archetype subwindow with related statistics
   </figcaption>
 </figure>
 
 Use the `Select Fragments` dropdown box and check all the fragments.
 
-<figure style="text-align: center;">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/tickbox.png"  style="max-width: 100%; height: auto; display: inline-block;" />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+<figure class="post-figure">
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/tickbox.png"   />
+  <figcaption>
     The tickbox for viewing entity values
   </figcaption>
 </figure>
 
 You should now see the fragments and their values.
 
-<figure style="text-align: center;">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/values.PNG"  style="max-width: 100%; height: auto; display: inline-block;" />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+<figure class="post-figure">
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/values.PNG"   />
+  <figcaption>
     Some fragment values for our active entities
   </figcaption>
 </figure>

@@ -36,7 +36,7 @@ from . import panels
 
 def register():
     print("Registering ExampleAddOn!")
-    
+
 def unregister():
     print("Unregistering ExampleAddOn!")
 
@@ -62,7 +62,7 @@ After our module imports, add:
 
 ```python
 modules: tuple[ModuleType] = (
-    ops, 
+    ops,
     panels
 )
 
@@ -81,12 +81,12 @@ For ease of development, I recommend [creating a symbolic link](https://learn.mi
 By default, your add-on will be in an inactive state.
 Navigate to `Preferences/Add-ons` and tick the checkbox next to your module's name to load it.
 
-<figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/2026-02-18-blender-minimal-add-on/preferences.png" 
-       alt="Blender preferences menu" 
-       style="max-width: 100%; height: auto; display: inline-block; border: 1px solid #ccc;" 
+<figure class="post-figure">
+  <img src="/images/2026-02-18-blender-minimal-add-on/preferences.png"
+       alt="Blender preferences menu"
+
        />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+  <figcaption>
     The preferences menu
   </figcaption>
 </figure>

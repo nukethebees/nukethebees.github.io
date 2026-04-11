@@ -14,12 +14,12 @@ The solution was to disable Firefox's Accessibility Services.
 
 Go to `about:config`,  move past the warning message, and then follow these steps.
 
-<figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/firefox_about_config.PNG" 
-       alt="Firefox about:config warning screen" 
-       style="max-width: 100%; height: auto; display: inline-block; border: 1px solid #ccc;" 
+<figure class="post-figure">
+  <img src="/images/firefox_about_config.PNG"
+       alt="Firefox about:config warning screen"
+
        />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+  <figcaption>
     The warning page that appears when opening about:config
   </figcaption>
 </figure>
@@ -29,12 +29,10 @@ Go to `about:config`,  move past the warning message, and then follow these step
 * Set the number to `1` (true)
 * Click the blue tick to save the setting
 
-<figure style="{{ vertical_padding }}; text-align: center;">
-  <img src="/images/firefox_accessibility_force_disabled.png" 
-       alt="Firefox accessibility.force_disabled configuration setting screenshot" 
-       style="max-width: 100%; height: auto; display: inline-block; border: 1px solid #ccc;" 
-       />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+<figure class="post-figure">
+  <img src="/images/firefox_accessibility_force_disabled.png"
+       alt="Firefox accessibility.force_disabled configuration setting screenshot"/>
+  <figcaption>
     The configuration variable to change.
   </figcaption>
 </figure>

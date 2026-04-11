@@ -18,6 +18,8 @@
   --link-colour-hover: #1d4ed8;
   --link-colour-active: #1e40af;
   --link-colour-visited: #3f4550;
+
+  --code-block-width: 85ch;
 }
 
 html {
@@ -42,7 +44,7 @@ a {
 }
 
 body {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: Georgia, "Palatino Linotype", Palatino, serif;
   line-height: 1.5;
   font-size: 1rem;
   font-weight: var(--font-weight-regular);

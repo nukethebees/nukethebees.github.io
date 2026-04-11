@@ -93,7 +93,7 @@ extern "C" {
 2. Load the API functions using `REAPERAPI_LoadAPI`. It returns the number of functions which failed to load.
 3. Return `0` to indicate failure
 4. Save the `rec` pointer
-5. Print the message using `ShowConsoleMsg` 
+5. Print the message using `ShowConsoleMsg`
 6. Return 1 to indicate successful plugin initialisation.
 
 ## Using the DLL
@@ -102,9 +102,9 @@ extern "C" {
 2. Reload Reaper
 3. Observe the following message.
 
-<figure style="text-align: center;">
-  <img src="/images/hw.png" alt="Reaper Hello World Message" style="max-width: 100%; height: auto; display: inline-block;" />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+<figure class="post-figure">
+  <img src="/images/hw.png" alt="Reaper Hello World Message"  />
+  <figcaption>
     The Reaper "Hello World!" message.
   </figcaption>
 </figure>

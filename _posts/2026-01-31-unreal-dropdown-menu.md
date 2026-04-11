@@ -35,11 +35,11 @@ Add a reference to the new `DropdownMenuEditor` module in the `.uproject` file.
 
 Within the `Source` directory, create a `DropdownMenuEditor` directory alongside `DropdownMenu`
 
-<figure style="{{ vertical_padding }}; text-align: center;">
+<figure class="post-figure">
   <img src="/images/2026-01-31-unreal-dropdown-menu/source_directory.png"
-       style="max-width: 100%; height: auto; display: inline-block; border: 1px solid #ccc;"
+
        />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+  <figcaption>
     The source directory with the new DropdownMenuEditor directory
   </figcaption>
 </figure>
@@ -434,12 +434,12 @@ void ExampleFreeFn() {
 
 If you compile your code and load the editor, you should now see the buttons as follows.
 
-<figure style="{{ vertical_padding }}; text-align: center;">
+<figure class="post-figure">
   <img src="/images/2026-01-31-unreal-dropdown-menu/dropdown_menu_buttons.png"
        alt="UE5 dropdown menu buttons"
-       style="max-width: 100%; height: auto; display: inline-block; border: 1px solid #ccc;"
+
        />
-  <figcaption style="margin-top: 8px; font-style: italic; color: #555;">
+  <figcaption>
     The dropdown menu in the editor
   </figcaption>
 </figure>
