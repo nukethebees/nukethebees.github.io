@@ -9,10 +9,10 @@
 
 .post {
   max-width: var(--p-text-width);
-  margin: 1em auto;
+  padding: 1em auto;
 
   @media (max-width: vars.$mobile-width) {
-    margin: 1em;
+    padding: 1em;
   }
 
   div.highlighter-rouge {
