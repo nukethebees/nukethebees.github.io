@@ -11,6 +11,10 @@
   max-width: var(--p-text-width);
   margin: 1em auto;
 
+  @media (max-width: vars.$mobile-width) {
+    margin: 1em;
+  }
+
   div.highlighter-rouge {
     margin: 0 auto;
     border-radius: 6px;
@@ -27,8 +31,6 @@
         width: fit-content;
         display: inline-block;
       }
-
-
     }
   }
 
@@ -50,4 +52,5 @@
       @include breakout(var(--code-block-width));
     }
   }
+
 }
