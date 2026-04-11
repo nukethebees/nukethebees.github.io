@@ -1,14 +1,14 @@
-code, pre {
+code,
+pre {
   font-family: "Consolas", "Courier New", monospace;
   font-size: 1rem;
   line-height: 1.4;
 }
 
-div.highlighter-rouge pre,
-div.highlighter-rouge code {
-    /* The key properties to ensure wrapping */
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    word-break: normal;
+div.highlighter-rouge {
+  & pre,
+  & code {
+    overflow-x: auto;
     padding: 0.75em;
+  }
 }

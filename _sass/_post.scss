@@ -9,8 +9,8 @@
     border-radius: 6px;
     padding: 0;
 
-
-    width: var(--code-block-width);
+    width: fit-content;
+    min-width: vars.$p-text-width;
     max-width: var(--code-block-width);
     margin-left: 50%; // Move to parent's centre
     transform: translateX(-50%); // Move left by 50% of own width
