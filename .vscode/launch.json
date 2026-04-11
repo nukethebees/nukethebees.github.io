@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "Serve Jekyll",
-      "type": "editor-browser",
+      "type": "",
       "request": "launch",
       "url": "http://localhost:4000",
       "webRoot": "${workspaceFolder}",

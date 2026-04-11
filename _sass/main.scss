@@ -7,6 +7,8 @@
 @use "vars";
 
 :root {
+  --text-colour: #1F2937;
+
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -15,7 +17,7 @@
   --link-colour: #2563EB;
   --link-colour-hover: #1d4ed8;
   --link-colour-active: #1e40af;
-  --link-colour-visited: #6423a1;
+  --link-colour-visited: #3f4550;
 }
 
 html {
@@ -46,7 +48,7 @@ body {
   font-weight: var(--font-weight-regular);
 
   background-color: vars.$background-colour-light;
-  color: vars.$text-colour;
+  color: var(--text-colour);
   margin: 0;
 }
 
