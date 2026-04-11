@@ -7,7 +7,7 @@
   &:hover .dropdown_menu li,
   &:focus-within .dropdown_menu li {
     animation: waveIn 0.25s ease forwards;
-    animation-delay: calc(var(--i) * var(--wave-delay, 20ms));
+    animation-delay: calc(var(--i) * var(--wave-delay, 15ms));
   }
 
   &[data-align="left"] {
