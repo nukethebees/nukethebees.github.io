@@ -1,15 +1,14 @@
 <head>
-    <meta charset="UTF-8">
-    <link
-      rel="stylesheet"
-      href="{{ '/assets/css/style.css' | relative_url }}">
-    <link
-      rel="stylesheet"
-      href="{{ '/assets/css/rouge.css' | relative_url }}">
-    <title>
-      {{ site.title }}
-       {%- if page.title -%}
-       &nbsp;|&nbsp;{{ page.title }}
-       {%- endif -%}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/rouge.css' | relative_url }}">
+  <meta name="description" content="{{ site.description }}">
+  <meta name="color-scheme" content="light">
+  <title>
+    {{ site.title }}
+    {%- if page.title -%}
+    &nbsp;|&nbsp;{{ page.title }}
+    {%- endif -%}
   </title>
-  </head>
+</head>
