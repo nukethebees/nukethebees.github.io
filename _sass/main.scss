@@ -1,12 +1,17 @@
-@use "vars";
+@use "category_list";
+@use "code";
+@use "dropdown_menu";
 @use "header";
 @use "post";
 @use "post_list";
-@use "category_list";
-@use "code";
+@use "vars";
 
 html {
   font-size: 100%;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {

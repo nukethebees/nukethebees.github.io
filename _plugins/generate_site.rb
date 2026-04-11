@@ -7,7 +7,7 @@ module Jekyll
 
     def generate(site)
       create_category_pages_data(site)
-      build_header_links(site)
+      build_category_links(site)
     end
 
     def create_category_pages_data(site)
@@ -53,8 +53,7 @@ module Jekyll
       end
     end
 
-    def build_header_links(site)
-      manual_links = site.config['header_links'] || []
+    def build_category_links(site)
       category_map = site.data['category_pages'] || {}
 
       category_links =
@@ -67,7 +66,7 @@ module Jekyll
                     end
                     .sort_by { |l| l['title'].downcase }
 
-      site.data['header_links'] = manual_links + category_links
+      site.data['category_links'] = category_links
     end
   end
 
