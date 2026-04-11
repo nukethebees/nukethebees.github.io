@@ -1,5 +1,12 @@
 @use "vars";
 
+@mixin breakout($w) {
+  max-width: $w;
+  margin-left: 50%; // Move to parent's centre
+  transform: translateX(-50%); // Move left by 50% of own width
+}
+
+
 .post {
   max-width: var(--p-text-width);
   margin: 1em auto;
@@ -10,12 +17,11 @@
 
     width: min-content;
     min-width: var(--p-text-width);
-    max-width: var(--code-block-width);
-    margin-left: 50%; // Move to parent's centre
-    transform: translateX(-50%); // Move left by 50% of own width
+    @include breakout(var(--code-block-width));
 
     & pre {
       overflow-x: scroll;
+
       code {
         max-width: 100%;
         width: fit-content;
@@ -40,7 +46,8 @@
       height: auto;
       display: block;
       margin: 0 auto;
-      max-width: 100%;
+
+      @include breakout(var(--code-block-width));
     }
   }
 }
