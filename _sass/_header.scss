@@ -2,14 +2,19 @@
 @use "links";
 
 header {
+  width: 100%;
+  border-bottom: 0.1rem solid #000;
+  background-color: vars.$header-background-colour-light;
+}
+
+.header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   /* title left, links right */
-  padding: 1rem 1.5rem;
-  margin-bottom: 2rem;
-  border-bottom: 0.1rem solid #000;
-  background-color: vars.$header-background-colour-light;
+  margin: 0;
+  padding: 1rem 1rem;
 }
 
 .header_links {

@@ -1,25 +1,28 @@
 <header>
-  <div class="site-title">
-    <a href="/">
-      {{ site.title }}
-    </a>
-  </div>
-  <div>
-    <nav class="header_links">
-      {% for link in site.header_links %}
-      <a href="{{ link.url }}">{{ link.title }}</a>
-      {% endfor %}
-      <div class="dropdown" data-align="right">
-        <button class="dropdown_button">
-          Categories
-        </button>
-        <ul class="dropdown_menu">
-          {% for link in site.data.category_links %}
-          <li class="dropdown_element" style="--i: {{ forloop.index0 }};"><a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </nav>
+  <div class="header-inner">
+    <div class="site-title">
+      <a href="/">
+        {{ site.title }}
+      </a>
+    </div>
+    <div>
+      <nav class="header_links">
+        {% for link in site.header_links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+        <div class="dropdown" data-align="right">
+          <button class="dropdown_button">
+            Categories
+          </button>
+          <ul class="dropdown_menu">
+            {% for link in site.data.category_links %}
+            <li class="dropdown_element" style="--i: {{ forloop.index0 }};"><a href="{{ link.url }}">{{ link.title
+                }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </nav>
+    </div>
   </div>
 </header>

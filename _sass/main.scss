@@ -53,6 +53,9 @@ body {
   background-color: vars.$background-colour-light;
   color: var(--text-colour);
   margin: 0;
+
+  display: grid;
+  place-items: center;
 }
 
 h1,
