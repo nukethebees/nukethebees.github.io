@@ -1,4 +1,5 @@
 @use "vars";
+@use "links";
 
 header {
   display: flex;
@@ -15,4 +16,11 @@ header {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.site-title {
+  a {
+    font-size: 1.25rem;
+    @include links.solid-colour-link(#000);
+  }
 }

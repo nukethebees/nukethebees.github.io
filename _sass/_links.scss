@@ -1,0 +1,9 @@
+@mixin solid-colour-link($color) {
+  color: $color;
+
+  &:hover,
+  &:active,
+  &:visited {
+    color: $color;
+  }
+}
