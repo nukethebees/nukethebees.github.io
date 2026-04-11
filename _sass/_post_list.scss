@@ -8,6 +8,19 @@
 }
 
 .post-item {
+  margin: 0.75rem 0;
+}
+
+.post-item-title {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-regular);
+}
+
+.post-item-date {
+  font-size: 1rem;
+}
+
+.post-item-categories {
   margin-bottom: 1rem;
   padding-bottom: 0rem;
 }

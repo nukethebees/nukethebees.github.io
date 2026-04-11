@@ -1,31 +1,27 @@
 <ul class="post-list">
-{%- assign posts = include.posts -%}
+  {%- assign posts = include.posts -%}
 
-{%- for post in posts -%}
+  {%- for post in posts -%}
   <li class="post-item">
-    {% assign title_level = include.title_level | default: 2 %}
-    {% assign details_level = include.details_level | default: 3 %}
+    <a href="{{ post.url | relative_url }}" class="post-item-title">
+      {{ post.title }}
+    </a>
 
-    <h{{ title_level }}>
-      <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
-      </a>
-    </h{{ title_level }}>
-
-    <h{{ details_level }}>
+    <br>
+    <time datetime="{{ post.date | date: '%Y-%m-%d' }}"  class="post-item-date">
       {{ post.date | date: "%B %d, %Y" }}
+    </time>
 
-      {%- if post.categories.size > 0 -%}
-        <br>
-        Tags:
-        <span class="post-categories">
-          {%- for category in post.categories -%}
-            <a href="/{{ category | downcase | url_encode }}/">{{ category }}</a>
-            {%- if forloop.last == false -%},&nbsp;{%- endif -%}
-          {%- endfor -%}
-        </span>
-      {%- endif -%}
-    </h{{ details_level }}>
+    {%- if post.categories.size > 0 -%}
+    <br>
+    Tags:
+    <span class="post-item-categories">
+      {%- for category in post.categories -%}
+      <a href="/{{ category | downcase | url_encode }}/">{{ category }}</a>
+      {%- if forloop.last == false -%},&nbsp;{%- endif -%}
+      {%- endfor -%}
+    </span>
+    {%- endif -%}
   </li>
-{%- endfor -%}
+  {%- endfor -%}
 </ul>
