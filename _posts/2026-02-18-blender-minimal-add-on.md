@@ -83,9 +83,7 @@ Navigate to `Preferences/Add-ons` and tick the checkbox next to your module's na
 
 <figure class="post-figure">
   <img src="/images/2026-02-18-blender-minimal-add-on/preferences.png"
-       alt="Blender preferences menu"
-
-       />
+       alt="Blender preferences menu"/>
   <figcaption>
     The preferences menu
   </figcaption>
