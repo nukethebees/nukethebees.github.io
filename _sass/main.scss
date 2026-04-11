@@ -7,6 +7,9 @@
 @use "vars";
 
 :root {
+  --p-text-width: 65ch;
+  --code-block-width: 85ch;
+
   --text-colour: #1F2937;
 
   --font-weight-regular: 400;
@@ -18,8 +21,6 @@
   --link-colour-hover: #1d4ed8;
   --link-colour-active: #1e40af;
   --link-colour-visited: #3f4550;
-
-  --code-block-width: 85ch;
 }
 
 html {

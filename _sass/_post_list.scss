@@ -1,7 +1,7 @@
 @use "vars";
 
 .post-list {
-  max-width: vars.$p-text-width;
+  max-width: var(--p-text-width);
   margin: 0 auto;
   padding-left: 0;
   list-style: none;

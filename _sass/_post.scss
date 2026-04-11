@@ -1,7 +1,7 @@
 @use "vars";
 
 .post {
-  max-width: vars.$p-text-width;
+  max-width: var(--p-text-width);
   margin: 1em auto;
 
   div.highlighter-rouge {
@@ -10,7 +10,7 @@
     padding: 0;
 
     width: fit-content;
-    min-width: vars.$p-text-width;
+    min-width: var(--p-text-width);
     max-width: var(--code-block-width);
     margin-left: 50%; // Move to parent's centre
     transform: translateX(-50%); // Move left by 50% of own width
