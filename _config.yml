@@ -2,7 +2,7 @@ title: NukeTheBees
 description: >-
   Programming and other technical stuff.
 baseurl: ""
-url: "https://nukethebees.com/"
+url: "https://nukethebees.com"
 highlighter: rouge
 markdown: kramdown
 kramdown:
