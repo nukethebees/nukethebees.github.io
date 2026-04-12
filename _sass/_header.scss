@@ -5,6 +5,10 @@ header {
   width: 100%;
   border-bottom: 0.1rem solid #000;
   background-color: vars.$header-background-colour-light;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .header-inner {
