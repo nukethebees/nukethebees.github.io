@@ -98,14 +98,12 @@
   transition: 0.15s ease-out;
 }
 
-.dropdown:hover .dropdown_menu,
 .dropdown_toggle:checked~.dropdown_menu {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
 
-.dropdown:hover .dropdown_button::after,
 .dropdown_toggle:checked+.dropdown_button::after {
   transform: rotate(180deg);
 }
@@ -117,7 +115,6 @@
   transition: 0.15s ease-out;
 }
 
-.dropdown:hover .dropdown_menu li,
 .dropdown_toggle:checked~.dropdown_menu li {
   animation: waveIn 0.25s ease forwards;
   animation-delay: calc(var(--i) * var(--wave-delay, 15ms));
