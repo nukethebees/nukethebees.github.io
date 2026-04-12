@@ -11,21 +11,86 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 
   /* title left, links right */
   margin: 0;
   padding: 1rem 1rem;
+  min-width: vars.$min-supported-width;
 }
 
 .header_links {
+  display: flex;
+  align-items: center;
+}
+
+.header_links_inner {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
 .site-title {
+  min-width: 0;
+
   a {
     font-size: 1.25rem;
     @include links.solid-colour-link(#000);
+  }
+}
+
+.header_menu_toggle,
+.header_menu_button {
+  display: none;
+}
+
+@media (max-width: vars.$header-collapse-width) {
+  /* Allow the nav to drop below the title once the inline header gets too tight. */
+  .header-inner {
+    flex-wrap: wrap;
+  }
+
+  /* Keep the mobile menu closed until the burger toggle is checked. */
+  .header_links {
+    flex-basis: 100%;
+    width: 100%;
+    display: none;
+  }
+
+  /* Stack the links into a single-column mobile menu. */
+  .header_links_inner {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+  }
+
+  .header_links_inner > a,
+  .header_links_inner > .dropdown {
+    width: 100%;
+  }
+
+  .header_links_inner > a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    background: vars.$header-button-background-colour-light;
+  }
+
+  .header_menu_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    padding: 0.5rem;
+    cursor: pointer;
+    background: vars.$header-button-background-colour-light;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  /* CSS-only open state controlled by the hidden checkbox above. */
+  .header_menu_toggle:checked~.header_links {
+    display: flex;
   }
 }

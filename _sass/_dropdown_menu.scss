@@ -1,6 +1,7 @@
 @use "vars";
 
 .dropdown {
+  width: 100%;
   position: relative;
   display: block;
 
@@ -57,8 +58,6 @@
 .dropdown_element {
   width: 100%;
   margin: 0;
-  padding: 0.5rem 1rem;
-
 
   opacity: 0;
 
@@ -68,17 +67,16 @@
     text-decoration: none;
   }
 
-  @media (max-width: vars.$mobile-width) {
-    padding: 16px 20px;
-    font-size: 16px;
-  }
+  padding: 0.5rem 1rem;
 }
 
 .dropdown_button {
+  width: 100%;
   background: vars.$header-button-background-colour-light;
   border: none;
   cursor: pointer;
   padding: 0.5rem 0.75rem;
+  display: inline-block;
 
   &::after {
     content: "▼";
@@ -118,4 +116,33 @@
 .dropdown_toggle:checked~.dropdown_menu li {
   animation: waveIn 0.25s ease forwards;
   animation-delay: calc(var(--i) * var(--wave-delay, 15ms));
+}
+
+@media (max-width: vars.$mobile-width) {
+  .dropdown_element {
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: vars.$header-collapse-width) {
+  /* Align the category list with the mobile menu instead of the desktop flyout edge. */
+  .dropdown[data-align="right"] {
+    .dropdown_menu {
+      left: 0;
+      right: auto;
+    }
+  }
+
+  /* On narrow screens, render the dropdown inline within the stacked nav. */
+  .dropdown_menu {
+    position: static;
+    width: 100%;
+    margin-top: 0.5rem;
+    transform: none;
+  }
+
+  .dropdown_element {
+    padding: 0.5rem 0.75rem;
+  }
 }
