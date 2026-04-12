@@ -10,7 +10,7 @@ categories: misc gaming
 <br>HIYYYA HA!</a>
 </blockquote>
 
-Oblivion remastered has a frustrating bug where getting paralyzed will cause you to warp through the map and remain permanently paralyzed.
+_Oblivion Remastered_ has a frustrating bug where getting paralyzed will cause you to warp through the map and remain permanently paralyzed.
 It's caused by the curse of the [Gauntlets of the Crusader](https://en.uesp.net/wiki/Oblivion:Stendarr%27s_Mercy) in the Knights of the Nine questline.
 The curse causes stamina loss when moving and you'll collapse if it fully depletes.
 If you collapse into water, you will not recover and you'll somehow be linked with that part of the world map.
