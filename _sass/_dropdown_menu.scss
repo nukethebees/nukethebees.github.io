@@ -73,7 +73,9 @@
     padding: 0.5rem 1rem;
   }
 
-
+  & a:hover {
+    background: vars.$header-button-hover-colour-light;
+  }
 }
 
 .dropdown_button {
@@ -88,6 +90,10 @@
     content: "▼";
     display: inline-block;
     transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    background: vars.$header-button-hover-colour-light;
   }
 }
 
@@ -132,6 +138,7 @@
 }
 
 @media (max-width: vars.$header-collapse-width) {
+
   /* Align the category list with the mobile menu instead of the desktop flyout edge. */
   .dropdown[data-align="right"] {
     .dropdown_menu {
