@@ -82,7 +82,7 @@ By default, your add-on will be in an inactive state.
 Navigate to `Preferences/Add-ons` and tick the checkbox next to your module's name to load it.
 
 <figure class="post-figure">
-  <img src="/images/2026-02-18-blender-minimal-add-on/preferences.png"
+  <img src="/images/2026-02-18-blender-minimal-add-on/preferences.webp"
        alt="Blender preferences menu"/>
   <figcaption>
     The preferences menu

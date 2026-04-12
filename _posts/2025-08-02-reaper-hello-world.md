@@ -103,7 +103,7 @@ extern "C" {
 3. Observe the following message.
 
 <figure class="post-figure">
-  <img src="/images/hw.png" alt="Reaper Hello World Message"  />
+  <img src="/images/hw.webp" alt="Reaper Hello World Message"  />
   <figcaption>
     The Reaper "Hello World!" message.
   </figcaption>

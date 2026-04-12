@@ -12,7 +12,7 @@ It turned out that the systems were fine but the particles were being culled.
 My systems were being spawned by a Niagara Data Channel using the "Niagara Data Channel Islands" type.
 
 <figure class="post-figure">
-  <img src="/images/2025-10-15-unreal-niagara-data-channel-culling/niagara_data_channel.PNG"   />
+  <img src="/images/2025-10-15-unreal-niagara-data-channel-culling/niagara_data_channel.webp"   />
   <figcaption>
     The data channel configuration
   </figcaption>

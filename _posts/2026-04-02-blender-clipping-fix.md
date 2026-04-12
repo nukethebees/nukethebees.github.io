@@ -13,7 +13,7 @@ Access the clipping settings by pressing `N` then opening the "View" panel as sh
 Adjust the "Clip Start" and "End" values as needed.
 
 <figure class="post-figure">
-  <img src="/images/2026-04-02-blender-clipping-fix/clip.png"
+  <img src="/images/2026-04-02-blender-clipping-fix/clip.webp"
        alt="The clipping panel"/>
   <figcaption>
     The clipping panel

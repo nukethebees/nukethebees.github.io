@@ -398,7 +398,7 @@ Now we'll use our entity spawner and view the fragment data in the Mass debugger
 Load the Unreal editor and create an instance of `AMassEntitySpawner`.
 
 <figure class="post-figure">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/actors.PNG" alt="Actors list"  />
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/actors.webp" alt="Actors list"  />
   <figcaption>
     The actors list in the world outliner. The MassEntitySpawner is visible.
   </figcaption>
@@ -407,7 +407,7 @@ Load the Unreal editor and create an instance of `AMassEntitySpawner`.
 Run the game and load the Mass debugger.
 
 <figure class="post-figure">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/menu.png"   />
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/menu.webp"   />
   <figcaption>
     The button to load the Mass Entity debugger
   </figcaption>
@@ -416,7 +416,7 @@ Run the game and load the Mass debugger.
 In the top right of the debugger window, set the environment to our active level.
 
 <figure class="post-figure">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/env.png"   />
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/env.webp"   />
   <figcaption>
     The dropdown menu to choose the environment to debug
   </figcaption>
@@ -425,7 +425,7 @@ In the top right of the debugger window, set the environment to our active level
 You should be able to see the processor in the processor list.
 
 <figure class="post-figure">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/proc.PNG"   />
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/proc.webp"   />
   <figcaption>
     Our Mass processor in the debug menu
   </figcaption>
@@ -434,7 +434,7 @@ You should be able to see the processor in the processor list.
 You should also see the archetype and the number of entities.
 
 <figure class="post-figure">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/archetype.PNG"   />
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/archetype.webp"   />
   <figcaption>
     Our archetype in the archetype subwindow with related statistics
   </figcaption>
@@ -443,7 +443,7 @@ You should also see the archetype and the number of entities.
 Use the `Select Fragments` dropdown box and check all the fragments.
 
 <figure class="post-figure">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/tickbox.png"   />
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/tickbox.webp"   />
   <figcaption>
     The tickbox for viewing entity values
   </figcaption>
@@ -452,7 +452,7 @@ Use the `Select Fragments` dropdown box and check all the fragments.
 You should now see the fragments and their values.
 
 <figure class="post-figure">
-  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/values.PNG"   />
+  <img src="/images/2025-10-13-unreal-mass-entity-simplified-query-api/values.webp"   />
   <figcaption>
     Some fragment values for our active entities
   </figcaption>

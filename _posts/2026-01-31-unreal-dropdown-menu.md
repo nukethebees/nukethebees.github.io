@@ -36,7 +36,7 @@ Add a reference to the new `DropdownMenuEditor` module in the `.uproject` file.
 Within the `Source` directory, create a `DropdownMenuEditor` directory alongside `DropdownMenu`
 
 <figure class="post-figure">
-  <img src="/images/2026-01-31-unreal-dropdown-menu/source_directory.png"
+  <img src="/images/2026-01-31-unreal-dropdown-menu/source_directory.webp"
 
        />
   <figcaption>
@@ -435,7 +435,7 @@ void ExampleFreeFn() {
 If you compile your code and load the editor, you should now see the buttons as follows.
 
 <figure class="post-figure">
-  <img src="/images/2026-01-31-unreal-dropdown-menu/dropdown_menu_buttons.png"
+  <img src="/images/2026-01-31-unreal-dropdown-menu/dropdown_menu_buttons.webp"
        alt="UE5 dropdown menu buttons"
 
        />

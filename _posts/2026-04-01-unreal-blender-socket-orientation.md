@@ -23,7 +23,7 @@ Adding to the confusion, empty objects use +Z as their forward axis.
 Fig 1. shows the right arrow component pointing in its +Z direction:
 
 <figure class="post-figure">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/empties.png"
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/empties.webp"
        alt="Empty Blender object"
        style="max-width: 80%;"
        />
@@ -39,7 +39,7 @@ Within my meshes, I perform the +X orientation in the editor and apply the 90° 
 My alignment tool's panel is shown in Fig 2.:
 
 <figure class="post-figure">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/tool.png"
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/tool.webp"
        alt="Tool"
        style="max-width: 80%;"
        />
@@ -53,7 +53,7 @@ I delay applying the 90° rotation because only empties require it and I want to
 Fig 3. shows two unaligned empty components:
 
 <figure class="post-figure">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/unaligned.png"
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/unaligned.webp"
        alt="Unaligned empties"
        style="max-width: 80%;"
        />
@@ -65,7 +65,7 @@ Fig 3. shows two unaligned empty components:
 Fig 4. shows the left empty aligned towards the circular cursor with forward=+X and up=+Z:
 
 <figure class="post-figure">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/aligned_x.png"
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/aligned_x.webp"
        alt="Aligned empties X"
        style="max-width: 80%;"
        />
@@ -77,7 +77,7 @@ Fig 4. shows the left empty aligned towards the circular cursor with forward=+X 
 Finally, Fig 5. shows the effect of the added 90° +Y axis offset.
 
 <figure class="post-figure">
-  <img src="/images/2026-04-01-unreal-blender-socket-orientation/aligned_x_plus_90.png"
+  <img src="/images/2026-04-01-unreal-blender-socket-orientation/aligned_x_plus_90.webp"
        alt="Aligned empties (X, Y90)"
        style="max-width: 80%;"
        />

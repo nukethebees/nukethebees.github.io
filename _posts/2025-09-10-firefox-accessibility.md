@@ -15,7 +15,7 @@ The solution was to disable Firefox's Accessibility Services.
 Go to `about:config`,  move past the warning message, and then follow these steps.
 
 <figure class="post-figure">
-  <img src="/images/firefox_about_config.PNG"
+  <img src="/images/firefox_about_config.webp"
        alt="Firefox about:config warning screen"
 
        />
@@ -30,7 +30,7 @@ Go to `about:config`,  move past the warning message, and then follow these step
 * Click the blue tick to save the setting
 
 <figure class="post-figure">
-  <img src="/images/firefox_accessibility_force_disabled.png"
+  <img src="/images/firefox_accessibility_force_disabled.webp"
        alt="Firefox accessibility.force_disabled configuration setting screenshot"/>
   <figcaption>
     The configuration variable to change.
