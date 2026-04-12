@@ -138,11 +138,24 @@
   .dropdown_menu {
     position: static;
     width: 100%;
-    margin-top: 0.5rem;
+    margin-top: 0;
+    padding-top: 0.75rem;
+    border-top: 0.1rem solid #000;
+    opacity: 1;
+    pointer-events: auto;
     transform: none;
   }
 
   .dropdown_element {
     padding: 0.5rem 0.75rem;
+    opacity: 1;
+  }
+
+  .dropdown_button {
+    display: none;
+  }
+
+  .dropdown_toggle:checked~.dropdown_menu li {
+    animation: none;
   }
 }
