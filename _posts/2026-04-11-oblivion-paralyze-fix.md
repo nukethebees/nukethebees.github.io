@@ -3,6 +3,8 @@ layout: post
 title:  "Fixing the paralysis warp softlock bug in Oblivion Remastered"
 date:   2026-04-11 23:20:38 +0100
 categories: misc gaming
+redirect_from:
+    - /misc/gaming/2026/04/11/oblivion-paralyze-fix
 ---
 
 <blockquote style="text-align:center;font-style: italic;">
