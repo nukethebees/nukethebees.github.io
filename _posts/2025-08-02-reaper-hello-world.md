@@ -5,6 +5,7 @@ date:   2025-08-02 18:38:00 +0100
 categories: programming cpp reaper
 redirect_from:
     - /programming/cpp/reaper/2025/08/02/reaper-hello-world
+    - /programming/c++/reaper/2025/08/02/reaper-hello-world
 ---
 
 Full code can be found [here](https://github.com/nukethebees/github_io_examples/tree/main/reaper_sdk).

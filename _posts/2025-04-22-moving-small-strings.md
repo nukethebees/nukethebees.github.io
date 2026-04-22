@@ -5,6 +5,7 @@ date:   2025-04-22 19:00:00 +0100
 categories: cpp asm
 redirect_from:
     - /cpp/asm/2025/04/22/moving-small-strings
+    - /c++/asm/2025/04/22/moving-small-strings
 ---
 
 Heap allocated structures can generally be moved without invalidating pointers to the underlying data however this doesn't always hold true with `std::string`.

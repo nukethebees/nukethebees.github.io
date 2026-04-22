@@ -5,6 +5,7 @@ date:   2025-10-13 13:50:00 +0100
 categories: software cpp unreal
 redirect_from:
     - /software/c++/unreal/2025/10/13/unreal-mass-entity-simplified-query-api
+    - /software/cpp/unreal/2025/10/13/unreal-mass-entity-simplified-query-api
 ---
 
 # Introduction

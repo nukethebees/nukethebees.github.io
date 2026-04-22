@@ -4,6 +4,7 @@ title:  "Printing class data members using C++26 reflection"
 date:   2026-01-31 17:07:00 +0100
 categories: software cpp
 redirect_from:
+    - /software/cpp/2026/01/31/cpp-reflection-print-data-members
     - /software/c++/2026/01/31/cpp-reflection-print-data-members
 ---
 

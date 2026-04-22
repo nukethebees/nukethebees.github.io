@@ -5,6 +5,7 @@ date:   2025-04-02 19:10:38 +0100
 categories: asm cpp
 redirect_from:
     - /asm/cpp/2025/04/02/scanner-nanooptimisation-1
+    - /asm/c++/2025/04/02/scanner-nanooptimisation-1
 ---
 
 I'll cover a nano-optimisation I did on my compiler's scanner today.

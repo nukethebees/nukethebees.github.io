@@ -5,6 +5,7 @@ date:   2025-09-18 11:30:00 +0100
 categories: software cpp unreal
 redirect_from:
     - /software/c++/unreal/2025/09/18/unreal-log-mode
+    - /software/cpp/unreal/2025/09/18/unreal-log-mode
 ---
 
 In Unreal 5, you can temporarily change the logging verbosity for a category using the `log` command in the editor's command line.

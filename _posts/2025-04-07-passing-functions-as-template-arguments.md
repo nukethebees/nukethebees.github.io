@@ -5,6 +5,7 @@ date:   2025-04-07 18:47:00 +0100
 categories: cpp asm
 redirect_from:
     - /cpp/asm/2025/04/07/passing-functions-as-template-arguments
+    - /c++/asm/2025/04/07/passing-functions-as-template-arguments
 ---
 
 Function pointers allow us to inject functionality into other functions.

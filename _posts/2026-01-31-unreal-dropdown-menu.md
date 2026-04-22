@@ -4,6 +4,7 @@ title:  "UE5: Creating an editor dropdown menu"
 date:   2026-01-31 14:00:00 +0100
 categories: software cpp unreal
 redirect_from:
+    - /software/cpp/unreal/2026/01/31/unreal-dropdown-menu
     - /software/c++/unreal/2026/01/31/unreal-dropdown-menu
 ---
 

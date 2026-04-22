@@ -4,6 +4,7 @@ title:  "Enum to string in Unreal 5"
 date:   2025-09-18 11:15:00 +0100
 categories: software cpp unreal
 redirect_from:
+    - /software/cpp/unreal/2025/09/18/unreal-enum-to-string
     - /software/c++/unreal/2025/09/18/unreal-enum-to-string
 ---
 

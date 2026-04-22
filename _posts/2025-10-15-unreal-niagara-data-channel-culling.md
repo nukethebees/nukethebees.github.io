@@ -5,6 +5,7 @@ date:   2025-10-15 19:26:00 +0100
 categories: software cpp unreal
 redirect_from:
     - /software/c++/unreal/2025/10/15/unreal-niagara-data-channel-culling
+    - /software/cpp/unreal/2025/10/15/unreal-niagara-data-channel-culling
 ---
 
 I recently had an issue where my Niagara systems seemingly wouldn't spawn occasionally in Unreal Engine 5.
