@@ -3,6 +3,8 @@ layout: post
 title:  "[SystemVerilog] Verifying interface types within a module"
 date:   2025-03-31 19:10:38 +0100
 categories: system_verilog
+redirect_from:
+    - /system_verilog/2025/03/31/verifying-interface-types
 ---
 Modules and interfaces can both be parameterised. 
 A module and interface may share some parameters and we want to ensure the interface that the module is connecting to has the same parameters.

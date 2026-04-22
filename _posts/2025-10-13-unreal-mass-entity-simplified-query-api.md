@@ -3,6 +3,8 @@ layout: post
 title:  "Unreal Engine 5 Simplified Mass Entity Query API Quickstart"
 date:   2025-10-13 13:50:00 +0100
 categories: software cpp unreal
+redirect_from:
+    - /software/c++/unreal/2025/10/13/unreal-mass-entity-simplified-query-api
 ---
 
 # Introduction

@@ -3,6 +3,8 @@ layout: post
 title:  "[C++] Why won't MSVC generate assembly listings for my library in release mode?"
 date:   2025-04-04 18:49:00 +0100
 categories: cpp asm
+redirect_from:
+    - /cpp/asm/2025/04/04/why-wont-msvc-generate-asm
 ---
 
 I recently had an issue where MSVC wouldn't generate assembly files for my library when in release mode.

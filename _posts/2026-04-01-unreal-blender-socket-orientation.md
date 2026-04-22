@@ -3,6 +3,8 @@ layout: post
 title:  "Orientating Blender sockets for exporting to Unreal Engine"
 date:   2026-04-01 21:00:00 +0100
 categories: software blender unreal
+redirect_from:
+    - /software/blender/unreal/2026/04/01/unreal-blender-socket-orientation
 ---
 
 This post explains how to correctly orientate empty socket objects in Blender for use in Unreal Engine.

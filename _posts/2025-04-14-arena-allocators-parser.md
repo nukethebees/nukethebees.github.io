@@ -3,6 +3,8 @@ layout: post
 title:  "[C++] Using arena allocators to improve parser performance"
 date:   2025-04-14 12:00:00 +0100
 categories: cpp
+redirect_from:
+    - /cpp/2025/04/14/arena-allocators-parser
 ---
 
 I recently achieved a 12% performance increase in my compiler's parser using arena allocators.

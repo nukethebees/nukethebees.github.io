@@ -3,6 +3,8 @@ layout: post
 title:  "UE5: Using the ThisClass typedef for more concise code"
 date:   2026-01-11 12:50:00 +0100
 categories: software cpp unreal
+redirect_from:
+    - /software/c++/unreal/2026/01/11/unreal-thisclass-typedef
 ---
 
 In the Unreal Engine, the `Super` typedef for a `UCLASS`'s base class is well known.

@@ -3,6 +3,8 @@ layout: post
 title:  "Disabling Firefox's Accessibility Services to improve performance"
 date:   2025-09-10 10:47:00 +0100
 categories: software
+redirect_from:
+    - /software/2025/09/10/firefox-accessibility
 ---
 
 {% assign block_padding = "16px" %}

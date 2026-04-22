@@ -3,6 +3,8 @@ layout: post
 title:  "Blender: Fixing meshes disappearing when zooming out"
 date:  2026-04-02 20:00:00 +0100
 categories: software blender
+redirect_from:
+    - /software/blender/2026/04/02/blender-clipping-fix
 ---
 
 In Blender, objects may disappear when you are far enough away from them.

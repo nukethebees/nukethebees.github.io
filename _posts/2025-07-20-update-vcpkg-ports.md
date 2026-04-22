@@ -3,6 +3,8 @@ layout: post
 title:  "Updating a vcpkg port in a custom registry"
 date:   2025-07-20 12:00:00 +0100
 categories: programming cpp
+redirect_from:
+    - /programming/cpp/2025/07/20/update-vcpkg-ports
 ---
 
 This post documents how to update a vcpkg registry port. In this example, we will be updating the `ml-cpp-utils` port.

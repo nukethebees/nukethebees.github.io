@@ -16,6 +16,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 theme: null
 
@@ -26,3 +27,5 @@ include:
 header_links:
   - title: About
     url: /about/
+
+permalink: /:title/

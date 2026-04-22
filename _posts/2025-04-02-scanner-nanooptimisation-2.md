@@ -3,6 +3,8 @@ layout: post
 title:  "[C++] Nano-optimisation 2: Scanner string function"
 date:   2025-04-02 19:10:38 +0100
 categories: asm cpp
+redirect_from:
+    - /asm/cpp/2025/04/02/scanner-nanooptimisation-2
 ---
 
 I'll cover a second nano-optimisation I did on my compiler's scanner today.

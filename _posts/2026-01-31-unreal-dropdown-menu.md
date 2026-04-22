@@ -3,6 +3,8 @@ layout: post
 title:  "UE5: Creating an editor dropdown menu"
 date:   2026-01-31 14:00:00 +0100
 categories: software cpp unreal
+redirect_from:
+    - /software/c++/unreal/2026/01/31/unreal-dropdown-menu
 ---
 
 This post shows how to customise the Unreal Engine 5 editor with a custom dropdown menu.

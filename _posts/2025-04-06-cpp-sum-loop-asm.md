@@ -3,6 +3,8 @@ layout: post
 title:  "[C++] Analysing optimised x64 assembly for a summing loop function"
 date:   2025-04-06 13:30:00 +0100
 categories: cpp asm
+redirect_from:
+    - /cpp/asm/2025/04/06/cpp-sum-loop-asm
 ---
 
 Here's another simple function to analyse.

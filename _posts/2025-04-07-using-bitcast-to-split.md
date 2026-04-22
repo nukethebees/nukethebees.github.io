@@ -3,6 +3,8 @@ layout: post
 title:  "[C++] Using std::bit_cast to convert byte arrays to values and back again"
 date:   2025-04-07 17:30:00 +0100
 categories: cpp asm
+redirect_from:
+    - /cpp/asm/2025/04/07/using-bitcast-to-split
 ---
 
 A common method of concatenating bytes is to use bit shifts and the `|` operator.

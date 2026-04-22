@@ -3,6 +3,8 @@ layout: post
 title:  "[C++] std::string_view generates worse assembly than pointer + size on Windows"
 date:   2025-04-05 22:00:00 +0100
 categories: cpp asm
+redirect_from:
+    - /cpp/asm/2025/04/05/string-view-performance-windows
 ---
 
 After reading the Windows x64 calling convention documentation[^1], I noticed that functions parameters greater than 8 bytes are passed by reference instead of via registers.

@@ -3,6 +3,8 @@ layout: post
 title:  "Blender: Creating a minimal Python add-on"
 date:   2026-02-15 11:00:00 +0100
 categories: software blender
+redirect_from:
+    - /software/blender/2026/02/15/blender-minimal-add-on
 ---
 
 This post shows a minimal working example of a Blender Python add-on in Blender 5.0.

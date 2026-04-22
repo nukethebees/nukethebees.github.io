@@ -3,6 +3,8 @@ layout: post
 title:  "Configure existing GitHub Pages environment on Ubuntu 24.04 and WSL"
 date:   2025-12-31 13:09:00 +0100
 categories: blogging
+redirect_from:
+    - /blogging/2025/12/31/set-up-github-pages
 ---
 
 This post contains setup instructions for initialising my GitHub pages environment so I don't have to keep relearning it.

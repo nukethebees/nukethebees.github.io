@@ -3,6 +3,8 @@ layout: post
 title:  "Replacing generic systems with Metalanguages"
 date:   2025-06-11 18:00:00 +0100
 categories: programming opinion
+redirect_from:
+    - /programming/opinion/2025/06/11/metalanguages
 ---
 
 At a certain point, a programming language should consider replacing its generic type system with a metalanguage.

@@ -3,6 +3,8 @@ layout: post
 title:  "UE5: Fix missing assets after Git LFS migration"
 date:   2025-10-19 12:26:00 +0100
 categories: software cpp unreal
+redirect_from:
+    - /software/c++/unreal/2025/10/19/unreal-fix-missing-assets-lfs-migrate
 ---
 
 After migrating my Unreal Engine repository to use [Git Large File Storage](https://git-lfs.com/), all of my assets had vanished.

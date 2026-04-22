@@ -3,6 +3,8 @@ layout: post
 title:  "On small changes"
 date:   2025-05-28 18:00:00 +0100
 categories: programming opinion
+redirect_from:
+    - /programming/opinion/2025/05/28/small-changes
 ---
 
 I've noticed that some open source software projects dislike trivial pull requests (PR) [^1].

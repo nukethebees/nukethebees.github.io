@@ -3,6 +3,8 @@ layout: post
 title:  "Hello World! in Windows x64 asm"
 date:   2025-05-13 18:00:00 +0100
 categories: asm windows
+redirect_from:
+    - /asm/windows/2025/05/13/hello-world-win-asm
 ---
 
 This article shows `"Hello, world!"` in Windows x64 assembly using MASM with Visual Studio 2022[^1] (the full code is found [here](https://github.com/nukethebees/github_io/tree/main/hello_world_win_asm)).

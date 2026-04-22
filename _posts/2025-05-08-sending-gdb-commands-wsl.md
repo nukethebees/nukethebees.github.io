@@ -3,6 +3,8 @@ layout: post
 title:  "Sending commands from Visual Studio 2022 to gdb in WSL 2"
 date:   2025-05-08 20:00:00 +0100
 categories: cpp
+redirect_from:
+    - /cpp/2025/05/08/sending-gdb-commands-wsl
 ---
 
 I recently set up a Linux build of my compiler using WSL2 and Visual Studio.

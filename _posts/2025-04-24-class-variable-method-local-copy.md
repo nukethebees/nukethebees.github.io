@@ -3,6 +3,8 @@ layout: post
 title:  "[C++] Saving class members as local variables can reduce memory accesses"
 date:   2025-04-24 21:00:00 +0100
 categories: cpp asm
+redirect_from:
+    - /cpp/asm/2025/04/24/class-variable-method-local-copy
 ---
 
 In certain contexts it can be more efficient to make local copies of class members and then update the instance class at the end.

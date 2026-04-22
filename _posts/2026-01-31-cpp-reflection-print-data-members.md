@@ -3,6 +3,8 @@ layout: post
 title:  "Printing class data members using C++26 reflection"
 date:   2026-01-31 17:07:00 +0100
 categories: software cpp
+redirect_from:
+    - /software/c++/2026/01/31/cpp-reflection-print-data-members
 ---
 
 C++26's reflection feature allows programs to analyse themselves at compile time ([the proposal paper can be read here](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2023/p2996r0.html)).

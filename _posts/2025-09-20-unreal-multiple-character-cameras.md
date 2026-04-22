@@ -3,6 +3,8 @@ layout: post
 title:  "Setting up multiple character cameras in Unreal Engine 5"
 date:   2025-09-20 13:00:00 +0100
 categories: software cpp unreal
+redirect_from:
+    - /software/c++/unreal/2025/09/20/unreal-multiple-character-cameras
 ---
 
 This guide will show you how to add any number of cameras to a `ACharacter` derived class and switch between them.
