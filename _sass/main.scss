@@ -15,6 +15,12 @@
   --p-text-width: min(65ch, 100vw);
   --code-block-width: min(90ch, 100vw);
 
+  --text-content-padding-side: 1rem; 
+  --text-content-padding: calc(2 * var(--text-content-padding-side));
+  --max-content-width: 
+    calc(var(--p-text-width) + var(--text-content-padding));
+  --text-content-width: min(var(--max-content-width), 100vw)
+
   --text-colour: #1F2937;
 
   --font-weight-regular: 400;

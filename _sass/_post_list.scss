@@ -3,14 +3,21 @@
 .post-list {
   grid-column: 2;
 
-  max-width: var(--p-text-width);
-  padding: 1em 1em;
+  padding: 0;
   margin: 0;
   list-style: none;
 }
 
 .post-item {
-  padding: 0.75rem 0;
+  --vmargin: 0.5rem;
+  --hmargin: 0.5rem;
+  
+  max-width: var(--p-text-width);
+  padding: 0 0;
+  padding-inline: 0;
+  margin-top: var(--vmargin);
+  margin-bottom: var(--vmargin);
+  margin-inline: var(--hmargin);
 }
 
 .post-item-title {
