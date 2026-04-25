@@ -21,16 +21,41 @@
   --code-block-width: min(90ch, 100vw);
   --img-block-width: min(90ch, 100vw);
 
-  --text-content-padding-side: 1rem; 
+  --text-content-padding-side: 1rem;
   --text-content-padding: calc(2 * var(--text-content-padding-side));
-  --max-content-width: 
+  --max-content-width:
     calc(var(--p-text-width) + var(--text-content-padding));
-  --text-content-width: min(var(--max-content-width), 100vw)
+  --text-content-width: min(var(--max-content-width), 100vw);
 
   // Colours
-  --text-colour: #1F2937;
+  --text-colour-light: #1F2937;
+  --text-colour-dark: #e5e7eb;
+
+  --link-colour-light: #2563EB;
+  --link-colour-dark: #7DD3FC;
+  --link-colour-hover-light: #1d4ed8;
+  --link-colour-hover-dark: #DDDDDD;
+  --link-colour-active-light: #1e40af;
+  --link-colour-active-dark: #ffffff;
+  --link-colour-visited-light: #551A8B;
+  --link-colour-visited-dark: #bc42f5;
+
   --text-background-colour-light: #FAFAFA;
-  --text-background-colour: var(--text-background-colour-light);
+  --text-background-colour-dark: #111827;
+
+  --header-background-colour-light: #F0F0F0;
+  --header-background-colour-dark: 
+    color-mix(in srgb, var(--text-background-colour-dark) 90%, white);;
+
+  --code-background-colour-light: #161b22;
+  --code-background-colour-dark: 
+    color-mix(in srgb, var(--header-background-colour-dark) 99%, white);
+
+  --header-button-background-colour-light: #E0E0E0;
+  --header-button-background-colour-dark: 
+    color-mix(in srgb, var(--header-background-colour-dark) 90%, white);
+  --header-button-hover-colour-light: #D0D0D0;
+  --header-button-hover-colour-dark: #D0D0D0;
 
   --bee-yellow: #f6d365;
   --bee-gold: #d6a72c;
@@ -42,11 +67,38 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --link-colour: #2563EB;
-  --link-colour-hover: #1d4ed8;
-  --link-colour-active: #1e40af;
-  --link-colour-visited: #551A8B;
+  color-scheme: light dark;
+  --text-colour: var(--text-colour-light);
+  --link-colour: var(--link-colour-light);
+  --link-colour-hover: var(--link-colour-hover-light);
+  --link-colour-active: var(--link-colour-active-light);
+  --link-colour-visited: var(--link-colour-visited-light);
+
+  --text-background-colour: var(--text-background-colour-light);
+  --header-background-colour: var(--header-background-colour-light);
+  --code-background-colour: var(--code-background-colour-light);
+  
+  --header-button-background-colour: var(--header-button-background-colour-light);
+  --header-button-hover-colour: var(--header-button-hover-colour-light);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-colour: var(--text-colour-dark);
+    --link-colour: var(--link-colour-dark);
+    --link-colour-hover: var(--link-colour-hover-dark);
+    --link-colour-active: var(--link-colour-active-dark);
+    --link-colour-visited: var(--link-colour-visited-dark);
+
+    --text-background-colour: var(--text-background-colour-dark);
+    --header-background-colour: var(--header-background-colour-dark);
+    --code-background-colour: var(--code-background-colour-dark);
+
+    --header-button-background-colour: var(--header-button-background-colour-dark);
+    --header-button-hover-colour: var(--header-button-hover-colour-dark);
+  }
+}
+
 
 html {
   font-size: 100%;
@@ -87,11 +139,9 @@ body {
   --stripe-1-start: var(--stripe-width);
   --stripe-1-end: calc(2 * var(--stripe-width));
 
-  background: repeating-linear-gradient(
-    90deg, // vertical stripes
-    var(--bee-gold) var(--stripe-0-start) var(--stripe-0-end),     
-    var(--bee-brown) var(--stripe-1-start) calc(2 * var(--stripe-width))
-  );
+  background: repeating-linear-gradient(90deg, // vertical stripes
+      var(--bee-gold) var(--stripe-0-start) var(--stripe-0-end),
+      var(--bee-brown) var(--stripe-1-start) calc(2 * var(--stripe-width)));
 }
 
 main {

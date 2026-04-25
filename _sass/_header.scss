@@ -2,11 +2,10 @@
 @use "links";
 
 header {
+  max-width: 100dvw;
   width: 100%;
   border-bottom: 0.1rem solid #000;
-  background-color: vars.$header-background-colour-light;
-
-  max-width: var(--text-content-width);
+  background-color: var(--header-background-colour);
 
   a {
     text-decoration: none;
@@ -40,7 +39,7 @@ header {
 
   a {
     font-size: 1.25rem;
-    @include links.solid-colour-link(#000);
+    @include links.solid-colour-link(var(--link-colour));
   }
 }
 
@@ -79,7 +78,7 @@ header {
   .header_links_inner > a {
     display: block;
     padding: 0.5rem 0.75rem;
-    background: vars.$header-button-background-colour-light;
+    background: var(--header-background-colour);
   }
 
   .header_menu_button {
@@ -89,7 +88,7 @@ header {
     margin-left: auto;
     padding: 0.5rem;
     cursor: pointer;
-    background: vars.$header-button-background-colour-light;
+    background: var(--header-button-background-colour);
     font-size: 1.4rem;
     line-height: 1;
   }

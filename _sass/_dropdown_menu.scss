@@ -63,7 +63,7 @@
 
   opacity: 0;
 
-  background: vars.$header-button-background-colour-light;
+  background: var(--header-button-background-colour);
 
   a {
     display: block;
@@ -74,13 +74,13 @@
   }
 
   & a:hover {
-    background: vars.$header-button-hover-colour-light;
+    background: var(--header-button-hover-colour);
   }
 }
 
 .dropdown_button {
   width: 100%;
-  background: vars.$header-button-background-colour-light;
+  background: var(--header-button-background-colour);
   border: none;
   cursor: pointer;
   padding: 0.5rem 0.75rem;
@@ -93,7 +93,7 @@
   }
 
   &:hover {
-    background: vars.$header-button-hover-colour-light;
+    background: var(--header-button-hover-colour);
   }
 }
 
