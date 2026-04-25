@@ -2,10 +2,12 @@
 layout: base
 ---
 <article class="post">
-  <h1>
-    {{ page.title }}
-  </h1>
-  {% include post_date.html date=page.date %}
+  <div class="post-content">
+    <h1>
+      {{ page.title }}
+    </h1>
+    {% include post_date.html date=page.date %}
 
-  {{ content }}
+    {{ content }}
+  </div>
 </article>

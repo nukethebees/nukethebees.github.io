@@ -6,6 +6,8 @@ header {
   border-bottom: 0.1rem solid #000;
   background-color: vars.$header-background-colour-light;
 
+  max-width: var(--text-content-width);
+
   a {
     text-decoration: none;
   }
@@ -19,8 +21,7 @@ header {
 
   /* title left, links right */
   margin: 0;
-  padding: 1rem 1rem;
-  min-width: vars.$min-supported-width;
+  padding: 1rem;
 }
 
 .header_links {

@@ -12,8 +12,14 @@
 }
 
 :root {
+  // Want a fixed text width
+  // Shrink if needed
+  // We also want a fixed margin
+  // This forms the core column width for the site
+
   --p-text-width: min(65ch, 100vw);
   --code-block-width: min(90ch, 100vw);
+  --img-block-width: min(90ch, 100vw);
 
   --text-content-padding-side: 1rem; 
   --text-content-padding: calc(2 * var(--text-content-padding-side));

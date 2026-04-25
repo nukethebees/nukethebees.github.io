@@ -7,6 +7,8 @@ pre {
 
 div.highlighter-rouge {
   & pre {
+    // Add some space so the text isn't right 
+    // next to the box edge
     padding: 0.75em;
   }
 }
