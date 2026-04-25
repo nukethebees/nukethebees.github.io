@@ -1,7 +1,5 @@
 <ul class="post-list">
-  {%- assign posts = include.posts -%}
-
-  {%- for post in posts -%}
+  {%- for post in include.posts -%}
   <li class="post-item">
     <a href="{{ post.url | relative_url }}" class="post-item-title">
       {{ post.title }}
