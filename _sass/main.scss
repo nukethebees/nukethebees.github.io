@@ -27,7 +27,15 @@
     calc(var(--p-text-width) + var(--text-content-padding));
   --text-content-width: min(var(--max-content-width), 100vw)
 
+  // Colours
   --text-colour: #1F2937;
+  --text-background-colour-light: #FAFAFA;
+  --text-background-colour: var(--text-background-colour-light);
+
+  --bee-yellow: #f6d365;
+  --bee-gold: #d6a72c;
+  --bee-brown: #3a2a18;
+  --bee-cream: #fff8e1;
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -67,12 +75,34 @@ body {
   font-size: 1rem;
   font-weight: var(--font-weight-regular);
 
-  background-color: vars.$background-colour-light;
   color: var(--text-colour);
   margin: 0;
 
   display: grid;
   place-items: center;
+
+  --stripe-width: 2rem;
+  --stripe-0-start: 0;
+  --stripe-0-end: var(--stripe-width);
+  --stripe-1-start: var(--stripe-width);
+  --stripe-1-end: calc(2 * var(--stripe-width));
+
+  background: repeating-linear-gradient(
+    90deg, // vertical stripes
+    var(--bee-gold) var(--stripe-0-start) var(--stripe-0-end),     
+    var(--bee-brown) var(--stripe-1-start) calc(2 * var(--stripe-width))
+  );
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+
+  padding: 0;
+  //padding-top: 1rem;
+  //padding-bottom: 1rem;
+
+  background-color: var(--text-background-colour);
 }
 
 h1,

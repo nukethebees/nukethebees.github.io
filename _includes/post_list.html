@@ -1,4 +1,8 @@
 <ul class="post-list">
+  {% if include.title %}
+    <h1>{{ include.title }}</h1>
+  {% endif %}
+
   {%- for post in include.posts -%}
   <li class="post-item">
     <a href="{{ post.url | relative_url }}" class="post-item-title">
@@ -6,7 +10,7 @@
     </a>
 
     <br>
-    
+
     {% include post_date.html date=post.date %}
 
     {%- if post.categories.size > 0 -%}

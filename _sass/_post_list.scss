@@ -8,9 +8,15 @@
   display: grid;
   gap: var(--vgap); // Gap between elements
 
+  margin: 0;
   padding: 0;
-  margin: var(--vgap) 0 0 0;
+  padding-top: var(--vgap);
   list-style: none;
+
+  h1 {
+    padding: 1rem;
+    margin: 0;
+  }
 }
 
 .post-item {
