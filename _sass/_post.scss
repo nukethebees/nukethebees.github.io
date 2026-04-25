@@ -37,6 +37,11 @@
     min-width: var(--code-block-width);
     @include breakout(var(--code-block-width));
 
+    background-color: var(--text-background-colour);
+    border: 1rem solid var(--text-background-colour);
+    border-radius: 12px;
+    padding: 0;
+
     div, pre, span {
       background-color: var(--code-background-colour);
     }
@@ -44,6 +49,7 @@
 
     & pre {
       overflow-x: scroll;
+      margin: 0;
     }
   }
 
