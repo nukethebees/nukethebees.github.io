@@ -1,23 +1,24 @@
 @use "vars";
 
 .post-list {
+  --vgap: 0.5rem;
+
   grid-column: 2;
 
+  display: grid;
+  gap: var(--vgap); // Gap between elements
+
   padding: 0;
-  margin: 0;
+  margin: var(--vgap) 0 0 0;
   list-style: none;
 }
 
 .post-item {
-  --vmargin: 0.5rem;
-  --hmargin: 0.5rem;
-  
   max-width: var(--p-text-width);
-  padding: 0 0;
+  padding: 0;
   padding-inline: 0;
-  margin-top: var(--vmargin);
-  margin-bottom: var(--vmargin);
-  margin-inline: var(--hmargin);
+  margin: 0;
+  margin-inline: var(--text-content-padding-side);
 }
 
 .post-item-title {
