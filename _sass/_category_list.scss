@@ -1,6 +1,13 @@
 @use "vars";
 
 .category-list {
-  max-width: var(--p-text-width);
+  max-width: var(--text-content-width);
   margin: 0 auto;
+
+  .page-title {
+    margin: 0;
+    padding: 0;
+    
+    margin: var(--text-content-padding-side);
+  }
 }
