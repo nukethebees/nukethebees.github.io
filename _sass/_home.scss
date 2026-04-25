@@ -1,0 +1,8 @@
+.home {
+  display: grid;
+  grid-template-columns: 
+    1fr
+    var(--p-text-width)
+    1fr;
+  gap: 0;
+}
