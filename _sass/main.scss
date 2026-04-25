@@ -75,6 +75,7 @@
   --link-colour-visited: var(--link-colour-visited-light);
 
   --text-background-colour: var(--text-background-colour-light);
+  --site-background-colour: var(--bee-cream);
   --header-background-colour: var(--header-background-colour-light);
   --code-background-colour: var(--code-background-colour-light);
   
@@ -139,7 +140,8 @@ body {
   --stripe-1-start: var(--stripe-width);
   --stripe-1-end: calc(2 * var(--stripe-width));
 
-  background: repeating-linear-gradient(90deg, // vertical stripes
+  //background: var(--site-background-colour);
+    background: repeating-linear-gradient(90deg, // vertical stripes
       var(--bee-gold) var(--stripe-0-start) var(--stripe-0-end),
       var(--bee-brown) var(--stripe-1-start) calc(2 * var(--stripe-width)));
 }
@@ -149,9 +151,6 @@ main {
   gap: 1rem;
 
   padding: 0;
-  //padding-top: 1rem;
-  //padding-bottom: 1rem;
-
   background-color: var(--text-background-colour);
 }
 
