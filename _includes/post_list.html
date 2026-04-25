@@ -6,9 +6,7 @@
     </a>
 
     <br>
-    <time datetime="{{ post.date | date: '%Y-%m-%d' }}"  class="post-item-date">
-      {{ post.date | date: "%B %d, %Y" }}
-    </time>
+    {% include post_date.html date=post.date %}
 
     {%- if post.categories.size > 0 -%}
     <br>
