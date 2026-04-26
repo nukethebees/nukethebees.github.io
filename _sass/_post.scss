@@ -34,23 +34,30 @@
   }
 
   div.highlighter-rouge {
-    min-width: var(--code-block-width);
-    @include breakout(var(--code-block-width));
-
     background-color: var(--text-background-colour);
-    border: 1rem solid var(--text-background-colour);
+    width: fit-content;
+    outline: 1rem solid var(--text-background-colour);
     border-radius: 12px;
     padding: 0;
+    @include breakout(var(--code-block-width));
 
-    div, pre, span {
+    div,
+    pre,
+    span {
       background-color: var(--code-background-colour);
     }
-    
 
-    & pre {
+    & div.highlight {
+      min-width: var(--p-text-width);
       overflow-x: scroll;
-      margin: 0;
+      & pre {
+        min-width: var(--p-text-width);
+
+        width: fit-content;
+      }
     }
+
+
   }
 
   p code {
