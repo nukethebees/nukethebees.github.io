@@ -105,7 +105,7 @@ auto bar() -> std::string {
 `A.cpp` relies on `A.hpp` for the definition of `std::string` and would break if `bar` and `<string>` were removed.
 
 Some people complain that IWYU increases build times due to a misconception that forward declarations are disallowed in headers.
-IWYU does not prevent the use of forward declarations, it only requires that the include exists in the header OR source file.
+IWYU does not prevent the use of forward declarations, it only requires that the include exists in the header or source file.
 
 This code uses a valid IWYU style as `Foo`'s full definition is only needed in `A.cpp`.
 
