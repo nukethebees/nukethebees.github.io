@@ -21,7 +21,7 @@ void add_values_0_restrict(std::uint8_t const* __restrict a,
 }
 ```
 
-The goal was to generate AVX 512 intrinsics and to analyse the resulting assembly. It was [compiled on Godbolt](https://godbolt.org/z/88sYP93Ks) using the `x86-64 clang 22.1.0` compiler.
+The goal was to generate AVX-512 instructions and inspect the generated assembly. It was [compiled on Godbolt](https://godbolt.org/z/88sYP93Ks) using the `x86-64 clang 22.1.0` compiler.
 
 Flags:
 
@@ -58,9 +58,7 @@ Notation used:
   jmp     .LBB0_10                                   ; 
 .LBB0_6:                                             ; 
   mov     rax, rcx                                   ; rax = n
-  and     rax, -256                                  ; [111...]0000_0000. 
-                                                     ; Clear the low 8 bits
-                                                     ; Effectively (n / 256) * 256
+  and     rax, -256                                  ; Clear the low 8 bits
                                                      ; rax = n - (n % 256)
                                                      ; largest multiple of 256 <= n
   xor     r8d, r8d                                   ; clear r8d 
@@ -82,7 +80,7 @@ Notation used:
   add     r8, 256                                    ; r8 += 256
   cmp     rax, r8                                    ; compare(rax, r8).
                                                      ; Processed all 256 byte chunks?
-  jne     .LBB0_7                                    ; iterate if (rax != r8)
+  jne     .LBB0_7                                    ; Loop if (rax != r8)
   cmp     rcx, rax                                   ; check if (bytes_written == n)
   je      .LBB0_13                                   ; return if (bytes_written == n)
   test    cl, -16                                    ; cl = low byte of n
@@ -100,14 +98,12 @@ Notation used:
   vmovdqu xmmword ptr [rdx + r8], xmm0               ; c[r8:r8+16) = xmm0
   add     r8, 16                                     ; r8 += 16
   cmp     rax, r8                                    ; r8 == rax?
-                                                     ; The previous low byte & -16 check
-                                                     ; combined with the -256 loop means 
-                                                     ; we're checking if n[7:4] != 0
+                                                     ; Is n[7:4] != 0?
                                                      ; n[8] and above is already done
   jne     .LBB0_11                                   ; Iterate again if (r8 != rax)
   jmp     .LBB0_12                                   ; Jump
 .LBB0_3:                                             ; rax acts as an offset
-                                                     ; if coming from the big loop you'll,
+                                                     ; if coming from the big loop you'll
                                                      ; have computed 256*x bytes already
   movzx   r8d, byte ptr [rsi + rax]                  ; r8[7:0] = b[rax] 
                                                      ; (zero extend the rest of r8)
@@ -116,7 +112,7 @@ Notation used:
   inc     rax                                        ; rax++
 .LBB0_12:                                            ; 
   cmp     rcx, rax                                   ; 
-  jne     .LBB0_3                                    ; iterate if (rax != n)
+  jne     .LBB0_3                                    ; Loop if (rax != n)
 .LBB0_13:                                            ; 
   vzeroupper                                         ; avoid AVX/SSE transition 
                                                      ; penalties before returning
