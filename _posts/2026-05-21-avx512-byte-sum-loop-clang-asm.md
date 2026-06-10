@@ -2,6 +2,7 @@
 layout: post
 title:  "Annotated assembly of an AVX-512 byte summing loop"
 date:   2026-05-21 22:27:00 +0100
+last_modified_at: 2026-06-10 22:30:00 +0100
 categories: software cpp asm
 ---
 
@@ -115,3 +116,11 @@ Notation used:
                                                      ; penalties before returning
   ret                                                ; 
 ```
+
+# Summary
+
+The compiler generates three loops to add the byte arrays:
+
+* A main AVX-512 loop that processes 256 bytes per iteration by unrolling four 64-byte `vpaddb` instructions.
+* A smaller vectorised loop that processes 16 bytes per iteration.
+* A scalar clean-up loop that handles up to 15 remaining bytes.
