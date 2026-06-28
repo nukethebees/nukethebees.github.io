@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Comparing an Integer Division Optimisation in Clang, MSVC, and GCC"
-date:   2026-06-28 23:00:00 +0100
+date:   2026-06-29 00:00:05 +0100
 categories: software cpp asm
 ---
 
@@ -12,7 +12,10 @@ I was optimising the conversion of a 1D index into a 3D row-major grid coordinat
 1. operators `/` and `%`
 2. `std::div`
 
-Neither implementation was fully optimal on Clang, MSVC, and GCC.
+Neither implementation was optimal on all three compilers.
+GCC and Clang optimised the operator-based version well; however, MSVC emitted a redundant division.
+Using `std::div` fixed MSVC's issue, but GCC and Clang emitted calls instead of inlining the functions.
+
 The code below was compiled on Compiler Explorer ([available here](https://godbolt.org/z/74f3Kaeq8)).
 
 # Grid Coordinate Function
@@ -41,7 +44,7 @@ z = rem_z
 # Implementation with operators
 
 This implementation uses the division and modulo operators.
-The function parameters are assumed to be `>= 0`.
+The example assumes `grid_y > 0`, `grid_z > 0`, and `i >= 0`.
 
 ```c++
 #include <cstdint>
@@ -68,11 +71,11 @@ auto get_grid_coordinate(std::int32_t const grid_y,
 
 ## Clang 
 
-Clang creates an optimal implementation with only two `idiv` instructions.
+Clang creates the best implementation with only two `idiv` instructions and no memory accesses.
 
 ```nasm
 ; return value = [edx, rax] 
-               = [{z}, {y, x}]
+;              = [{z}, {y, x}]
 
 ; rdi = grid_y
 ; rsi = grid_z
@@ -133,11 +136,12 @@ Coord get_grid_coordinate(int,int,int) ENDP
 
 ## GCC
 
-GCC's implementation is similar to Clang's except it doesn't use `shl` to set up the return value and it temporarily spills `x` and `y` to the stack before packing them into `rax`.
+GCC's implementation is similar to Clang's except it doesn't use the same `shl/or` sequence to pack the return value.
+Instead, it temporarily spills `x` and `y` to the stack before loading them into `rax`.
 
 ```nasm
 ; return value = [edx, rax] 
-               = [{z}, {y, x}]
+;              = [{z}, {y, x}]
 
 ; rdi = grid_y
 ; rsi = grid_z
@@ -184,7 +188,7 @@ The `push rax` instruction maintains a 16 byte stack pointer alignment[^1].
 
 ```nasm
 ; return value = [edx, rax] 
-               = [{z}, {y, x}]
+;              = [{z}, {y, x}]
 
 ; rdi = grid_y
 ; rsi = grid_z
@@ -195,7 +199,7 @@ get_grid_coordinate_std(int, int, int):
   push    rbx        ; Save caller's rbx
   push    rax        ; Alignment padding, not saving rax
   mov     ebx, edi   ; ebx = grid_y
-  mov     edi, edx   ; edx = i
+  mov     edi, edx   ; edi = i
   call    div@PLT    ; std::div(i [rdi], grid_z [rsi])
                      ; rax low 32 = quot_z
                      ; rax high 32 = z
@@ -208,8 +212,8 @@ get_grid_coordinate_std(int, int, int):
                      ; rax high 32 = y = out.y
   mov     edx, r14d  ; edx = z
   add     rsp, 8     ; Discard alignment padding
-  pop     rbx        ; Restore caller's r14 and rbx
-  pop     r14        ;
+  pop     rbx        ; Restore caller's rbx
+  pop     r14        ; Restore caller's r14
   ret                ;
 ```
 
@@ -251,7 +255,7 @@ GCC's solution is largely similar to Clang's.
 
 ```nasm
 ; return value = [edx, rax] 
-               = [{z}, {y, x}]
+;              = [{z}, {y, x}]
 
 ; rdi = grid_y
 ; rsi = grid_z
@@ -262,7 +266,7 @@ get_grid_coordinate_std(int, int, int):
   mov     ebp, edi  ; ebp = grid_y
   mov     edi, edx  ; edi = i
   push    rbx       ; Store caller rbx
-  sub     rsp, 40   ; Pad stack for 16 byte alignment
+  sub     rsp, 40   ; Reserve stack space, maintain 16B alignment
   call    "div"     ; div(i [rdi], grid_z [rsi])
                     ; rax low 32 = quot_z
                     ; rax high 32 = z
@@ -282,11 +286,13 @@ get_grid_coordinate_std(int, int, int):
 
 # Summary
 
-GCC and Clang had the best operator-based implementation, using only two `idiv` instructions, whereas MSVC performed a redundant third division.
+Clang produced the best operator-based implementation, using only two `idiv` instructions and avoiding memory accesses.
+GCC also used only two `idiv` instructions, but spilled intermediate values to the stack.
+MSVC emitted a redundant third division.
 
-With `std::div`, MSVC performed much better and used only two `idiv` instructions after inlining the calls while Clang and GCC did not inline the calls.
+With `std::div`, MSVC performed much better and used only two `idiv` instructions after inlining the calls whereas Clang and GCC emitted function calls.
 
 Neither C++ implementation led to an optimal solution on all three platforms.
-For critical functions, it is worth checking the generated assembly to verify assembly is well optimised.
+For critical functions, it is worth checking the generated assembly instead of assuming the compiler emitted an optimal version.
 
 [^1]: From section 3.2.2 of the [System V ABI 0.98](https://refspecs.linuxbase.org/elf/x86_64-abi-0.98.pdf): _"The end of the input argument area shall be aligned on a 16 byte boundary. In other words, the value (%rsp − 8) is always a multiple of 16 when control is transferred to the function entry point."_
