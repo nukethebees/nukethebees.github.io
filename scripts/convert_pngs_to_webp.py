@@ -38,7 +38,7 @@ def iter_pngs(images_dir: Path) -> list[Path]:
     return sorted(
         path
         for path in images_dir.rglob("*")
-        if path.is_file() and path.suffix.lower() == ".webp"
+        if path.is_file() and path.suffix.lower() == ".png"
     )
 
 
