@@ -57,6 +57,7 @@
     & div.highlight {
       min-width: var(--p-text-width);
       overflow-x: scroll;
+
       & pre {
         min-width: var(--p-text-width);
 
@@ -87,9 +88,50 @@
     }
 
     img {
-      @include breakout(var(--img-block-width));
       height: auto;
       display: block;
+
+      --outline-thickness: 1rem;
+      --margin-thickness: calc(var(--outline-thickness) + 1rem);
+
+      outline: var(--outline-thickness) solid var(--text-background-colour);
+      border-radius: 12px;
+      padding: 0;
+      margin: 0;
+      margin-top: var(--margin-thickness);
+      margin-bottom: var(--margin-thickness);
+
+      @include breakout(var(--img-block-width));
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+
+    --outline-thickness: 1rem;
+    --margin-thickness: calc(var(--outline-thickness) + 1rem);
+
+    outline: var(--outline-thickness) solid var(--text-background-colour);
+    border-radius: 12px;
+    padding: 0;
+    margin: 0;
+    margin-top: var(--margin-thickness);
+    margin-bottom: var(--margin-thickness);
+
+    th,
+    td {
+      padding: 0.25rem 1rem;
+      text-align: left;
+      border: none;
+    }
+
+    th {
+      border-bottom: 2px solid #666;
+    }
+
+    th:not(:last-child),
+    td:not(:last-child) {
+      border-right: 1px solid #666;
     }
   }
 
