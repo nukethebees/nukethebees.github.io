@@ -1,33 +1,34 @@
 ---
 layout: post
-title:  "UE5: SetRemoveSwap() turned 493 ms ISMC removal spikes into 31.8 ms in my benchmark"
-date:   2026-06-29 20:30:00 +0100
+title:  "UE5: Speeding up ISMC instance removal by 6200× with SetRemoveSwap()"
+date:   2026-06-29 23:20:00 +0100
 categories: software cpp unreal
 ---
 
-> tl;dr Call `SetRemoveSwap()` on `InstancedStaticMeshComponent` to massively speed up instance removal times at the cost of losing instance ordering
+> tl;dr If you do not need stable instance ordering, call `SetRemoveSwap()` on `InstancedStaticMeshComponent` to massively speed up instance removal.
 
 Unreal Engine's [`InstancedStaticMeshComponent`](https://dev.epicgames.com/documentation/unreal-engine/instanced-static-mesh-component-in-unreal-engine) (ISMC) allows the creation of many instances of a mesh without additional per-instance GPU draw calls.
 
-When removing instances, the instance ordering is maintained by shifting the remaining elements to fill the gap.
-This operation has an `O(N)` complexity i.e. the cost scales linearly with the number of instances.
+When removing instances, the instance ordering is maintained by shifting the remaining instances to fill the gap.
+This operation has `O(N)` complexity i.e. the cost scales linearly with the number of instances.
 For short-lived and high-volume entities such as projectiles, the cost can be immense.
 
-`ismc->SetRemoveSwap()` changes the ISMC to use an `O(1)` swap-based removal algorithm where the outgoing instance is swapped with the final element.
-This is the same as [`TArray<T>::RemoveAtSwap`](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Core/TArray/RemoveAtSwap).
+`ismc->SetRemoveSwap()` allows ISMC removals to use a swap-based removal path, where the removed instance is swapped with the final instance instead of shifting the remaining instances down.
+This is the same idea as [`TArray<T>::RemoveAtSwap`](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Core/TArray/RemoveAtSwap).
 
-The cost of this approach is the instance ordering is no longer maintained.
+The trade-off is that instance ordering is no longer preserved.
+If you keep related instance data in parallel arrays, those arrays must also use `RemoveAtSwap()` to stay in sync with the ISMC.
 
 # Comparative Benchmark
 
-To evaluate the effect of `SetRemoveSwap`, I ran my game's benchmark for 20s which had had more than 20,000 ISMC-based projectiles at its peak.
+To evaluate the effect of `SetRemoveSwap()`, I ran a 20-second benchmark of my game that peaked at over 20,000 ISMC-based projectiles.
 The only difference between the two runs was the use of `SetRemoveSwap()`.
-Elements were removed using [`RemoveInstances`](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/UInstancedStaticMeshComponent/RemoveInstances) with element indices sorted in reverse order for maximum performance.
+Instances were removed using [`RemoveInstances`](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/UInstancedStaticMeshComponent/RemoveInstances) with instance indices sorted in reverse order for maximum performance.
 
 My core system specs are:
 
 * AMD 5800X3D
-* nVidia RTX 5070
+* NVIDIA RTX 5070
 * 64 GB DDR4 RAM
 
 ## Results overview
@@ -42,75 +43,55 @@ The two screenshots show a general overview of the frame times and number of ISM
 
 <figure class="post-figure">
   <img src="/images/2026-06-29-unreal-ismc-remove-at-swap-flag/no_swap.webp"
-       alt="Benchmark using sorted removal"/>
+       alt="Benchmark without swap removal"/>
   <figcaption>
-    Frame times with sorted removal
+    Frame times without swap removal
   </figcaption>
 </figure>
 
 <figure class="post-figure">
   <img src="/images/2026-06-29-unreal-ismc-remove-at-swap-flag/with_swap.webp"
-       alt="Benchmark using swapped removal"/>
+       alt="Benchmark with swap removal"/>
   <figcaption>
-    Frame times with swap-based removal
+    Frame times with swap removal
   </figcaption>
 </figure>
 
-The performance difference is staggering.
-Without `SetRemoveSwap`, the game is completely unplayable with two large spikes in the frame times grinding the game to a halt.
+The performance difference is night and day.
+Without `SetRemoveSwap()`, the game becomes effectively unplayable with two large spikes in the frame times grinding the game to a halt.
 In contrast, with swap-based removal, the frame times have a gentle rise to a single peak of 31.4 ms (31.8 FPS) and then steadily fall to 18.6 ms (53.8 FPS) by the end.
 
 ## Longest frame
 
-The following two figures show a flame graph of the longest frames in each run.
+The following two figures show flame graphs for the longest frame in each run.
 
 <figure class="post-figure">
   <img src="/images/2026-06-29-unreal-ismc-remove-at-swap-flag/no_swap_slowest_frame.webp"
-       alt="Slowest frame sorted"/>
+       alt="Slowest frame without swap removal"/>
   <figcaption>
-    Slowest frame with sorted removal
+    Slowest frame without swap removal
   </figcaption>
 </figure>
 
 <figure class="post-figure">
   <img src="/images/2026-06-29-unreal-ismc-remove-at-swap-flag/swap_slowest_frame.webp"
-       alt="Slowest frame swapped"/>
+       alt="Slowest frame with swap removal"/>
   <figcaption>
-    Slowest frame with swapped removal
+    Slowest frame with swap removal
   </figcaption>
 </figure>
 
 
 Without `SetRemoveSwap()`, the instance removal took 412.72 ms, dominating the frame time (83.5% of the total).
 The swap-based removal time is so small that it cannot be seen with the naked eye at the same zoom level.
-It consumes only 66 microseconds, 0.00021% of the frame.
-Compared to the 412.72 ms consumed in the other benchmark, swap-based removal takes 0.000016% of the time.
+It consumes only 66 microseconds, 0.21% of the frame.
+Compared to 412.72 ms without `SetRemoveSwap()`, 66 μs for the instance removal is roughly 6,200× faster.
 
 # Takeaway
-The lesson here is clear: enabling `SetRemoveSwap()` should be virtually **mandatory** for developers wishing to make extensive use of ISMCs.
 
-The performance benefits are beyond belief.
-I feel Epic should have highlighted this setting much more to developers.
+If your gameplay does not depend on stable instance ordering, `SetRemoveSwap()` should be strongly considered for high-churn ISMCs.
 
-## Where was this the whole time?
+The performance benefits can be enormous for ISMC workloads that frequently remove instances.
+I would encourage Epic to highlight this setting in the official ISMC tutorials.
 
-I only found this after looking through the ISMC source code multiple times.
-In the 916 line header, the function is easily missed.
-
-```c++
-/** Sets to use RemoveAtSwap on instance removal. 
-  * This is an optimization, but will change the 
-  * resultant instance reordering. */
-void SetRemoveSwap() { bSupportRemoveAtSwap = true; }
-```
-
-I had wrongly assumed that swap-based removal was already used given that `RemoveInstances` has a boolean parameter for signalling that the indices are sorted.
-
-```c++
-bool RemoveInstances(
-    const TArray<int32>& InstancesToRemove, 
-    bool bInstanceArrayAlreadySortedInReverseOrder
-);
-```
-
-[^1]: The instance count differences are likely due to load-related changes in the timestep.
+[^1]: The instance count differences are likely due to load-related timestep changes between the two runs.
