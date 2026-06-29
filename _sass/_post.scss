@@ -106,6 +106,9 @@
   }
 
   table {
+    display: block;
+    overflow-x: auto;
+    white-space: normal;
     border-collapse: collapse;
 
     --outline-thickness: 1rem;
