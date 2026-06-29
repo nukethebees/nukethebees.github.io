@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Comparing an Integer Division Optimisation in Clang, MSVC, and GCC"
-date:   2026-06-29 00:00:05 +0100
+date:   2026-06-29 20:25:00 +0100
 categories: software cpp asm
 ---
 
@@ -13,8 +13,8 @@ I was optimising the conversion of a 1D index into a 3D row-major grid coordinat
 2. `std::div`
 
 Neither implementation was optimal on all three compilers.
-GCC and Clang optimised the operator-based version well; however, MSVC emitted a redundant division.
-Using `std::div` fixed MSVC's issue, but GCC and Clang emitted calls instead of inlining the functions.
+GCC and Clang optimised the operator-based version well, but MSVC emitted a redundant division.
+Using `std::div` fixed MSVC's issue, but GCC and Clang emitted function calls instead of inlining the functions.
 
 The code below was compiled on Compiler Explorer ([available here](https://godbolt.org/z/74f3Kaeq8)).
 
@@ -28,7 +28,7 @@ y = (i / grid.z) % grid.y
 z = i % grid.z
 ```
 
-An optimal x86 implementation should only require two [`idiv` instructions](https://www.felixcloutier.com/x86/idiv) as it calculates the quotient and remainder in a single instruction and stores them in `rax` and `rdx` respectively.
+On x86, an optimal implementation should only require two [`idiv` instructions](https://www.felixcloutier.com/x86/idiv) because `idiv` calculates both the quotient and remainder and stores them in `rax` and `rdx` respectively.
 
 The expanded pseudocode below shows this:
 
@@ -71,7 +71,7 @@ auto get_grid_coordinate(std::int32_t const grid_y,
 
 ## Clang 
 
-Clang creates the best implementation with only two `idiv` instructions and no memory accesses.
+Clang emits the best implementation with only two `idiv` instructions and no memory accesses.
 
 ```nasm
 ; return value = [edx, rax] 
@@ -98,8 +98,7 @@ get_grid_coordinate(int, int, int):
 
 ## MSVC
 
-MSVC misses an optimisation and uses three `idiv` instructions.
-The second division is needlessly repeated when calculating `y`.
+MSVC uses three `idiv` instructions as the second division is needlessly repeated when calculating `y`.
 
 ```nasm
 ; rcx = &(return value)
@@ -165,8 +164,8 @@ Instead, it temporarily spills `x` and `y` to the stack before loading them into
 
 # Implementation with std::div
 
-This implementation uses `std::div`.
-I felt the explicitly returned quotient and remainder may have been easier for the compiler to optimise.
+The implementation below uses [`std::div`](https://en.cppreference.com/cpp/numeric/math/div).
+I wondered if the explicitly returned quotient and remainder would be easier for compilers to optimise.
 
 ```c++
 auto get_grid_coordinate_std(std::int32_t const grid_y,
@@ -182,7 +181,7 @@ auto get_grid_coordinate_std(std::int32_t const grid_y,
 ## Clang
 
 Clang doesn't inline `std::div`, resulting in two function calls.
-This will likely perform worse due to the setup required for the function calls and the function call overhead.
+This is likely worse than the operator version due to the extra call setup and call overhead.
 
 The `push rax` instruction maintains a 16 byte stack pointer alignment[^1]. 
 
@@ -219,7 +218,7 @@ get_grid_coordinate_std(int, int, int):
 
 ## MSVC
 
-MSVC has inlined the calls, using only two `idiv` instructions unlike before.
+MSVC inlined the function calls, using only two `idiv` instructions unlike before.
 
 ```nasm
 ; rcx = &(return value)
