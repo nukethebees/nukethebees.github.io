@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Comparing an Integer Division Optimisation in Clang, MSVC, and GCC"
-date:   2026-06-29 20:25:00 +0100
+date:   2026-06-29 20:30:00 +0100
 categories: software cpp asm
 ---
 
@@ -12,7 +12,6 @@ I was optimising the conversion of a 1D index into a 3D row-major grid coordinat
 1. operators `/` and `%`
 2. `std::div`
 
-Neither implementation was optimal on all three compilers.
 GCC and Clang optimised the operator-based version well, but MSVC emitted a redundant division.
 Using `std::div` fixed MSVC's issue, but GCC and Clang emitted function calls instead of inlining the functions.
 
@@ -28,7 +27,7 @@ y = (i / grid.z) % grid.y
 z = i % grid.z
 ```
 
-On x86, an optimal implementation should only require two [`idiv` instructions](https://www.felixcloutier.com/x86/idiv) because `idiv` calculates both the quotient and remainder and stores them in `rax` and `rdx` respectively.
+On x86, this can be implemented with only two [`idiv` instructions](https://www.felixcloutier.com/x86/idiv) because `idiv` calculates both the quotient and remainder and stores them in `rax` and `rdx` respectively.
 
 The expanded pseudocode below shows this:
 
@@ -291,7 +290,7 @@ MSVC emitted a redundant third division.
 
 With `std::div`, MSVC performed much better and used only two `idiv` instructions after inlining the calls whereas Clang and GCC emitted function calls.
 
-Neither C++ implementation led to an optimal solution on all three platforms.
-For critical functions, it is worth checking the generated assembly instead of assuming the compiler emitted an optimal version.
+Neither C++ implementation led to the best codegen with all three compilers.
+For critical functions, it is worth checking the generated assembly instead of assuming the compiler emitted the code you expected.
 
 [^1]: From section 3.2.2 of the [System V ABI 0.98](https://refspecs.linuxbase.org/elf/x86_64-abi-0.98.pdf): _"The end of the input argument area shall be aligned on a 16 byte boundary. In other words, the value (%rsp − 8) is always a multiple of 16 when control is transferred to the function entry point."_
