@@ -13,9 +13,15 @@ module Jekyll
     def create_category_pages_data(site)
       debug = DebugUtils.env_flag('DEBUG_CATEGORY_GEN')
 
+      excluded_categories =
+        Array(site.config.dig('category_pages', 'excluded'))
+          .map { |category| category.to_s.downcase }
+
       category_map = {}
 
       site.categories.each do |category_name, posts|
+        next if excluded_categories.include?(category_name.downcase)
+
         entry = {
           'title' => category_name.capitalize,
           'category' => category_name,
@@ -56,18 +62,26 @@ module Jekyll
     def build_category_links(site)
       category_map = site.data['category_pages'] || {}
 
-      category_links =
-        category_map.values
-                    .map do |cat|
-                      {
-                        'title' => cat['title'],
-                        'url' => cat['permalink']
-                      }
-                    end
-                    .sort_by { |l| l['title'].downcase }
+      generated_links =
+        category_map.values.map do |cat|
+          {
+            'title' => cat['title'],
+            'url' => cat['permalink']
+          }
+        end
 
-      site.data['category_links'] = category_links
-    end
+      manual_links =
+        Array(site.config.dig('category_pages', 'manual_links')).map do |link|
+          {
+            'title' => link['title'],
+            'url' => link['url']
+          }
+        end
+
+      site.data['category_links'] =
+        (generated_links + manual_links)
+          .sort_by { |link| link['title'].downcase }
+        end
   end
 
   class CategoryPage < Page
@@ -78,7 +92,7 @@ module Jekyll
       @name = 'index.html'
 
       process(@name)
-      read_yaml(File.join(base, '_layouts'), 'category_list.html')
+      read_yaml(File.join(base, '_layouts'), 'category-list.html')
 
       data['title']    = entry['title']
       data['category'] = entry['category']

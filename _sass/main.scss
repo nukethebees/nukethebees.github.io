@@ -5,6 +5,7 @@
 @use "post";
 @use "post_list";
 @use "home";
+@use "hub";
 @use "vars";
 
 * {
@@ -168,7 +169,6 @@ body {
   --stripe-1-start: var(--stripe-width);
   --stripe-1-end: calc(2 * var(--stripe-width));
 
-  //background: var(--site-background-colour);
   background-color: var(--background-colour); 
   background-image: var(--background-image);
 }

@@ -23,15 +23,20 @@ header {
   padding: 1rem;
 }
 
-.header_links {
+.header-links {
   display: flex;
   align-items: center;
 }
 
-.header_links_inner {
+.header-links-inner {
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: fit-content;
+
+  a {
+    white-space: nowrap;
+  }
 }
 
 .site-title {
@@ -43,26 +48,27 @@ header {
   }
 }
 
-.header_menu_toggle,
+.header-menu-toggle,
 .header_menu_button {
   display: none;
 }
 
 @media (max-width: vars.$header-collapse-width) {
+
   /* Allow the nav to drop below the title once the inline header gets too tight. */
   .header-inner {
     flex-wrap: wrap;
   }
 
   /* Keep the mobile menu closed until the burger toggle is checked. */
-  .header_links {
+  .header-links {
     flex-basis: 100%;
     width: 100%;
     display: none;
   }
 
   /* Stack the links into a single-column mobile menu. */
-  .header_links_inner {
+  .header-links-inner {
     width: 100%;
     flex-direction: column;
     align-items: stretch;
@@ -70,12 +76,12 @@ header {
     padding-top: 0.75rem;
   }
 
-  .header_links_inner > a,
-  .header_links_inner > .dropdown {
+  .header-links-inner>a,
+  .header-links-inner>.dropdown {
     width: 100%;
   }
 
-  .header_links_inner > a {
+  .header-links-inner>a {
     display: block;
     padding: 0.5rem 0.75rem;
     background: var(--header-background-colour);
@@ -94,7 +100,7 @@ header {
   }
 
   /* CSS-only open state controlled by the hidden checkbox above. */
-  .header_menu_toggle:checked~.header_links {
+  .header-menu-toggle:checked~.header-links {
     display: flex;
   }
 }

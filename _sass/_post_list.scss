@@ -3,18 +3,19 @@
 .post-list {
   --vgap: 0.5rem;
 
-  grid-column: 2;
-
   display: grid;
   gap: var(--vgap); // Gap between elements
 
   margin: 0;
   padding: 0;
   padding-top: var(--vgap);
+  padding-bottom: var(--vgap);
   list-style: none;
 
   h1 {
-    padding: 1rem;
+    padding: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     margin: 0;
   }
 }
@@ -24,7 +25,6 @@
   padding: 0;
   padding-inline: 0;
   margin: 0;
-  margin-inline: var(--text-content-padding-side);
 }
 
 .post-item-title {

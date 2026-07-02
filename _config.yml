@@ -27,5 +27,21 @@ include:
 header_links:
   - title: About
     url: /about/
+  - title: "Unreal Engine"
+    url: /unreal/
+
+collections:
+  unreal_notes:
+    output: true
+    permalink: /unreal/notes/:name/
 
 permalink: /:title/
+
+category_pages:
+  excluded:
+    - unreal
+  manual_links:
+    - title: Unreal Engine
+      url: /unreal/
+
+

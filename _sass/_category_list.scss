@@ -3,4 +3,6 @@
 .category-list {
   max-width: var(--text-content-width);
   margin: 0 auto;
+
+  padding-inline: var(--text-content-padding-side);
 }

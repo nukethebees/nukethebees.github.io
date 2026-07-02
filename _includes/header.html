@@ -5,12 +5,12 @@
         🐝 {{ site.title }} 🐝
       </a>
     </div>
-    <input type="checkbox" id="header_menu_toggle" class="header_menu_toggle" />
-    <label for="header_menu_toggle" class="header_menu_button" aria-label="Toggle navigation">
+    <input type="checkbox" id="header-menu-toggle" class="header-menu-toggle" />
+    <label for="header-menu-toggle" class="header_menu_button" aria-label="Toggle navigation">
       ☰
     </label>
-    <nav class="header_links" aria-label="Primary navigation">
-      <div class="header_links_inner">
+    <nav class="header-links" aria-label="Primary navigation">
+      <div class="header-links-inner">
         {% for link in site.header_links %}
         <a href="{{ link.url }}">{{ link.title }}</a>
         {% endfor %}

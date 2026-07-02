@@ -8,8 +8,7 @@
 
 .post {
   display: grid;
-  grid-template-columns:
-    1fr auto 1fr;
+  grid-template-columns: 1fr auto 1fr;
 
   max-width: var(--text-content-width);
 
