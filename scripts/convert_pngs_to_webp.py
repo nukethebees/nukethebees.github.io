@@ -14,7 +14,8 @@ def parse_args() -> argparse.Namespace:
         description="Recursively convert every PNG in the images directory to WebP."
     )
     parser.add_argument(
-        "--images-dir",
+        "images_dir",
+        nargs="?",
         type=Path,
         default=Path("images"),
         help="Directory to scan for PNG files. Defaults to ./images.",
