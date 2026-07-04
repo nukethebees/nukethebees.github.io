@@ -29,19 +29,26 @@ header_links:
     url: /about/
   - title: "Unreal Engine"
     url: /unreal/
+  - title: "Blender"
+    url: /blender/
 
 collections:
   unreal_notes:
     output: true
     permalink: /unreal/notes/:name/
+  blender_notes:
+    output: true
+    permalink: /blender/notes/:name/
 
 permalink: /:title/
 
 category_pages:
   excluded:
     - unreal
+    - blender
   manual_links:
     - title: Unreal Engine
       url: /unreal/
-
+    - title: Blender
+      url: /blender/
 

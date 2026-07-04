@@ -33,9 +33,6 @@
   }
 
   div.highlighter-rouge {
-    --outline-thickness: 1rem;
-    --margin-thickness: calc(var(--outline-thickness) + 1rem);
-
     background-color: var(--text-background-colour);
     width: fit-content;
     outline: var(--outline-thickness) solid var(--text-background-colour);
@@ -87,18 +84,16 @@
     }
 
     img {
+      width: auto;
       height: auto;
       display: block;
 
-      --outline-thickness: 1rem;
-      --margin-thickness: calc(var(--outline-thickness) + 1rem);
-
       outline: var(--outline-thickness) solid var(--text-background-colour);
       border-radius: 12px;
+
       padding: 0;
       margin: 0;
-      margin-top: var(--margin-thickness);
-      margin-bottom: var(--margin-thickness);
+      margin-block: var(--margin-thickness);
 
       @include breakout(var(--img-block-width));
     }
@@ -109,9 +104,6 @@
     overflow-x: auto;
     white-space: normal;
     border-collapse: collapse;
-
-    --outline-thickness: 1rem;
-    --margin-thickness: calc(var(--outline-thickness) + 1rem);
 
     outline: var(--outline-thickness) solid var(--text-background-colour);
     border-radius: 12px;

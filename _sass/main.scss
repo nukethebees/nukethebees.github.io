@@ -43,6 +43,9 @@
     calc(var(--p-text-width) + var(--text-content-padding));
   --text-content-width: min(var(--max-content-width), 100vw);
 
+  --outline-thickness: 1rem;
+  --margin-thickness: calc(var(--outline-thickness) + 1rem);
+
   // Colours
   --background-colour-light: #c2b347;
   --background-image-light: #{hex-pattern("7c570a", "0.17")};
@@ -60,20 +63,20 @@
   --link-colour-active-dark: #ffffff;
   --link-colour-visited-light: #551A8B;
   --link-colour-visited-dark: #bc42f5;
-  
+
   --text-background-colour-light: #FAFAFA;
   --text-background-colour-dark: #111c33;
 
   --header-background-colour-light: #F0F0F0;
-  --header-background-colour-dark: 
+  --header-background-colour-dark:
     color-mix(in srgb, var(--text-background-colour-dark) 90%, white);;
 
   --code-background-colour-light: #161b22;
-  --code-background-colour-dark: 
+  --code-background-colour-dark:
     color-mix(in srgb, var(--header-background-colour-dark) 99%, white);
 
   --header-button-background-colour-light: #E0E0E0;
-  --header-button-background-colour-dark: 
+  --header-button-background-colour-dark:
     color-mix(in srgb, var(--header-background-colour-dark) 90%, white);
   --header-button-hover-colour-light: #D0D0D0;
   --header-button-hover-colour-dark: #D0D0D0;
@@ -104,7 +107,7 @@
   --site-background-colour: var(--site-background-light);
   --header-background-colour: var(--header-background-colour-light);
   --code-background-colour: var(--code-background-colour-light);
-  
+
   --header-button-background-colour: var(--header-button-background-colour-light);
   --header-button-hover-colour: var(--header-button-hover-colour-light);
 }
@@ -169,7 +172,7 @@ body {
   --stripe-1-start: var(--stripe-width);
   --stripe-1-end: calc(2 * var(--stripe-width));
 
-  background-color: var(--background-colour); 
+  background-color: var(--background-colour);
   background-image: var(--background-image);
 }
 
