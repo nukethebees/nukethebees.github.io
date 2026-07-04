@@ -15,3 +15,28 @@ They're under the "Annotations" dropdown.
     Annotations menu
   </figcaption>
 </figure>
+
+## Opening the palette
+
+Open the properties sidebar (N).
+Tool -> brush settings -> Colour Palette
+
+<figure class="post-figure">
+  <img src="/images/blender_notes/texture_painting/palette.webp"
+       alt="Colour palette"/>
+  <figcaption>
+    Colour palette
+  </figcaption>
+</figure>
+
+## Pack the image
+
+Use `Image -> Pack` to embed the image into the `.blend` file.
+
+<figure class="post-figure">
+  <img src="/images/blender_notes/texture_painting/texture_pack.webp"
+       alt="Texture packing"/>
+  <figcaption>
+    Texture packing
+  </figcaption>
+</figure>

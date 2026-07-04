@@ -24,13 +24,7 @@ include:
   - robots.txt
   - BingSiteAuth.xml
 
-header_links:
-  - title: About
-    url: /about/
-  - title: "Unreal Engine"
-    url: /unreal/
-  - title: "Blender"
-    url: /blender/
+permalink: /:title/
 
 collections:
   unreal_notes:
@@ -39,8 +33,19 @@ collections:
   blender_notes:
     output: true
     permalink: /blender/notes/:name/
+  dev_log:
+    output: true
+    permalink: /dev-log/:name/
 
-permalink: /:title/
+header_links:
+  - title: About
+    url: /about/
+  - title: "Unreal Engine"
+    url: /unreal/
+  - title: "Blender"
+    url: /blender/
+  - title: "Dev log"
+    url: /dev-log/
 
 category_pages:
   excluded:
@@ -51,4 +56,3 @@ category_pages:
       url: /unreal/
     - title: Blender
       url: /blender/
-
