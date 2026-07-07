@@ -13,7 +13,7 @@ You need to wait until it's done in the test.
 TestCommandBuilder.StartWhen([this] { return nullptr != spawner->FindFirstPlayerPawn(); })
 ```
 
-## Asserts in Untl
+## Asserts in Until
 
 `ASSERT_THAT` expands into a `return;` so it's not great for `TestCommandBuilder.Until`.
 
