@@ -19,3 +19,39 @@ void apply_asset_configuration();
     A UFunction button in an actor's details panel
   </figcaption>
 </figure>
+
+## Interfaces
+
+I couldn't make interfaces show up in the editor i.e.
+
+```c++
+UPROPERTY(EditAnywhere, Category = "Ship")
+TScriptInterface<ITestEntity> target_ship{nullptr};
+```
+
+I tried to use a constrained `AActor*` using `ObjectMustImplement` however the filtering didn't seem to work.
+
+```c++
+UPROPERTY(EditAnywhere,
+          meta = (ObjectMustImplement = "/Script/Sandbox.TestEntity"),
+          Category = "Ship")
+TObjectPtr<AActor> target_ship{nullptr};
+```
+
+It seems using `AActor*` properties and `CastChecked` is the simplest solution.
+
+```c++
+auto const* const target_entity_interface{CastChecked<ITestEntity>(target)};
+auto const target_handle{target_entity_interface->get_entity_handle()};
+```
+
+## CastChecked<T>
+
+`CastChecked<T>` is a useful function.
+
+It is equivalent to
+
+```c++
+auto foo{Cast<T>(bar)};
+check(foo);
+```
