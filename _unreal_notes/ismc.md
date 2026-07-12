@@ -7,6 +7,8 @@ Notes on [Instanced Static Mesh Component](https://dev.epicgames.com/documentati
 
 # Efficient updates
 
+## Transforms
+
 Batched updates are more efficient than individual updates.
 
 Prefer functions like `BatchUpdateInstancesTransforms` and `BatchUpdateInstancesData` over `UpdateInstanceTransform`.
@@ -24,6 +26,19 @@ However, with multithreading the story changes. You can build a `TArray<T>` very
 Since the ISMC update functions are not thread-safe, my testing showed that they became the dominant serial cost. `FMatrix`-based updates were the fastest.
 
 The main cost is the extra 32 bytes needed per element using `FMatrix`-based instance data instead of `FTransform`, but this is  small in the context I work at.
+
+## Per-instance custom data
+
+There isn't a lot of choice here but this overload allows you to write everything in one call.
+
+```c++
+SetCustomData(int32 InstanceIndexStart,
+              int32 InstanceIndexEnd,
+              TConstArrayView<float> CustomDataFloats,
+              bool bMarkRenderStateDirty = false);
+```
+
+On one of my benchmarks, updating 3 floats on 2800 instances took about 20 μs using the "Development Editor" config.
 
 # Articles
 
