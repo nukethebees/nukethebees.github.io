@@ -1,6 +1,16 @@
-<time 
-  datetime="{{ include.date | date: '%Y-%m-%d' }}"
+<time
+  datetime="{{ include.date | date_to_xmlschema }}"
   class="{{ include.class }}"
-  >
-    {{ include.date | date: "%B %d, %Y" }}
+>
+  {{ include.date | date: "%B %d, %Y" }}
 </time>
+{% if include.last_updated %}
+  <span class="last-updated">
+    (Updated
+    <time
+      datetime="{{ include.last_updated | date_to_xmlschema }}"
+      class="{{ include.class }}"
+    >
+      {{ include.last_updated | date: "%B %d, %Y" }}</time>)
+  </span>
+{% endif %}
