@@ -11,7 +11,7 @@
 
     <br>
 
-    {% include post_date.html date=post.date %}
+    {% include post_date.html date=post.date last_updated=post.last_updated %}
 
     {%- if post.categories.size > 0 -%}
     <br>
