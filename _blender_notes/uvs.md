@@ -1,6 +1,7 @@
 ---
 layout: hub-post
 title: "UVs"
+last_updated: 2026-07-04 12:30:00 +0100
 ---
 
 ## UV Packing Margin

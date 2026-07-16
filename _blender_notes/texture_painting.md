@@ -1,6 +1,7 @@
 ---
 layout: hub-post
 title: "Texture Painting"
+last_updated: 2026-07-04 10:51:00 +0100
 ---
 
 ## Clearing annotations

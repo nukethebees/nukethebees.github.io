@@ -1,6 +1,7 @@
 ---
 layout: hub-post
 title: "AMD μProf with Unreal Engine"
+last_updated: 2026-07-2 21:55:00 +0100
 ---
 
 [AMD μProf](https://www.amd.com/en/developer/uprof.html) can be used for general profiling (think flame graphs) and deeper CPU introspection (cache misses, branch misses etc) with AMD CPUs.

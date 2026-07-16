@@ -1,6 +1,7 @@
 ---
 layout: hub-post
 title: "Instanced Static Mesh Components"
+last_updated: 2026-07-12 5:25:00 +0100
 ---
 
 Notes on [Instanced Static Mesh Component](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/UInstancedStaticMeshComponent) behaviour, update costs, removal, and batching.

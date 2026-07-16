@@ -1,6 +1,7 @@
 ---
 layout: hub-post
 title: "Functional Testing"
+last_updated: 2026-07-06 9:47:00 +0100
 ---
 
 # CQTest

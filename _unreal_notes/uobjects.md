@@ -1,6 +1,7 @@
 ---
 layout: hub-post
 title: "UObjects"
+last_updated: 2026-07-11 23:59:00 +0100
 ---
 
 ## Add a button to the editor details panel
