@@ -3,6 +3,10 @@ require_relative 'debug_utils'
 module Jekyll
   class SiteGenerator < Generator
     ACTIVITY_EXCLUSION_FLAGS = %w[internal unlisted hidden redirect_to].freeze
+    RECENT_ACTIVITY_COLLECTIONS = {
+      'unreal_notes' => 'Unreal',
+      'blender_notes' => 'Blender'
+    }.freeze
 
     safe true
     priority :low
@@ -87,13 +91,29 @@ module Jekyll
     end
 
     def build_recent_activity(site)
-      posts = site.posts.docs.select { |post| recent_activity_item?(post) }
-      pages = site.pages.select { |page| recent_activity_page?(page) }
+      posts = site.posts.docs
+        .select { |post| recent_activity_item?(post) }
+        .map { |post| recent_activity_entry(post) }
+      pages = site.pages
+        .select { |page| recent_activity_page?(page) }
+        .map { |page| recent_activity_entry(page) }
+      collection_pages = RECENT_ACTIVITY_COLLECTIONS.flat_map do |name, label|
+        site.collections.fetch(name).docs
+          .select { |page| recent_activity_item?(page) }
+          .map { |page| recent_activity_entry(page, label) }
+      end
 
       site.data['recent_activity'] =
-        (posts + pages)
-          .sort_by { |item| activity_date(item) }
+        (posts + pages + collection_pages)
+          .sort_by { |entry| activity_date(entry['item']) }
           .reverse
+    end
+
+    def recent_activity_entry(item, section = nil)
+      {
+        'item' => item,
+        'section' => section
+      }
     end
 
     def recent_activity_page?(page)

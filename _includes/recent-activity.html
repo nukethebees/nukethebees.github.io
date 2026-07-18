@@ -4,10 +4,11 @@
   <h1>Recent activity</h1>
 
   <ul class="post-list">
-    {%- for activity_item in site.data.recent_activity limit: activity_limit -%}
+    {%- for activity_entry in site.data.recent_activity limit: activity_limit -%}
+      {%- assign activity_item = activity_entry.item -%}
       <li class="post-item recent-activity-item">
         <a href="{{ activity_item.url | relative_url }}" class="post-item-title">
-          {{ activity_item.title }}
+          {{ activity_item.title }}{% if activity_entry.section %} · {{ activity_entry.section }}{% endif %}
         </a>
 
         <br>
