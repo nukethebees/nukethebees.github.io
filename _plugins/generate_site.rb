@@ -2,12 +2,15 @@ require_relative 'debug_utils'
 
 module Jekyll
   class SiteGenerator < Generator
+    ACTIVITY_EXCLUSION_FLAGS = %w[internal unlisted hidden redirect_to].freeze
+
     safe true
     priority :low
 
     def generate(site)
       create_category_pages_data(site)
       build_category_links(site)
+      build_recent_activity(site)
     end
 
     def create_category_pages_data(site)
@@ -81,7 +84,41 @@ module Jekyll
       site.data['category_links'] =
         (generated_links + manual_links)
           .sort_by { |link| link['title'].downcase }
-        end
+    end
+
+    def build_recent_activity(site)
+      posts = site.posts.docs.select { |post| recent_activity_item?(post) }
+      pages = site.pages.select { |page| recent_activity_page?(page) }
+
+      site.data['recent_activity'] =
+        (posts + pages)
+          .sort_by { |item| activity_date(item) }
+          .reverse
+    end
+
+    def recent_activity_page?(page)
+      %w[post hub].include?(page.data['layout']) &&
+        !page.is_a?(CategoryPage) &&
+        recent_activity_item?(page)
+    end
+
+    def recent_activity_item?(item)
+      data = item.data
+      return false if ACTIVITY_EXCLUSION_FLAGS.any? { |flag| data[flag] }
+
+      data['listed'] != false &&
+        data['title'] &&
+        item.url &&
+        valid_activity_date?(activity_date(item))
+    end
+
+    def activity_date(item)
+      item.data['last_updated'] || item.data['date']
+    end
+
+    def valid_activity_date?(date)
+      date && !date.is_a?(String) && date.respond_to?(:strftime)
+    end
   end
 
   class CategoryPage < Page

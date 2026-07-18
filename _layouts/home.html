@@ -3,6 +3,11 @@ layout: base
 ---
 <div class="home">
   <div class="home-content">
-    {% include post_list.html posts=site.posts %}
+    {% include recent-activity.html limit=3 %}
+
+    {% include post_list.html
+       posts=site.posts
+       title="Articles"
+    %}
   </div>
 </div>

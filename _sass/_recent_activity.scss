@@ -1,0 +1,16 @@
+.recent-activity {
+  padding-top: 1rem;
+
+  h1 {
+    margin: 0;
+    padding-block: 1rem;
+  }
+
+  .post-list {
+    --vgap: 0.25rem;
+  }
+}
+
+.recent-activity-item {
+  padding-bottom: 0.25rem;
+}
