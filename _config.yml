@@ -27,6 +27,9 @@ include:
 permalink: /:title/
 
 collections:
+  cpp_notes:
+    output: true
+    permalink: /cpp/notes/:name/
   unreal_notes:
     output: true
     permalink: /unreal/notes/:name/
@@ -40,6 +43,8 @@ collections:
 header_links:
   - title: About
     url: /about/
+  - title: "C++"
+    url: /cpp/
   - title: "Unreal Engine"
     url: /unreal/
   - title: "Blender"
@@ -49,9 +54,12 @@ header_links:
 
 category_pages:
   excluded:
+    - cpp
     - unreal
     - blender
   manual_links:
+    - title: C++
+      url: /cpp/
     - title: Unreal Engine
       url: /unreal/
     - title: Blender
