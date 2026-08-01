@@ -3,10 +3,6 @@ require_relative 'debug_utils'
 module Jekyll
   class SiteGenerator < Generator
     ACTIVITY_EXCLUSION_FLAGS = %w[internal unlisted hidden redirect_to].freeze
-    RECENT_ACTIVITY_COLLECTIONS = {
-      'unreal_notes' => 'Unreal',
-      'blender_notes' => 'Blender'
-    }.freeze
 
     safe true
     priority :low
@@ -97,8 +93,20 @@ module Jekyll
       pages = site.pages
         .select { |page| recent_activity_page?(page) }
         .map { |page| recent_activity_entry(page) }
-      collection_pages = RECENT_ACTIVITY_COLLECTIONS.flat_map do |name, label|
-        site.collections.fetch(name).docs
+      recent_activity_collections =
+        site.config.dig('recent_activity', 'collections') || {}
+
+      collection_pages = recent_activity_collections.flat_map do |name, label|
+        collection = site.collections[name]
+        unless collection
+          Jekyll.logger.warn(
+            'Recent activity:',
+            "Skipping unknown collection '#{name}'"
+          )
+          next []
+        end
+
+        collection.docs
           .select { |page| recent_activity_item?(page) }
           .map { |page| recent_activity_entry(page, label) }
       end

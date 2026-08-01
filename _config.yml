@@ -40,6 +40,12 @@ collections:
     output: true
     permalink: /dev-log/:name/
 
+recent_activity:
+  collections:
+    cpp_notes: "C++"
+    unreal_notes: "Unreal"
+    blender_notes: "Blender"
+
 header_links:
   - title: About
     url: /about/
