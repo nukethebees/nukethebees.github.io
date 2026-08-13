@@ -38,3 +38,19 @@ The downside is that readers may not be aware of the contextual nature of the ca
 ```
 
 Source: [Asserts in Unreal Engine](https://dev.epicgames.com/documentation/unreal-engine/asserts-in-unreal-engine)
+
+## Spawning before BeginPlay in CQ test maps
+
+`FMapTestSpawner::CreateFromTempLevel` may call `BeginPlay` before the test gets access to the generated level.
+
+A workaround is to bind a function to `FEditorDelegates::MapChange` during `BEFORE_EACH` and then access the world via `GEditor->GetEditorWorldContext().World()`.
+
+Be sure to unbind the callback in `AFTER_EACH`.
+
+## CQ worlds outliving the test
+
+In some cases the most recent CQ test level might keep running when the test runner goes on to run other non-test levels.
+As I run my simulations at much faster rates than 1x, this ground my PC to a halt.
+I had to implement a simulation pause function to fix the issue.
+
+Resetting the `TUniquePtr<FMapTestSpawner>` back to `nullptr` did nothing.
