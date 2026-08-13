@@ -4,7 +4,9 @@ title: "Meshes"
 last_updated: 2026-07-04 10:51:00 +0100
 ---
 
-# Unreal Engine
+## Unreal Engine
+
+### Collision
 
 You can export collision meshes along with your mesh.
 Make sure they have the same name as one of the meshes and they're visible in the viewport.
@@ -17,6 +19,18 @@ See: <https://dev.epicgames.com/documentation/unreal-engine/fbx-static-mesh-pipe
   <figcaption>
     Blender scene with UBX prefixed collision mesh
   </figcaption>
+</figure>
+
+UBX = Box
+
+### Sockets
+
+You need to create an empty object with the name "Socket_<name>".
+To get sockets to export correctly, I had to parent them under a mesh.
+Using an empty as the root would not work.
+
+<figure class="post-figure">
+  <img src="/images/blender_notes/meshes/unreal_socket.webp"/>
 </figure>
 
 # Triangulation
