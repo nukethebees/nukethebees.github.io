@@ -1,0 +1,15 @@
+.dev-log {
+  .dev-log-entry {
+    padding-block: 2rem;
+  }
+
+  .dev-log-entry + .dev-log-entry {
+    border-top: 1px solid var(--text-colour);
+  }
+
+  .post-figure img {
+    max-width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+}
